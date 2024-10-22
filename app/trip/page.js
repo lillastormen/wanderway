@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Trip() {
@@ -25,21 +26,28 @@ export default function Trip() {
 
 
     return (
-    <div>
-        <h2>Trip</h2>
-        <div>Place</div>
-        <div>Date</div>
-        <div className="flex gap-10">
-            <button onClick={() => setActiveTab("Intinerary")}>Intinerary</button>
-            <button onClick={() => setActiveTab("Good to know")}>Good to know</button>
-            <button onClick={() => setActiveTab("Must see")}>Must see</button>
-            <button onClick={() => setActiveTab("Explore")}>Explore</button>
-            <button onClick={() => setActiveTab("Hidden gems")}>Hidden gems</button>
-        </div>
         <div>
-            {switchTab()}
+            <h2>Trip</h2>
+            <div>Place</div>
+            <div>Date</div>
+            <div className="flex gap-10">
+                <button onClick={() => setActiveTab("Intinerary")}>Intinerary</button>
+                <button onClick={() => setActiveTab("Good to know")}>Good to know</button>
+                <button onClick={() => setActiveTab("Must see")}>Must see</button>
+                <button onClick={() => setActiveTab("Explore")}>Explore</button>
+                <button onClick={() => setActiveTab("Hidden gems")}>Hidden gems</button>
+            </div>
+            <div>
+                {switchTab()}
+            </div>
+            <ul className="flex gap-10">
+                <li><Link href="/">Home</Link></li>
+                <li>Users hidden gems?</li>
+                <li><Link href="/survey">Add New Trip</Link></li>
+                <li><Link href="/past-trips">Past Trips</Link></li>
+                <li><Link href="/user-account">My account</Link></li>
+            </ul>
         </div>
-    </div>
     );
   }
   
