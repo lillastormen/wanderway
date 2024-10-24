@@ -14,7 +14,7 @@ export default function Intinerary() {
         </div>
         <Link href="/trip">
             <button className="border-solid border-2">
-            <p>Save</p>
+            <p>Next</p>
             </button>
         </Link>
        

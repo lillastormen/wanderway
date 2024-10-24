@@ -43,7 +43,7 @@ export default function Trip() {
             <ul className="flex gap-10">
                 <li><Link href="/">Home</Link></li>
                 <li>Users hidden gems?</li>
-                <li><Link href="/survey">Add New Trip</Link></li>
+                <li><Link href="/survey-user">Add New Trip</Link></li>
                 <li><Link href="/past-trips">Past Trips</Link></li>
                 <li><Link href="/user-account">My account</Link></li>
             </ul>

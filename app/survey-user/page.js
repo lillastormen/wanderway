@@ -3,15 +3,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Users } from "../controllers/userController";
+import { useRouter } from "next/navigation";
 
-export default function Survey() {
+export default function UserSurvey() {
+
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name:'',
     email:'',
     age_group:'',
     gender:'',
-    traveler_type:''
+    traveler_type:'',
   });
  
   //Handle form data change
@@ -25,16 +28,17 @@ export default function Survey() {
   //Handle form submit
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log('fsdsfd');
-
+ 
     const response = await Users.create(formData)
       
     console.log(response);
 
 
-    //const result = await response.json();
     if (response.success) {
+      const userId = response.data.id; // Assuming the user ID is returned in the response
+      console.log(userId)
       alert('User addes successfully!');
+      router.push(`/survey-trip?user_id=${userId}`)
     } else {
       console.error(result.error);
       alert('Failed to add user');
@@ -45,7 +49,7 @@ export default function Survey() {
   
   return (
     <>    
-    <h2>Surveyyyy</h2>
+    <h2>User info</h2>
     <form>
       <div>
         <p>Name</p>
@@ -194,69 +198,6 @@ export default function Survey() {
           onChange={handleFormChange}
         />
           <label htmlFor="family">Family</label> 
-        </div>
-      </div>
-      <div>
-        <p>Destination</p>
-        DROPDOWN COMES HERE
-      </div>
-      <div>
-        <p>Trip dates</p>
-        CALENDAR
-      </div>
-      <div>
-        <p>Budget</p>
-        <div>
-          <input type="radio" id="explorer" name="budget"/>
-          <label htmlFor="explorer">Explorer</label>  
-        </div>
-        <div>
-          <input type="radio" id="comfort" name="budget"/>
-          <label htmlFor="comfort">Comfort</label>  
-        </div>
-        <div>
-          <input type="radio" id="indulge" name="budget"/>
-          <label htmlFor="indluge">Indulge</label>  
-        </div>
-      </div>
-      <div>
-        <p>Interests</p>
-        <input type="checkbox" id="vehicle1" name="interest" value="museums"/>
-        <label htmlFor="museums">Museums</label>
-        <input type="checkbox" id="art-galleries" name="interest" value="art-galleries"/>
-        <label htmlFor="art-galleries">Art-galleries</label>
-        <input type="checkbox" id="nightlife" name="interest" value="nightlife"/>
-        <label htmlFor="nightlife">Nightlife</label>
-        <input type="checkbox" id="food" name="interest" value="food"/>
-        <label htmlFor="food">Food</label>
-        <input type="checkbox" id="hiking" name="interest" value="hiking"/>
-        <label htmlFor="hiking">Hiking</label>
-        <input type="checkbox" id="beaches" name="interest" value="beaches"/>
-        <label htmlFor="beaches">Beaches</label>
-        <input type="checkbox" id="shopping" name="interest" value="shopping"/>
-        <label htmlFor="shopping">Shopping</label>
-        <input type="checkbox" id="music" name="interest" value="music"/>
-        <label htmlFor="music">Music</label>
-        <input type="checkbox" id="theater" name="interest" value="theater"/>
-        <label htmlFor="theater">Theater</label>
-        <input type="checkbox" id="architecture" name="interest" value="architecture"/>
-        <label htmlFor="architecture">Architecture</label>
-        <input type="checkbox" id="photo-ops" name="interest" value="photo-ops"/>
-        <label htmlFor="photo-ops">Photo Ops</label>
-      </div>
-      <div> 
-        <p>Peace</p>
-        <div>
-          <input type="radio" id="relaxed" name="peace"/>
-          <label htmlFor="relaxed">Relaxed</label>  
-        </div>
-        <div>
-          <input type="radio" id="adventurer" name="peace"/>
-          <label htmlFor="adventurer">Adventurer</label>  
-        </div>
-        <div>
-          <input type="radio" id="thrill-seeker" name="peace"/>
-          <label htmlFor="thrill-seeker">Thrill-seeker</label>  
         </div>
       </div>
       
