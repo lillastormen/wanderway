@@ -10,11 +10,11 @@ import { useSearchParams } from "next/navigation";
 export default function TripSurvey() {
 
     const searchParams = useSearchParams()
-    const user_id = searchParams.get('user_id')
+    const urlUserId = searchParams.get('user_id')
  
 
     const [formData, setFormData] = useState({
-        user_id: user_id || '',
+        user_id: localStorage.getItem('user_id') || urlUserId || '',
         destination:'',
         start_date:'',
         end_date:'',
@@ -22,7 +22,10 @@ export default function TripSurvey() {
         peace:'',
     });
 
-    
+    // If user_id is available from the URL, store it in localStorage (this can be done inside state initialization)
+    if (urlUserId && !localStorage.getItem('user_id')) {
+        localStorage.setItem('user_id', urlUserId); // Store user_id in localStorage
+    }
 
     //Handle form data change
     const handleFormChange = (e) => {
