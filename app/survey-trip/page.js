@@ -126,31 +126,6 @@ return (
         </div>  
         
     </div>
-    {/* <div>
-        <p>Interests</p>
-        <input type="checkbox" id="vehicle1" name="interest" value="museums"/>
-        <label htmlFor="museums">Museums</label>
-        <input type="checkbox" id="art-galleries" name="interest" value="art-galleries"/>
-        <label htmlFor="art-galleries">Art-galleries</label>
-        <input type="checkbox" id="nightlife" name="interest" value="nightlife"/>
-        <label htmlFor="nightlife">Nightlife</label>
-        <input type="checkbox" id="food" name="interest" value="food"/>
-        <label htmlFor="food">Food</label>
-        <input type="checkbox" id="hiking" name="interest" value="hiking"/>
-        <label htmlFor="hiking">Hiking</label>
-        <input type="checkbox" id="beaches" name="interest" value="beaches"/>
-        <label htmlFor="beaches">Beaches</label>
-        <input type="checkbox" id="shopping" name="interest" value="shopping"/>
-        <label htmlFor="shopping">Shopping</label>
-        <input type="checkbox" id="music" name="interest" value="music"/>
-        <label htmlFor="music">Music</label>
-        <input type="checkbox" id="theater" name="interest" value="theater"/>
-        <label htmlFor="theater">Theater</label>
-        <input type="checkbox" id="architecture" name="interest" value="architecture"/>
-        <label htmlFor="architecture">Architecture</label>
-        <input type="checkbox" id="photo-ops" name="interest" value="photo-ops"/>
-        <label htmlFor="photo-ops">Photo Ops</label>
-    </div> */}
     <div> 
         <p>Peace</p>
         <div>

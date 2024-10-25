@@ -15,21 +15,37 @@ export default function UserSurvey() {
     age_group:'',
     gender:'',
     traveler_type:'',
+    interests: [],
   });
  
   //Handle form data change
   const handleFormChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox" && name === "interest") {
+      setFormData((prevData) => ({
+        ...prevData,
+        interests: checked
+          ? [...prevData.interests, value]
+          : prevData.interests.filter((interest) => interest !== value)
+      }));
+    } else {
+
     setFormData({
     ...formData, //Keep the exsisting data in the FormData state
-    [e.target.name]: e.target.value //Update only the field that changed
-  });
-  };
+    [name]: value //Update only the field that changed
+    });
+  } 
+};
 
   //Handle form submit
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    const userData = { ...formData };
+    const userInterests = formData.interests;
  
-    const response = await Users.create(formData)
+    const response = await Users.create(userData, userInterests)
       
     console.log(response);
 
@@ -40,7 +56,7 @@ export default function UserSurvey() {
       alert('User addes successfully!');
       router.push(`/survey-trip?user_id=${userId}`)
     } else {
-      console.error(result.error);
+      console.error(response.error);
       alert('Failed to add user');
     }
   };
@@ -117,7 +133,7 @@ export default function UserSurvey() {
           <input 
             type="radio" 
             id="age5" 
-            name="age"
+            name="age_group"
             value="45+"
             onChange={handleFormChange}
           />  
@@ -200,6 +216,100 @@ export default function UserSurvey() {
           <label htmlFor="family">Family</label> 
         </div>
       </div>
+      <div>
+        <p>Interests</p>
+        <div>
+          <input 
+            type="checkbox" 
+            id="museums" 
+            name="interest" 
+            value="1"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="museums">Museums</label>
+          <input 
+            type="checkbox" 
+            id="art-galleries" 
+            name="interest" 
+            value="2"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="art-galleries">Art-galleries</label>
+          <input 
+            type="checkbox" 
+            id="nightlife" 
+            name="interest" 
+            value="3"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="nightlife">Nightlife</label>
+          <input 
+            type="checkbox" 
+            id="food" 
+            name="interest" 
+            value="4"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="food">Food</label>
+          <input 
+            type="checkbox" 
+            id="hiking" 
+            name="interest" 
+            value="5"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="hiking">Hiking</label>
+          <input 
+            type="checkbox" 
+            id="beaches" 
+            name="interest" 
+            value="6"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="beaches">Beaches</label>
+          <input 
+            type="checkbox" 
+            id="shopping" 
+            name="interest" 
+            value="7"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="shopping">Shopping</label>
+          <input 
+            type="checkbox" 
+            id="music" 
+            name="interest" 
+            value="8"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="music">Music</label>
+          <input 
+            type="checkbox" 
+            id="theater" 
+            name="interest" 
+            value="9"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="theater">Theater</label>
+          <input 
+            type="checkbox" 
+            id="architecture" 
+            name="interest" 
+            value="10"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="architecture">Architecture</label>
+          <input 
+            type="checkbox" 
+            id="photo-ops" 
+            name="interest" 
+            value="11-ops"
+            onChange={handleFormChange}
+          />
+          <label htmlFor="photo-ops">Photo Ops</label>
+        </div>
+      </div> 
+     
       
         <button 
           className="border-solid border-"
