@@ -9,8 +9,9 @@ import { useSearchParams } from "next/navigation";
 
 export default function TripSurvey() {
 
-    const searchParams = useSearchParams()
-    const urlUserId = searchParams.get('user_id')
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const urlUserId = searchParams.get('user_id');
  
 
     const [formData, setFormData] = useState({
@@ -48,14 +49,16 @@ export default function TripSurvey() {
         console.log(response);
 
 
-        //const result = await response.json();
+        
         if (response.success) {
-        alert('Trip addes successfully!');
-        } else {
-        console.error(result.error);
-        alert('Failed to add trip');
-        }
-    };
+            alert('Trip added successfully!');
+            router.push(`/intinerary`)
+          } else {
+            console.error(response.error);
+            alert('Failed to add trip');
+          }
+        };
+ 
 
 
 

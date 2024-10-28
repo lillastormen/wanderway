@@ -1,6 +1,12 @@
+'use client'
+
 import Link from "next/link";
+import { Trips } from "../controllers/tripController";
+import { useState } from "react";
 
 export default function Intinerary() {
+
+
   return (
     <div>
         <h2>Your Trip</h2>

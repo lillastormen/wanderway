@@ -303,7 +303,7 @@ export default function UserSurvey() {
             type="checkbox" 
             id="photo-ops" 
             name="interest" 
-            value="11-ops"
+            value="11"
             onChange={handleFormChange}
           />
           <label htmlFor="photo-ops">Photo Ops</label>
