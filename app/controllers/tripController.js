@@ -43,7 +43,7 @@ export const Trips = {
         return { success: true, data }
     },
 
-    readByUserId: async (userId) => {
+    readTripByUserId: async (userId) => {
         // console.log('Fetching trips for user ID:', userId)
         const { data, error } = await supabase
         .from('Trips')

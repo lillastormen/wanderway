@@ -28,6 +28,49 @@ export const Users = {
         }
 
         return { success: true, data: data[0] };
+    },
+
+    readUserById: async (userId) => {
+        const { data, error} = await supabase
+        .from('Users')
+        .select('*')
+        .eq('id', userId)
+        .single()
+
+        if (error) {
+            console.error(`Error fetching user with ID ${userId}:`, error.message);
+            return { success: false, error};
+        }
+
+        return { success: true, data}
+    },
+
+    update: async (userId, updatedData) => {
+        const { data, error } = await supabase
+        .from('Users')
+        .update(updatedData)
+        .eq('id', userId)
+
+        if (error) {
+            console.error(`Error updating user with ID ${userId}`);
+            return { success: false, error }
+        }
+
+        return { success: true, data}
+    },
+
+    remove: async (userId) => {
+        const { data, error } = await supabase
+        .from('Users')
+        .delete()
+        .eq('id', userId)
+
+        if (error) {
+            console.error(`Error deleting user with ID ${userId}`);
+            return { success: false, error}
+        }
+
+        return { success: true, data}
     }
 
 };
