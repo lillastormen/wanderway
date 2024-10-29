@@ -15,6 +15,7 @@ export default function TripSurvey() {
     const searchParams = useSearchParams();
     const urlUserId = searchParams.get('user_id');
     const [date, setDate] = useState(null);
+
  
 
     const [formData, setFormData] = useState({
@@ -42,6 +43,13 @@ export default function TripSurvey() {
     //Handle form submit
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+
+          // Ensure `user_id` exists
+        if (!formData.user_id || formData.user_id === "") {
+            console.error("No user ID found. Please create an account first.");
+            alert("No user ID found. Please create an account or log in.");
+            return;
+        }
 
         const response = await Trips.create(formData);
 

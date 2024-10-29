@@ -48,10 +48,10 @@ export const Trips = {
         // console.log('Fetching trips for user ID:', userId)
         const { data, error } = await supabase
         .from('Trips')
-        .select('destination, start_date, end_date')
+        .select('destination, start_date, end_date, id')
         .eq('user_id', userId)
 
-        if (error) {
+        if (error) {    
             console.error(`Error fetching trips by user ID ${userId}:`, error.message)
             return { success: false, error }
         }
