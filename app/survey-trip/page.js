@@ -1,10 +1,12 @@
 'use client'
 
-import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Trips } from "../controllers/tripController";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "/styles/style.css";
 
 
 export default function TripSurvey() {
@@ -12,6 +14,7 @@ export default function TripSurvey() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const urlUserId = searchParams.get('user_id');
+    const [date, setDate] = useState(null);
  
 
     const [formData, setFormData] = useState({
@@ -77,21 +80,19 @@ return (
     </div>
     <div>
         <p>Start date</p>
-        <input 
-          type="text" 
-          id="start_date" 
-          name="start_date" 
-          value={formData.start_date} 
-          onChange={handleFormChange}
-          /> 
+        <DatePicker
+            selected={formData.start_date}
+            onChange={(date) => setFormData((prevData) => ({ ...prevData, start_date: date }))}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Select start date"
+        />
         <p>End date</p>
-        <input 
-          type="text" 
-          id="end_date" 
-          name="end_date" 
-          value={formData.end_date} 
-          onChange={handleFormChange}
-          /> 
+        <DatePicker
+            selected={formData.end_date}
+            onChange={(date) => setFormData((prevData) => ({ ...prevData, end_date: date }))}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Select end date"
+        /> 
     </div>
     <div>
         <p>Budget</p>
