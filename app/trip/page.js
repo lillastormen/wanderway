@@ -82,16 +82,16 @@ export default function Trip() {
         }
     };
 
-    //handle adding a new trip
-    const handleAddNewTrip = async (newTripData) => {
-        const response = await Trips.create(newTripData);
-        if (response.success && response.data && response.data[0]) {
-            const newTrip = response.data[0];
-            setActiveTrips((prevTrips) => [...prevTrips, newTrip]);
-        } else {
-            console.error('Failed to add new trip:', response.error)
-        }
-    }
+    // //handle adding a new trip
+    // const handleAddNewTrip = async (newTripData) => {
+    //     const response = await Trips.create(newTripData);
+    //     if (response.success && response.data && response.data[0]) {
+    //         const newTrip = response.data[0];
+    //         setActiveTrips((prevTrips) => [...prevTrips, newTrip]);
+    //     } else {
+    //         console.error('Failed to add new trip:', response.error)
+    //     }
+    // }
 
 
 
@@ -135,10 +135,10 @@ export default function Trip() {
                             </form>                    
                         ) : (
                             <>
-                                <div>{trip.id}</div>
+                                {/* <div>{trip.id}</div> */}
                                 <div>{trip.destination}</div>
                                 <div>{trip.start_date} - {trip.end_date}</div>
-                                <button onClick={() => setTripEdit(true)}>Edit</button>
+                                <button onClick={() => setEditingTripId(trip.id)}>Edit</button>
                             </>
                         )}
                     </div>
