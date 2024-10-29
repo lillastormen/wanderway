@@ -39,23 +39,21 @@ export default function TripSurvey() {
     //Handle form submit
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        // if (!formData.user_id) {
-        //     alert('Error: user_id is missing');
-        //     return;
-        // }
 
-        const response = await Trips.create(formData)
+        const response = await Trips.create(formData);
+
+        console.log("Trip creation response:", response);
         
-        console.log(response);
+        if (response.success && response.data && response.data[0]) {
+            const tripId = response.data[0].id;
+            console.log('Trip created with ID:', tripId);
 
+            //storing generated id in the localstorage
+            localStorage.setItem('trip_id', tripId);
 
-        
-        if (response.success) {
-            alert('Trip added successfully!');
             router.push(`/intinerary`)
           } else {
-            console.error(response.error);
-            alert('Failed to add trip');
+            console.error('Failed to add trip:', response.error);
           }
         };
  

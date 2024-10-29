@@ -5,7 +5,8 @@ export const Trips = {
     create: async (trip) => {
         const { data, error } = await supabase
         .from('Trips')
-        .insert( trip );
+        .insert( trip )
+        .select('*')
 
         if (error) {
             console.error('Error creating trip:', error.message);  // More detailed error message
@@ -63,6 +64,7 @@ export const Trips = {
         .from('Trips')
         .update(updatedData)
         .eq('id', tripId)
+        .select('*')
 
         if (error) {
             console.error(`Error updating a trip with ID ${tripId}`, error.message)
