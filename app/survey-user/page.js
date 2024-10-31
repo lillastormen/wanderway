@@ -177,7 +177,7 @@ export default function UserSurvey() {
           type="radio"
           id="secret"
           name="gender"
-          value="prefer not to say"
+          value="prefer-not-to-say"
           onChange={handleFormChange}
         />  
           <label htmlFor="secret">Prefer not to say</label> 

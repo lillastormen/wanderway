@@ -17,6 +17,7 @@ export default function UserProfile() {
 
     const [userInterests, setUserInterests] = useState([]);
     const [editMode, setEditMode] = useState(false);
+    const [allInterests, setAllInterests] = useState([]);
     
     useEffect(() => {
         const fetchUserDataAndInterests = async () => {
@@ -26,6 +27,7 @@ export default function UserProfile() {
                 return
             }
 
+             //fetch user data
             const userResponse = await Users.readUserById(userId);
             if (userResponse.success) {
                 setUserData(userResponse.data);
@@ -33,15 +35,26 @@ export default function UserProfile() {
                 console.error('Failed to fetch user:', userResponse.error)
             }
 
+            //fetch user interest
             const interestsResponse = await Interests.readUserInterests(userId);
             if (interestsResponse.success) {
                 const interestId = interestsResponse.data.map((item) => item.interest_id);
 
+                if (interestId.length > 0) {
                 const interestNameResponse = await Interests.readInterestsByIds(interestId);
                 if (interestNameResponse.success) {
-                    setUserInterests(interestNameResponse.data.map((item) => item.interest))
+                    setUserInterests(interestId)
                 } else {
                     console.error('Failed to fetch interest name:', interestNameResponse.error);
+                }
+            }
+
+                //fetch all avaiable interests
+                const allInterestsResponse = await Interests.readAll();
+                if (allInterestsResponse.success) {
+                    setAllInterests(allInterestsResponse.data)
+                } else {
+                    console.error('Failed to fetch all interests:', allInterestsResponse.error)
                 }
             } else {
                 console.error('Failed to fetch user interests:', interestsResponse.error)
@@ -59,6 +72,31 @@ export default function UserProfile() {
         }));
     };
 
+    //handle form change for interests
+    // const handleInterestsFormChange = (e) => {
+    //     const { value, checked } = e.target;
+    //     if (checked) {
+    //         setUserInterests((prevInterests) => [...prevInterests, parseInt(value)]);
+    //     } else {
+    //         setUserInterests((prevInterests) => prevInterests.filter((interest) => interest !== parseInt(value)))
+    //     }
+    // };
+    const handleInterestsFormChange = (e) => {
+        const interestId = parseInt(e.target.value, 10); 
+        if (e.target.checked) {
+            // Add interest if checked
+            setUserInterests((prev) => {
+                if (!prev.includes(interestId)) {
+                    return [...prev, interestId];
+                }
+                return prev;
+            });    
+        } else {
+            // Remove interest if unchecked
+            setUserInterests((prev) => prev.filter((id) => id !== interestId)); 
+        };
+    }
+
     const handleSave = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('user_id');
@@ -66,10 +104,19 @@ export default function UserProfile() {
         const response = await Users.update(userId, userData);
         if (response.success) {
             console.log('User data updated successfully')
-            setEditMode(false);
         } else {
             console.error('Failed to updated user data:', response.error)
         }
+
+        //update user interets
+        const interestsUpdateResponse = await Interests.updateUserInterest(userId, userInterests);
+        if (interestsUpdateResponse.success) {
+            console.log('User interests updated successfully');
+        } else {
+            console.error('Failed to update user interests:', interestsUpdateResponse.error)
+        }
+
+        setEditMode(false);
     }
 
     return (
@@ -137,6 +184,25 @@ export default function UserProfile() {
                             <option value="family">Family</option>
                         </select>
                     </div>
+                    <div>
+                        <label>Interests: </label>
+                        {allInterests.length > 0 ? (
+                            allInterests.map((interest) => (
+                                <div key={interest.id}>
+                                    <input
+                                        type="checkbox"
+                                        id={`interest-${interest.id}`}
+                                        value={interest.id}
+                                        checked={userInterests.includes(interest.id)}
+                                        onChange={handleInterestsFormChange}
+                                    />
+                                    <label htmlFor={`interest-${interest.id}`}>{interest.interest}</label>
+                                </div>
+                            ))
+                        ) : (
+                            <p>Loading interests...</p>
+                        )}
+                    </div>
                     <button type="submit">Save</button>
                     <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
                 </form>
@@ -147,9 +213,19 @@ export default function UserProfile() {
                     <div>Age Group: {userData.age_group}</div>
                     <div>Gender: {userData.gender}</div>
                     <div>Traveler Type: {userData.traveler_type}</div>
-                    <div>Interests: {userInterests.length > 0 ? userInterests.join(", ") : "None"}</div>
+                    <div>Interests: {userInterests.length > 0 
+                        ? userInterests
+                            .map((id) => {
+                                const interest = allInterests.find((item) => item.id === id);
+                                return interest ? interest.interest : '';
+                            })
+                            .filter(Boolean) //remove empty strings
+                            .join(", ")
+                        : "None"}
+                    </div>
                     <button onClick={() => setEditMode(true)}>Edit</button>
                 </div>
+              
             )}
         </div>
     );
