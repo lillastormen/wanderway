@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 
 export default function Trip() {
 
-    const router = useRouter();
+    // const router = useRouter();
     const [activeTab, setActiveTab] = useState("Intinerary");
-    const [trip, setTrip] = useState({ destination: "Loading...", start_date: "Loading...", end_date: "Loading..."});
+    // const [trip, setTrip] = useState({ destination: "Loading...", start_date: "Loading...", end_date: "Loading..."});
     const [activeTrips, setActiveTrips] = useState([]);
-    const [tripEdit, setTripEdit] = useState(false);
+    // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
     
 
@@ -26,7 +26,7 @@ export default function Trip() {
             case "Explore":
                 return <div>Discover more</div>
             case "Hidden gems":
-                return <div>Hidden gems in your ares</div>
+                return <div>Hidden gems in your area</div>
             default:
                 return null;
         }
@@ -167,10 +167,10 @@ export default function Trip() {
 
             <ul className="flex gap-10">
                 <li key="home"><Link href="/">Home</Link></li>
-                <li key="gems">Users hidden gems?</li>
+                <li key="gems"><Link href="/gem-locator">Gem Locator</Link></li>
                 <li key="surveyTrip"><Link href="/survey-trip">Add New Trip</Link></li>
                 <li key="pastTrips"><Link href="/past-trips">Past Trips</Link></li>
-                <li key="userAccount"><Link href="/user-account">My account</Link></li>
+                <li key="userAccount"><Link href="/user-account">My Account</Link></li>
             </ul>
         </div>  
     ); 

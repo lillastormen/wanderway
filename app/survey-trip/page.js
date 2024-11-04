@@ -14,7 +14,7 @@ export default function TripSurvey() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const urlUserId = searchParams.get('user_id');
-    const [date, setDate] = useState(null);
+    // const [date, setDate] = useState(null);
 
  
 
