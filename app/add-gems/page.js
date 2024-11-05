@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { Gems } from "../controllers/gemController";
 
 
 export default function addGem() {
 
+    const router = useRouter();
     const [formData, setFormData] = useState({
         user_id: '',
         name:'',
@@ -51,6 +53,7 @@ export default function addGem() {
                 description: '',
                 picture: '',
             });
+            router.push("/gem-locator")
         } else {
             console.error('Failed to add gem:', response.error)
         }

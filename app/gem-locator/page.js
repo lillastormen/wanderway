@@ -1,15 +1,17 @@
 'use client'
 
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 import SearchBar from "../components/SearchBar";
 import { Gems } from "../controllers/gemController";
 
+
 export default function GemLocator() {
     
-    // const [gems, setGems] = useState([])
+    const router = useRouter();
     const [suggestions, setSuggestions] = useState([])
-    const [selectedGem, setSelectedGem] = useState(null);
+    const [selectedGems, setSelectedGems] = useState(null);
+   
 
     const handleSearch = async (searchTerm) => {
         if (searchTerm.length > 1) {
@@ -30,16 +32,28 @@ export default function GemLocator() {
         }
         };
 
+        // const handleSearchButtonClick = async (searchTerm) => {
+        //     if (searchTerm.length > 1) {
+        //         await handleSearch(searchTerm);; //trigger search on button click
+        //     }
+        // };
+
         const handleSelectedGem = (gem) => {
-            setSelectedGem(gem); //update selected gem with the chosen gem's data
-            setSuggestions([]); //clear
+                setSelectedGems(gem); //update selected gem with the chosen gem's data
+                setSuggestions([]); //clear
+        }
+
+        const handleAddGem = () => {
+            router.push("/add-gems");
         };
+
     
 
         return (
             <div className="gem-locator">
                 <h2>Gem Locator</h2>
                 <SearchBar onSearch={handleSearch} />
+                <button onClick={handleAddGem} className="add-gem-button">+</button>
 
                 {/* displaying suggestions below the search bar */}
                 {suggestions.length > 0 && (
@@ -57,15 +71,15 @@ export default function GemLocator() {
                 )}
 
                 {/* selected gem details */}
-                {selectedGem && (
+                {selectedGems && (
                     <div className="gem-details">
-                        <h3>{selectedGem.name}</h3>
-                        <p>Country: {selectedGem.country}</p>
-                        <p>City: {selectedGem.city}</p>
-                        <p>Location: {selectedGem.location}</p>
-                        <p>Description: {selectedGem.description}</p>
-                        {selectedGem.picture && (
-                            <img src={selectedGem.picture} alt={selectedGem.name} className="gem-picture" />
+                        <h3>{selectedGems.name}</h3>
+                        <p>Country: {selectedGems.country}</p>
+                        <p>City: {selectedGems.city}</p>
+                        <p>Location: {selectedGems.location}</p>
+                        <p>Description: {selectedGems.description}</p>
+                        {selectedGems.picture && (
+                            <img src={selectedGems.picture} alt={selectedGems.name} className="gem-picture" />
                         )}
                     </div>
                 )}
