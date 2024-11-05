@@ -3,13 +3,17 @@
 import { debounce } from "lodash"
 import { useState } from "react"
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, onSearchButtonClick }) {
 
     const [searchTerm, setSearchTerm] = useState('');
   
     //debounced function to handle search and debounce the api call 
-    const debouncedSearch = debounce((value) => {
-        onSearch(value); //call onSearch with the debounced term
+    const debouncedSearch = debounce(async (value) => {
+        try {
+            await onSearch(value); //call onSearch with the debounced term
+        } catch (error) {
+            console.error('Error during search:', error)
+        }
     }, 300); //300ms delay
 
     const handleInputChange = (e) => {
@@ -18,9 +22,9 @@ export default function SearchBar({ onSearch }) {
         debouncedSearch(value); //trigger debounced searcg
     };
 
-    // const handleSearchButtonClick = () => {
-    //     onSearchButtonClick(searchTerm);
-    // };
+    const handleSearchButtonClick = () => {
+        onSearchButtonClick(searchTerm);
+    };
 
     return (
         <div className="search-bar">

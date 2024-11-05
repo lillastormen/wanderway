@@ -9,26 +9,30 @@ import { Gems } from "../controllers/gemController";
 export default function GemLocator() {
     
     const router = useRouter();
-    const [suggestions, setSuggestions] = useState([])
+    // const [suggestions, setSuggestions] = useState([])
     const [selectedGems, setSelectedGems] = useState(null);
+    const [noResults, setNoResults] = useState(false);
    
 
     const handleSearch = async (searchTerm) => {
-        if (searchTerm.length > 1) {
+        if (searchTerm && searchTerm.length > 1) {
             try {
                 const response = await Gems.readGemsByCity(searchTerm);
-                if (response.success) {
-                setSuggestions(response.data); //update suggestions with matching gems 
+                if (response.success && response.data.length > 0) {
+                    setSelectedGems(response.data);
+                    setNoResults(false);
                 } else {
-                    console.error('Error fetching suggestions: ', response.error);
-                    setSuggestions([]);
+                    setSelectedGems([]);
+                    setNoResults(true);
                 }
             } catch (error) {
                 console.error('Unexpected error fetching suggestions: ', error);
-                setSuggestions([]);
+                setSelectedGems([]);
+                setNoResults(true);
             }
         } else {
-            setSuggestions([]); //clear suggestions if search term is too short
+            setSelectedGems([]); //clear suggestions 
+            setNoResults(false);
         }
         };
 
@@ -38,10 +42,7 @@ export default function GemLocator() {
         //     }
         // };
 
-        const handleSelectedGem = (gem) => {
-                setSelectedGems(gem); //update selected gem with the chosen gem's data
-                setSuggestions([]); //clear
-        }
+  
 
         const handleAddGem = () => {
             router.push("/add-gems");
@@ -56,32 +57,40 @@ export default function GemLocator() {
                 <button onClick={handleAddGem} className="add-gem-button">+</button>
 
                 {/* displaying suggestions below the search bar */}
-                {suggestions.length > 0 && (
+                {selectedGems && selectedGems.length > 0 && (
                     <ul className="sugesstions-list">
-                        {suggestions.map((gem) => (
+                       
                             <li
-                                key={gem.id}
-                                onClick={() => handleSelectedGem(gem)}
+                                onClick={() => setSelectedGems(selectedGems)}
                                 className="suggestion-item"
                             >
-                                {gem.city}, {gem.country}
+                                
                             </li>
-                        ))}
+                        
                     </ul>
                 )}
 
-                {/* selected gem details */}
-                {selectedGems && (
-                    <div className="gem-details">
-                        <h3>{selectedGems.name}</h3>
-                        <p>Country: {selectedGems.country}</p>
-                        <p>City: {selectedGems.city}</p>
-                        <p>Location: {selectedGems.location}</p>
-                        <p>Description: {selectedGems.description}</p>
-                        {selectedGems.picture && (
-                            <img src={selectedGems.picture} alt={selectedGems.name} className="gem-picture" />
-                        )}
+                {/* {noResults && (
+                    <div className="no-results">
+                        <p>No results found for the entered city.</p>
                     </div>
+                )} */}
+                {/* selected gem details */}
+                {selectedGems && selectedGems.length > 0 && (
+                    <div className="gem-details">
+                    {selectedGems.map((gem) => (
+                        <div key={gem.id} className="gem-detail-item">
+                            <h3>{gem.name}</h3>
+                            <p>Country: {gem.country}</p>
+                            <p>City: {gem.city}</p>
+                            <p>Location: {gem.location}</p>
+                            <p>Description: {gem.description}</p>
+                            {gem.picture && (
+                                <img src={gem.picture} alt={gem.name} className="gem-picture" />
+                            )}
+                        </div>
+                    ))}
+                </div>
                 )}
 
             </div>
