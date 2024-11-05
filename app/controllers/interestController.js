@@ -5,8 +5,8 @@ export const Interests = {
 
         //formatting interests as an array of objects
         const interestsData = interests.map(interest => ({
-            userId,
-            interestId: interest,
+            user_id: userId,
+            interest_id: interest,
         }));
 
         const { data, error } = await supabase
@@ -35,7 +35,7 @@ export const Interests = {
      readUserInterests: async (userId) => {
         const { data, error } = await supabase
         .from('Users_Interests')
-        .select('*')
+        .select('interest_id')
         .eq('user_id', userId)
 
         if (error) {
@@ -48,7 +48,7 @@ export const Interests = {
      readInterestsByIds: async (interestIds) => {
         const { data, error } = await supabase
         .from ('Interests')
-        .select ('id')
+        .select ('id, interest')
         .in('id', interestIds);
 
         if (error) {
