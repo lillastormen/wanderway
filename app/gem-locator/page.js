@@ -36,11 +36,11 @@ export default function GemLocator() {
         }
         };
 
-        // const handleSearchButtonClick = async (searchTerm) => {
-        //     if (searchTerm.length > 1) {
-        //         await handleSearch(searchTerm);; //trigger search on button click
-        //     }
-        // };
+        const handleSearchButtonClick = async (searchTerm) => {
+            if (searchTerm.length > 1) {
+                await handleSearch(searchTerm); //trigger search on button click
+            }
+        };
 
   
 
@@ -48,12 +48,12 @@ export default function GemLocator() {
             router.push("/add-gems");
         };
 
-    
 
         return (
             <div className="gem-locator">
                 <h2>Gem Locator</h2>
-                <SearchBar onSearch={handleSearch} />
+                
+                <SearchBar onSearch={handleSearchButtonClick} />
                 <button onClick={handleAddGem} className="add-gem-button">+</button>
 
                 {/* displaying suggestions below the search bar */}
