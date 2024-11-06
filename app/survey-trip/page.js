@@ -4,10 +4,15 @@ import { useState, useEffect } from "react"
 import { Trips } from "../controllers/tripController";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 import cities from '/data/cities.json'
 import { TextField, Autocomplete } from "@mui/material";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from "dayjs";
 
 
 export default function TripSurvey() {
@@ -15,30 +20,13 @@ export default function TripSurvey() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const urlUserId = searchParams.get('user_id');
-    // const [date, setDate] = useState(null);
-    // const cities = [
-    //     { 
-    //     label: 'Gothenburg',
-    //     country: 'Sweden'
-    //     },
-    //     {
-    //     label: 'Kutno',
-    //     country: 'Poland'
-    //     },
-    //     {
-    //     label: 'Paris',
-    //     country: 'France'
-    //     }
-    // ];
-
- 
 
     const [formData, setFormData] = useState({
         user_id: localStorage.getItem('user_id') || urlUserId || '',
         country:'',
         city:'',
-        start_date:'',
-        end_date:'',
+        start_date: dayjs(),
+        end_date: dayjs(),
         budget:'',
         peace:'',
     });
@@ -93,6 +81,7 @@ return (
 <h2>Trip info</h2>
 <form>
     <div>
+        <p>Destination</p>
         <Autocomplete
             disablePortal
             options={cities}
@@ -108,6 +97,7 @@ return (
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="City" />}
             />
+    </div>
         {/* <p>Country</p>
         <input 
           type="text" 
@@ -116,7 +106,7 @@ return (
           value={formData.country} 
           onChange={handleFormChange}
           />   */}
-    </div>
+   
     {/* <div>
         <p>City</p>
         <input 
@@ -128,20 +118,31 @@ return (
           />  
     </div> */}
     <div>
-        <p>Start date</p>
-        <DatePicker
-            selected={formData.start_date}
-            onChange={(date) => setFormData((prevData) => ({ ...prevData, start_date: date }))}
-            dateFormat="dd/MM/yyyy"
-            placeholderText="Select start date"
-        />
-        <p>End date</p>
-        <DatePicker
-            selected={formData.end_date}
-            onChange={(date) => setFormData((prevData) => ({ ...prevData, end_date: date }))}
-            dateFormat="dd/MM/yyyy"
-            placeholderText="Select end date"
-        /> 
+    <p>Start Date</p>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker']}>
+                            <DatePicker
+                                value={formData.start_date}
+                                onChange={(newValue) => setFormData({ ...formData, start_date: newValue })}
+                                views={['year', 'month', 'day']}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </DemoContainer>
+                    </LocalizationProvider>
+                </div>
+
+                <div>
+                    <p>End Date</p>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker']}>
+                            <DatePicker
+                                value={formData.end_date}
+                                onChange={(newValue) => setFormData({ ...formData, end_date: newValue })}
+                                views={['year', 'month', 'day']}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                        </DemoContainer>
+                    </LocalizationProvider>
     </div>
     <div>
         <p>Budget</p>
