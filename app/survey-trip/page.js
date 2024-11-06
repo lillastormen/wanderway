@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "/styles/style.css";
+import cities from '/data/cities.json'
+import { TextField, Autocomplete } from "@mui/material";
 
 
 export default function TripSurvey() {
@@ -15,6 +16,20 @@ export default function TripSurvey() {
     const searchParams = useSearchParams();
     const urlUserId = searchParams.get('user_id');
     // const [date, setDate] = useState(null);
+    // const cities = [
+    //     { 
+    //     label: 'Gothenburg',
+    //     country: 'Sweden'
+    //     },
+    //     {
+    //     label: 'Kutno',
+    //     country: 'Poland'
+    //     },
+    //     {
+    //     label: 'Paris',
+    //     country: 'France'
+    //     }
+    // ];
 
  
 
@@ -71,23 +86,38 @@ export default function TripSurvey() {
  
 
 
-
+console.log(cities);
 
 return (
     <>
 <h2>Trip info</h2>
 <form>
     <div>
-        <p>Country</p>
+        <Autocomplete
+            disablePortal
+            options={cities}
+            getOptionLabel={(option) => `${option.label}, ${option.country}`}
+            onChange={(event, value) => {
+                // Update formData with selected city and its country
+                setFormData({
+                  ...formData,
+                  city: value?.label || "",
+                  country: value?.country || "",
+                });
+              }}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="City" />}
+            />
+        {/* <p>Country</p>
         <input 
           type="text" 
           id="country" 
           name="country" 
           value={formData.country} 
           onChange={handleFormChange}
-          />  
+          />   */}
     </div>
-    <div>
+    {/* <div>
         <p>City</p>
         <input 
           type="text" 
@@ -96,7 +126,7 @@ return (
           value={formData.city} 
           onChange={handleFormChange}
           />  
-    </div>
+    </div> */}
     <div>
         <p>Start date</p>
         <DatePicker

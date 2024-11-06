@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Trips } from "../controllers/tripController";
 import { useRouter } from "next/navigation";
+import CityInfo from "../components/CityInfo";
 
 export default function Trip() {
 
@@ -20,7 +21,7 @@ export default function Trip() {
             case "Intinerary": 
                 return <div>Itinerary details go here</div>;
             case "Good to know":
-                return <div>Important travel tips and information</div>
+                return <div><CityInfo cityName={activeTrips[0]?.city} /></div>
             case "Must see":
                 return <div>Must-see attractions and landmarks</div>
             case "Explore":
@@ -146,7 +147,6 @@ export default function Trip() {
                             <>
                                 {/* <div>{trip.id}</div> */}
                                 <div>{trip.country}, {trip.city}</div>
-                                <div></div>
                                 <div>{trip.start_date} - {trip.end_date}</div>
                                 <button onClick={() => setEditingTripId(trip.id)}>Edit</button>
                             </>

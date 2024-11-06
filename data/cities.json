@@ -1,0 +1,127 @@
+[
+    {"id": 1, "label": "Paris", "country": "France"},
+    {"id": 2, "label": "Nice", "country": "France"},
+    {"id": 3, "label": "Marseille", "country": "France"},
+    {"id": 4, "label": "Lyon", "country": "France"},
+    
+    {"id": 5, "label": "London", "country": "United Kingdom"},
+    {"id": 6, "label": "Edinburgh", "country": "United Kingdom"},
+    {"id": 7, "label": "Manchester", "country": "United Kingdom"},
+    {"id": 8, "label": "Birmingham", "country": "United Kingdom"},
+    
+    {"id": 9, "label": "Barcelona", "country": "Spain"},
+    {"id": 10, "label": "Madrid", "country": "Spain"},
+    {"id": 11, "label": "Seville", "country": "Spain"},
+    {"id": 12, "label": "Valencia", "country": "Spain"},
+    
+    {"id": 13, "label": "Rome", "country": "Italy"},
+    {"id": 14, "label": "Milan", "country": "Italy"},
+    {"id": 15, "label": "Venice", "country": "Italy"},
+    {"id": 16, "label": "Florence", "country": "Italy"},
+    
+    {"id": 17, "label": "Berlin", "country": "Germany"},
+    {"id": 18, "label": "Munich", "country": "Germany"},
+    {"id": 19, "label": "Hamburg", "country": "Germany"},
+    {"id": 20, "label": "Frankfurt", "country": "Germany"},
+    
+    {"id": 21, "label": "Prague", "country": "Czech Republic"},
+    {"id": 22, "label": "Brno", "country": "Czech Republic"},
+    {"id": 23, "label": "Plzen", "country": "Czech Republic"},
+    {"id": 24, "label": "Ostrava", "country": "Czech Republic"},
+    
+    {"id": 25, "label": "Vienna", "country": "Austria"},
+    {"id": 26, "label": "Salzburg", "country": "Austria"},
+    {"id": 27, "label": "Innsbruck", "country": "Austria"},
+    {"id": 28, "label": "Graz", "country": "Austria"},
+    
+    {"id": 29, "label": "Istanbul", "country": "Turkey"},
+    {"id": 30, "label": "Ankara", "country": "Turkey"},
+    {"id": 31, "label": "Izmir", "country": "Turkey"},
+    {"id": 32, "label": "Bursa", "country": "Turkey"},
+    
+    {"id": 33, "label": "Athens", "country": "Greece"},
+    {"id": 34, "label": "Thessaloniki", "country": "Greece"},
+    {"id": 35, "label": "Patras", "country": "Greece"},
+    {"id": 36, "label": "Heraklion", "country": "Greece"},
+    
+    {"id": 37, "label": "Amsterdam", "country": "Netherlands"},
+    {"id": 38, "label": "Rotterdam", "country": "Netherlands"},
+    {"id": 39, "label": "The Hague", "country": "Netherlands"},
+    {"id": 40, "label": "Utrecht", "country": "Netherlands"},
+    
+    {"id": 41, "label": "Stockholm", "country": "Sweden"},
+    {"id": 42, "label": "Gothenburg", "country": "Sweden"},
+    {"id": 43, "label": "Malmö", "country": "Sweden"},
+    {"id": 44, "label": "Uppsala", "country": "Sweden"},
+    
+    {"id": 45, "label": "Dublin", "country": "Ireland"},
+    {"id": 46, "label": "Cork", "country": "Ireland"},
+    {"id": 47, "label": "Galway", "country": "Ireland"},
+    {"id": 48, "label": "Limerick", "country": "Ireland"},
+    
+    {"id": 49, "label": "Brussels", "country": "Belgium"},
+    {"id": 50, "label": "Antwerp", "country": "Belgium"},
+    {"id": 51, "label": "Ghent", "country": "Belgium"},
+    {"id": 52, "label": "Liège", "country": "Belgium"},
+    
+    {"id": 53, "label": "Lisbon", "country": "Portugal"},
+    {"id": 54, "label": "Porto", "country": "Portugal"},
+    {"id": 55, "label": "Funchal", "country": "Portugal"},
+    {"id": 56, "label": "Coimbra", "country": "Portugal"},
+    
+    {"id": 57, "label": "Budapest", "country": "Hungary"},
+    {"id": 58, "label": "Debrecen", "country": "Hungary"},
+    {"id": 59, "label": "Szeged", "country": "Hungary"},
+    {"id": 60, "label": "Pécs", "country": "Hungary"},
+    
+    {"id": 61, "label": "Zurich", "country": "Switzerland"},
+    {"id": 62, "label": "Geneva", "country": "Switzerland"},
+    {"id": 63, "label": "Basel", "country": "Switzerland"},
+    {"id": 64, "label": "Bern", "country": "Switzerland"},
+    
+    {"id": 65, "label": "Oslo", "country": "Norway"},
+    {"id": 66, "label": "Bergen", "country": "Norway"},
+    {"id": 67, "label": "Stavanger", "country": "Norway"},
+    {"id": 68, "label": "Trondheim", "country": "Norway"},
+    
+    {"id": 69, "label": "Helsinki", "country": "Finland"},
+    {"id": 70, "label": "Espoo", "country": "Finland"},
+    {"id": 71, "label": "Tampere", "country": "Finland"},
+    {"id": 72, "label": "Turku", "country": "Finland"},
+    
+    {"id": 73, "label": "Tallinn", "country": "Estonia"},
+    {"id": 74, "label": "Tartu", "country": "Estonia"},
+    {"id": 75, "label": "Narva", "country": "Estonia"},
+    {"id": 76, "label": "Pärnu", "country": "Estonia"},
+    
+    {"id": 77, "label": "Reykjavik", "country": "Iceland"},
+    {"id": 78, "label": "Akureyri", "country": "Iceland"},
+    {"id": 79, "label": "Reykjanesbær", "country": "Iceland"},
+    {"id": 80, "label": "Kopavogur", "country": "Iceland"},
+    
+    {"id": 81, "label": "Krakow", "country": "Poland"},
+    {"id": 82, "label": "Warsaw", "country": "Poland"},
+    {"id": 83, "label": "Gdansk", "country": "Poland"},
+    {"id": 84, "label": "Wroclaw", "country": "Poland"},
+    
+    {"id": 85, "label": "Saint Petersburg", "country": "Russia"},
+    {"id": 86, "label": "Moscow", "country": "Russia"},
+    {"id": 87, "label": "Kazan", "country": "Russia"},
+    {"id": 88, "label": "Novosibirsk", "country": "Russia"},
+    
+    {"id": 89, "label": "Stuttgart", "country": "Germany"},
+    {"id": 90, "label": "Cologne", "country": "Germany"},
+    {"id": 91, "label": "Nuremberg", "country": "Germany"},
+    {"id": 92, "label": "Leipzig", "country": "Germany"},
+    
+    {"id": 93, "label": "Riga", "country": "Latvia"},
+    {"id": 94, "label": "Jurmala", "country": "Latvia"},
+    {"id": 95, "label": "Liepaja", "country": "Latvia"},
+    {"id": 96, "label": "Jelgava", "country": "Latvia"},
+    
+    {"id": 97, "label": "Vilnius", "country": "Lithuania"},
+    {"id": 98, "label": "Kaunas", "country": "Lithuania"},
+    {"id": 99, "label": "Klaipeda", "country": "Lithuania"},
+    {"id": 100, "label": "Šiauliai", "country": "Lithuania"}
+  ]
+  

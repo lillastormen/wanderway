@@ -1,4 +1,5 @@
 import "./globals.css";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 export const metadata = {
   title: "wanderway",
@@ -13,7 +14,9 @@ export default function Layout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        <div>{children}</div>
+        <AppRouterCacheProvider>
+          <div>{children}</div>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
