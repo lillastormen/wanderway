@@ -17,7 +17,7 @@ export default function PastTrips() {
             }
 
             console.log('Fetching trips for user ID:', userId);
-            
+
             const response = await Trips.readTripByUserId(userId);
             if (response.success) {
                 const trips = response.data;
@@ -43,7 +43,8 @@ export default function PastTrips() {
                     <ul>
                         {pastTrips.map((trip) => (
                             <li key={trip.id}>
-                                <p>Destination: {trip.destination}</p>
+                                <p>Country: {trip.country}</p>
+                                <p>City: {trip.city}</p>
                                 <p>Dates: {trip.start_date} - {trip.end_date}</p>
                             </li>
                         ))}

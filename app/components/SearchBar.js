@@ -35,10 +35,8 @@ export default function SearchBar({ onSearch, onSearchButtonClick }) {
                 placeholder="Search for a city..."
                 // style={{ padding: '8px', width: '100%', marginBottom: '10px'}}
             /> 
-            <button
-                onClick={handleSearchButtonClick}
-            >
-            Search
+            <button onClick={handleSearchButtonClick}>
+                Search
             </button>
         </div>
     );

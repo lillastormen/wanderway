@@ -48,7 +48,7 @@ export const Trips = {
         // console.log('Fetching trips for user ID:', userId)
         const { data, error } = await supabase
         .from('Trips')
-        .select('destination, start_date, end_date, id')
+        .select('country, city, start_date, end_date, id')
         .eq('user_id', userId)
 
         if (error) {    

@@ -104,11 +104,20 @@ export default function Trip() {
                         {editingTripId === trip.id ? (
                              <form onSubmit={(e) => handleSave(e, trip.id)}>
                                 <div>
-                                    <label>Destination:</label>
+                                    <label>Country:</label>
                                     <input
                                         type="text"
-                                        name="destination"
-                                        value={trip.destination}
+                                        name="country"
+                                        value={trip.country}
+                                        onChange={(e) => handleFormChange(e, trip.id)}
+                                    />
+                                </div>
+                                <div>
+                                    <label>City:</label>
+                                    <input
+                                        type="city"
+                                        name="city"
+                                        value={trip.city}
                                         onChange={(e) => handleFormChange(e, trip.id)}
                                     />
                                 </div>
@@ -136,7 +145,8 @@ export default function Trip() {
                         ) : (
                             <>
                                 {/* <div>{trip.id}</div> */}
-                                <div>{trip.destination}</div>
+                                <div>{trip.country}, {trip.city}</div>
+                                <div></div>
                                 <div>{trip.start_date} - {trip.end_date}</div>
                                 <button onClick={() => setEditingTripId(trip.id)}>Edit</button>
                             </>

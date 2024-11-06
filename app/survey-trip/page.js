@@ -20,7 +20,8 @@ export default function TripSurvey() {
 
     const [formData, setFormData] = useState({
         user_id: localStorage.getItem('user_id') || urlUserId || '',
-        destination:'',
+        country:'',
+        city:'',
         start_date:'',
         end_date:'',
         budget:'',
@@ -77,12 +78,22 @@ return (
 <h2>Trip info</h2>
 <form>
     <div>
-        <p>Destination</p>
+        <p>Country</p>
         <input 
           type="text" 
-          id="destination" 
-          name="destination" 
-          value={formData.destination} 
+          id="country" 
+          name="country" 
+          value={formData.country} 
+          onChange={handleFormChange}
+          />  
+    </div>
+    <div>
+        <p>City</p>
+        <input 
+          type="text" 
+          id="city" 
+          name="city" 
+          value={formData.city} 
           onChange={handleFormChange}
           />  
     </div>

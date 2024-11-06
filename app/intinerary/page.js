@@ -8,7 +8,8 @@ export default function Intinerary() {
 
     const router = useRouter();
     const [trip, setTrip] = useState({
-        destination: "Loading...",
+        country: "Loading...",
+        city: "loading...",
         start_date: "Loading...",
         end_date: "Loading..."
     });
@@ -38,7 +39,7 @@ export default function Intinerary() {
   return (
     <div>
         <h2>Your Trip</h2>
-            <div>Where: {trip.destination}</div>
+            <div>Where: {trip.country}, {trip.city}</div>
             <div>When: {trip.start_date} - {trip.end_date}</div>
         <div>Intinerary</div>
         <div>
