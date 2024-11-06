@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import cities from '/data/cities.json'
-import { TextField, Autocomplete } from "@mui/material";
+import { TextField, Autocomplete, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from "@mui/material";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -82,20 +82,20 @@ return (
 <form>
     <div>
         <p>Destination</p>
-        <Autocomplete
-            disablePortal
-            options={cities}
-            getOptionLabel={(option) => `${option.label}, ${option.country}`}
-            onChange={(event, value) => {
-                // Update formData with selected city and its country
-                setFormData({
-                  ...formData,
-                  city: value?.label || "",
-                  country: value?.country || "",
-                });
-              }}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="City" />}
+            <Autocomplete
+                disablePortal
+                options={cities}
+                getOptionLabel={(option) => `${option.label}, ${option.country}`}
+                onChange={(event, value) => {
+                    // Update formData with selected city and its country
+                    setFormData({
+                    ...formData,
+                    city: value?.label || "",
+                    country: value?.country || "",
+                    });
+                }}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="City" />}
             />
     </div>
         {/* <p>Country</p>
@@ -119,97 +119,83 @@ return (
     </div> */}
     <div>
     <p>Start Date</p>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={['DatePicker']}>
-                            <DatePicker
-                                value={formData.start_date}
-                                onChange={(newValue) => setFormData({ ...formData, start_date: newValue })}
-                                views={['year', 'month', 'day']}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </DemoContainer>
-                    </LocalizationProvider>
-                </div>
-
-                <div>
-                    <p>End Date</p>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={['DatePicker']}>
-                            <DatePicker
-                                value={formData.end_date}
-                                onChange={(newValue) => setFormData({ ...formData, end_date: newValue })}
-                                views={['year', 'month', 'day']}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </DemoContainer>
-                    </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DatePicker']}>
+                <DatePicker
+                    value={formData.start_date}
+                    onChange={(newValue) => setFormData({ ...formData, start_date: newValue })}
+                    views={['year', 'month', 'day']}
+                    renderInput={(params) => <TextField {...params} />}
+                />
+            </DemoContainer>
+        </LocalizationProvider>
+    </div>
+    <div>
+        <p>End Date</p>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DatePicker']}>
+                <DatePicker
+                    value={formData.end_date}
+                    onChange={(newValue) => setFormData({ ...formData, end_date: newValue })}
+                    views={['year', 'month', 'day']}
+                    renderInput={(params) => <TextField {...params} />}
+                />
+            </DemoContainer>
+        </LocalizationProvider>
     </div>
     <div>
         <p>Budget</p>
-        <div>
-            <input
-                type="radio"
-                id="explorer"
-                name="budget"
-                value="explorer"
-                onChange={handleFormChange}  // Added the handler
-            />
-            <label htmlFor="explorer">Explorer</label>
-        </div>
-        <div>
-            <input
-                type="radio"
-                id="comfort"
-                name="budget"
-                value="comfort"
-                onChange={handleFormChange}  // Added the handler
-            />
-            <label htmlFor="comfort">Comfort</label>
-        </div>
-        <div>
-            <input
-                type="radio"
-                id="indulge"
-                name="budget"
-                value="indulge"
-                onChange={handleFormChange}  // Added the handler
-            />
-            <label htmlFor="indulge">Indulge</label>
-        </div>  
-        
+            <FormControl component="fieldset">
+                <FormLabel component="legend">Budget</FormLabel>
+                <RadioGroup
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleFormChange}
+                >
+                    <FormControlLabel
+                        value="explorer"
+                        control={<Radio />}
+                        label="Explorer"
+                    />
+                    <FormControlLabel
+                        value="comfort"
+                        control={<Radio />}
+                        label="Comfort"
+                    />
+                    <FormControlLabel
+                        value="indulge"
+                        control={<Radio />}
+                        label="Indulge"
+                    />
+                </RadioGroup>
+            </FormControl>
     </div>
     <div> 
-        <p>Peace</p>
-        <div>
-            <input
-                type="radio"
-                id="relaxed"
+    <p>Peace</p>
+        <FormControl component="fieldset">
+            <FormLabel component="legend">Peace</FormLabel>
+            <RadioGroup
                 name="peace"
-                value="relaxed"
-                onChange={handleFormChange}  
-            />
-            <label htmlFor="relaxed">Relaxed</label>  
-        </div>
-        <div>
-            <input
-                type="radio"
-                id="adventurer"
-                name="peace"
-                value="adventurer"
-                onChange={handleFormChange}  
-            />
-            <label htmlFor="adventurer">Adventurer</label>
-        </div>
-        <div>
-            <input
-                type="radio"
-                id="thrill-seeker"
-                name="peace"
-                value="thrill-seeker"
-                onChange={handleFormChange}  
-            />
-            <label htmlFor="thrill-seeker">Thrill-seeker</label>
-        </div>
+                value={formData.peace}
+                onChange={handleFormChange}
+            >
+                <FormControlLabel
+                    value="relaxed"
+                    control={<Radio />}
+                    label="Relaxed"
+                />
+                <FormControlLabel
+                    value="adventurer"
+                    control={<Radio />}
+                    label="Adventurer"
+                />
+                <FormControlLabel
+                    value="thrill-seeker"
+                    control={<Radio />}
+                    label="Thrill-seeker"
+                />
+            </RadioGroup>
+        </FormControl>
     </div>
     <button 
         className="border-solid border-"
