@@ -31,7 +31,7 @@ export default function Trip() {
                         )}
                     </div>
                 );
-            case "Weather":
+            case "Today's Weather":
                 return (
                     <div>
                         {activeTrips.length > 0 ? (
@@ -180,7 +180,7 @@ export default function Trip() {
                 <div className="flex gap-10">
                     <button onClick={() => setActiveTab("Intinerary")}>Intinerary</button>
                     <button onClick={() => setActiveTab("City Info")}>City Info</button>
-                    <button onClick={() => setActiveTab("Weather")}>Weather</button>
+                    <button onClick={() => setActiveTab("Today's Weather")}>Today's Weather</button>
                     <button onClick={() => setActiveTab("Must see")}>Must see</button>
                     <button onClick={() => setActiveTab("Hidden gems")}>Hidden gems</button>
                 </div>
