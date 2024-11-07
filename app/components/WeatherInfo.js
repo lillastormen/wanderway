@@ -32,35 +32,32 @@ export default function WeatherInfo({ cityName }) {
     if (!weatherData) return <div>Loading weather data...</div>;
 
     return (
-        // <div>
-        //     <p>Temperature: {(weatherData.main.temp - 273.15).toFixed(1)}°C</p>
-        //     <p>Humidity: {weatherData.main.humidity}%</p>
-        //     <p>Weather: {weatherData.weather[0].description}</p>
-        // </div>
-        <Card sx={{ maxWidth: 345, margin: 'auto', padding: 0, marginLeft: 0, backgroundColor: '#f5f5f5' }}>
-        <CardContent>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Temperature: {(weatherData.main.temp - 273.15).toFixed(1)}°C
+        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 0, backgroundColor: '#f5f5f5' }}>
+            <CardContent>
+            <Typography variant="h6" color="text.primary" gutterBottom>
+                Today
             </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Feels like: {(weatherData.main.feels_like - 273.15).toFixed(1)}°C
-            </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Humidity: {weatherData.main.humidity}%
-            </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Pressure: {weatherData.main.pressure} hPa
-            </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Weather: {weatherData.weather[0].description}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Clouds: {weatherData.clouds.all}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
-                Wind: {(weatherData.wind.speed * 3.6).toFixed(2)} km/h
-            </Typography>
-           
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Temperature: {(weatherData.main.temp - 273.15).toFixed(1)}°C
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Feels like: {(weatherData.main.feels_like - 273.15).toFixed(1)}°C
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Humidity: {weatherData.main.humidity}%
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Pressure: {weatherData.main.pressure} hPa
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Weather: {weatherData.weather[0].description}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Clouds: {weatherData.clouds.all}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" gutterBottom>
+                    Wind: {(weatherData.wind.speed * 3.6).toFixed(2)} km/h
+                </Typography>
         </CardContent>
     </Card>
     );

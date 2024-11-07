@@ -29,3 +29,18 @@ export async function fetchWeatherInfo(cityName) {
     return response.json();
 }
 
+export async function fetchWeatherForecast(cityName) {
+
+    const apiKey = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
+    const url = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${cityName}&cnt=8&appid=${apiKey}`;
+
+    const response = await fetch (url, {
+        method: 'GET',
+    })
+
+    if(!response.ok) {
+        throw new Error('Failed to fetch forecast');
+    }
+
+    return response.json();
+}

@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Trips } from "../controllers/tripController";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
+import ForecastInfo from "../components/ForecastInfo";
 
 export default function Trip() {
 
@@ -31,15 +32,24 @@ export default function Trip() {
                         )}
                     </div>
                 );
-            case "Today's Weather":
+            case "Weather":
                 return (
-                    <div>
+                    <>
+                        <div>
+                            {activeTrips.length > 0 ? (
+                                <WeatherInfo cityName={activeTrips[0]?.city} />
+                            ) : (
+                                <p>No city information avaiable</p>
+                            )}
+                        </div>
+                        <div>
                         {activeTrips.length > 0 ? (
-                            <WeatherInfo cityName={activeTrips[0]?.city} />
+                            <ForecastInfo cityName={activeTrips[0]?.city} />
                         ) : (
                             <p>No city information avaiable</p>
                         )}
                     </div>
+                </>
                 );
             case "Must see":
                 return <div>Must see</div>
@@ -53,23 +63,17 @@ export default function Trip() {
     //fetch the current trip
     useEffect(() => { 
         const fetchActiveTrips = async () => {
+
             const userId = localStorage.getItem('user_id');
 
             const response = await Trips.readTripByUserId(userId);
+
             if (response.success) {
                 // const fetchedTrip = response.data;
                 const today = new Date();
                 const activeTrips = response.data.filter(trip => new Date(trip.end_date) >= today)
                 console.log(activeTrips);
                 setActiveTrips(activeTrips);
-                // const tripEndDate = new Date(fetchedTrip.end_date);
-                 
-                // if(tripEndDate < today) {
-                //     console.log('No current trips')
-                //     setTrip(null);
-                // } else {
-                //     setTrip(fetchedTrip);
-                // }
             } else {
                 console.log('Failes to fetch trip:', response.error)
             }    
@@ -180,7 +184,7 @@ export default function Trip() {
                 <div className="flex gap-10">
                     <button onClick={() => setActiveTab("Intinerary")}>Intinerary</button>
                     <button onClick={() => setActiveTab("City Info")}>City Info</button>
-                    <button onClick={() => setActiveTab("Today's Weather")}>Today's Weather</button>
+                    <button onClick={() => setActiveTab("Weather")}>Weather</button>
                     <button onClick={() => setActiveTab("Must see")}>Must see</button>
                     <button onClick={() => setActiveTab("Hidden gems")}>Hidden gems</button>
                 </div>
