@@ -15,7 +15,12 @@ export default function CityInfo({ cityName }) {
                     const data = await fetchCityInfo(cityName);
                     let split = data.parse.text.split('<meta');
                     split = split[0].split('</table>');
-                    setCityData(split[1])
+                    let striped = split[1].replace(/<sup[^>]*>[^.]*<\/sup>?/gm, ''); 
+                    striped = striped.replace(/<[^>]*>?/gm, '');
+                    striped = striped.replace(/\(\/.*\)&#91;n. 1&#93; /gm, '');
+                    striped = striped.replace(/&#\d*;/gm, '');
+
+                    setCityData(striped)
                 } catch (error) {
                     setError('Error fetching city info')
                     console.error(error)
