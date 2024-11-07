@@ -1,11 +1,9 @@
-export async function fetchCityInfo(cityId) {
-    const response = await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities/${cityId}`, {
+export async function fetchCityInfo(cityName) {
+    const url = `https://en.wikipedia.org/w/api.php?action=parse&format=json&page=${cityName}&prop=text&formatversion=2&origin=*`;
+
+   const response = await fetch(url, {
         method: 'GET',
-        headers: {
-            'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
-            'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY
-        }
-    });
+   });
 
     if(!response.ok) {
         throw new Error('Failed to fetch city data');
@@ -14,3 +12,6 @@ export async function fetchCityInfo(cityId) {
     return response.json();
    
 }
+
+
+

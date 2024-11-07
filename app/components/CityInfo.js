@@ -10,27 +10,34 @@ export default function CityInfo({ cityName }) {
 
     useEffect(() => {
         const getCityData = async () => {
-            try {
-                const data = await fetchCityInfo(cityName);
-                setCityData(data)
-            } catch (error) {
-                setError('Error fetching city info')
-                console.error(error)
+            if (cityName) {
+                try {
+                    const data = await fetchCityInfo(cityName);
+                    const result = data.parse.text['*'].match(/<p>(.*?)<\/p>/g);
+                    console.log(result, data.parse.text);
+                    setCityData(result)
+                } catch (error) {
+                    setError('Error fetching city info')
+                    console.error(error)
+                }
             }
     };
     
-    if (cityName) {
-        getCityData();
-    }
-}, [cityName]);
+    getCityData();
+    }, [cityName]);
 
     if(!cityData) return <p>Loading city info...</p>
 
     return (
         <div>
-            <h3>{cityData.name}</h3>
-           
-            <div>{cityData.description}</div>
-        </div>
+        {cityData ? (
+            <div dangerouslySetInnerHTML={{ __html: cityData }} />
+        ) : (
+            <p>Loading city information...</p>
+        )}
+    </div>
     );
 }
+
+
+

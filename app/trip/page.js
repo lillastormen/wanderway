@@ -21,7 +21,15 @@ export default function Trip() {
             case "Intinerary": 
                 return <div>Itinerary details go here</div>;
             case "Good to know":
-                return <div><CityInfo cityName={activeTrips[0]?.city} /></div>
+                return (
+                    <div>
+                        {activeTrips.length > 0 ? (
+                            <CityInfo cityName={activeTrips[0]?.city} />
+                        ) : (
+                            <p>No city information avaiable</p>
+                        )}
+                    </div>
+                );
             case "Must see":
                 return <div>Must-see attractions and landmarks</div>
             case "Explore":

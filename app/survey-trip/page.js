@@ -98,25 +98,6 @@ return (
                 renderInput={(params) => <TextField {...params} label="City" />}
             />
     </div>
-        {/* <p>Country</p>
-        <input 
-          type="text" 
-          id="country" 
-          name="country" 
-          value={formData.country} 
-          onChange={handleFormChange}
-          />   */}
-   
-    {/* <div>
-        <p>City</p>
-        <input 
-          type="text" 
-          id="city" 
-          name="city" 
-          value={formData.city} 
-          onChange={handleFormChange}
-          />  
-    </div> */}
     <div>
     <p>Start Date</p>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -171,7 +152,7 @@ return (
             </FormControl>
     </div>
     <div> 
-    <p>Peace</p>
+        <p>Peace</p>
         <FormControl component="fieldset">
             <FormLabel component="legend">Peace</FormLabel>
             <RadioGroup
