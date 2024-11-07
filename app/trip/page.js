@@ -7,6 +7,7 @@ import { Trips } from "../controllers/tripController";
 import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
+import MustSeePlaces from "../components/MustSeePlaces";
 
 export default function Trip() {
 
@@ -48,11 +49,19 @@ export default function Trip() {
                         ) : (
                             <p>No city information avaiable</p>
                         )}
-                    </div>
-                </>
+                        </div>
+                    </>
                 );
             case "Must see":
-                return <div>Must see</div>
+                return (
+                    <div>
+                    {activeTrips.length > 0 ? (
+                        <MustSeePlaces cityName={activeTrips[0]?.city} />
+                    ) : (
+                        <p>No city information avaiable</p>
+                    )}
+                    </div>
+                )
             case "Hidden gems":
                 return <div>Hidden gems in your area</div>
             default:

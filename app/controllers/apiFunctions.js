@@ -44,3 +44,25 @@ export async function fetchWeatherForecast(cityName) {
 
     return response.json();
 }
+
+export async function fetchMustSeePlaces(cityName) {
+
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=must+see+places+in+${cityName}&key=${apiKey}`;
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        },
+        mode: 'cors'
+    })
+
+    console.log(response);
+    if(!response.ok) {
+        throw new Error('Failed to fetch must-see places');
+    }
+
+    return response.json();
+}
