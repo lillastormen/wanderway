@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Trips } from "../controllers/tripController";
 import { useRouter } from "next/navigation";
 import CityInfo from "../components/CityInfo";
+import WeatherInfo from "../components/WeatherInfo";
 
 export default function Trip() {
 
@@ -20,7 +21,7 @@ export default function Trip() {
         switch (activeTab) {
             case "Intinerary": 
                 return <div>Itinerary details go here</div>;
-            case "Good to know":
+            case "City Info":
                 return (
                     <div>
                         {activeTrips.length > 0 ? (
@@ -30,10 +31,18 @@ export default function Trip() {
                         )}
                     </div>
                 );
+            case "Weather":
+                return (
+                    <div>
+                        {activeTrips.length > 0 ? (
+                            <WeatherInfo cityName={activeTrips[0]?.city} />
+                        ) : (
+                            <p>No city information avaiable</p>
+                        )}
+                    </div>
+                );
             case "Must see":
-                return <div>Must-see attractions and landmarks</div>
-            case "Explore":
-                return <div>Discover more</div>
+                return <div>Must see</div>
             case "Hidden gems":
                 return <div>Hidden gems in your area</div>
             default:
@@ -170,9 +179,9 @@ export default function Trip() {
             {activeTrips.length > 0 && (
                 <div className="flex gap-10">
                     <button onClick={() => setActiveTab("Intinerary")}>Intinerary</button>
-                    <button onClick={() => setActiveTab("Good to know")}>Good to know</button>
+                    <button onClick={() => setActiveTab("City Info")}>City Info</button>
+                    <button onClick={() => setActiveTab("Weather")}>Weather</button>
                     <button onClick={() => setActiveTab("Must see")}>Must see</button>
-                    <button onClick={() => setActiveTab("Explore")}>Explore</button>
                     <button onClick={() => setActiveTab("Hidden gems")}>Hidden gems</button>
                 </div>
             )}

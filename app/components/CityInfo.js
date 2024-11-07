@@ -13,6 +13,7 @@ export default function CityInfo({ cityName }) {
             if (cityName) {
                 try {
                     const data = await fetchCityInfo(cityName);
+                    //formating raw html to text
                     let split = data.parse.text.split('<meta');
                     split = split[0].split('</table>');
                     let striped = split[1].replace(/<sup[^>]*>[^.]*<\/sup>?/gm, ''); 
