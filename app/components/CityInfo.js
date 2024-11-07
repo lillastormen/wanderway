@@ -13,9 +13,9 @@ export default function CityInfo({ cityName }) {
             if (cityName) {
                 try {
                     const data = await fetchCityInfo(cityName);
-                    const result = data.parse.text['*'].match(/<p>(.*?)<\/p>/g);
-                    console.log(result, data.parse.text);
-                    setCityData(result)
+                    let split = data.parse.text.split('<meta');
+                    split = split[0].split('</table>');
+                    setCityData(split[1])
                 } catch (error) {
                     setError('Error fetching city info')
                     console.error(error)
