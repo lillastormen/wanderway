@@ -38,7 +38,7 @@ export default function ForecastInfo({ cityName }) {
         <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 0, marginTop: 5,backgroundColor: '#f5f5f5' }}>
         <CardContent>
             <Typography variant="h6" color="text.primary" gutterBottom>
-                8-Day Forecast
+                8-Days Forecast
             </Typography>
             
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
@@ -50,9 +50,9 @@ export default function ForecastInfo({ cityName }) {
                             <Typography variant="body2" color="text.secondary">
                                 Temperature: {(forecast.temp.day - 273.15).toFixed(1)}°C
                             </Typography>
-                            {/* <Typography variant="body2" color="text.secondary">
-                                Weather: {forecast.weather[0].description}
-                            </Typography> */}
+                            <Typography variant="body2" color="text.secondary">
+                                Weather: {forecast.weather[0].main}
+                            </Typography>
                         </Box>
                     ))}
                 </Box>
