@@ -60,7 +60,7 @@ export default function Trip() {
                     {activeTrips.length > 0 ? (
                         <MustSeePlaces cityName={activeTrips[0]?.city} />
                     ) : (
-                        <p>No must-see information avaiable</p>
+                        <p>No locations info avaiable</p>
                     )}
                     </div>
                 )
@@ -132,7 +132,7 @@ export default function Trip() {
     //         console.error('Failed to add new trip:', response.error)
     //     }
     // }
-    
+
 
     return (
         <div>
