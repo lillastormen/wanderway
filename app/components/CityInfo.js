@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchCityInfo } from "../controllers/apiFunctions";
+import { Box, Card, CardContent, Typography} from "@mui/material";
 
 export default function CityInfo({ cityName }) {
 
@@ -32,16 +33,22 @@ export default function CityInfo({ cityName }) {
     getCityData();
     }, [cityName]);
 
-    if(!cityData) return <p>Loading city info...</p>
+    if (!cityData) {
+        return <Typography>Loading city information...</Typography>;
+    }
 
     return (
-        <div>
-        {cityData ? (
-            <div dangerouslySetInnerHTML={{ __html: cityData }} />
-        ) : (
-            <p>Loading city information...</p>
-        )}
-    </div>
+        <Box sx={{ display: 'flex', marginLeft: 2, marginTop: 2 }}>
+            <Card sx={{ maxWidth: 600, padding: 3, backgroundColor: '#f5f5f5', boxShadow: 1 }}>
+                <CardContent>
+                    {/* Render city data as HTML content */}
+                    <Box
+                        dangerouslySetInnerHTML={{ __html: cityData }}
+                        sx={{ color: 'text.secondary', lineHeight: 1.6 }}
+                    />
+                </CardContent>
+            </Card>
+        </Box>
     );
 }
 

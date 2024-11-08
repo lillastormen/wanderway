@@ -8,6 +8,8 @@ import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
 import MustSeePlaces from "../components/MustSeePlaces";
+import HiddenGems from "../components/HiddenGems";
+
 
 export default function Trip() {
 
@@ -17,7 +19,7 @@ export default function Trip() {
     const [activeTrips, setActiveTrips] = useState([]);
     // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
-    
+
 
     const switchTab = () => {
         switch (activeTab) {
@@ -40,14 +42,14 @@ export default function Trip() {
                             {activeTrips.length > 0 ? (
                                 <WeatherInfo cityName={activeTrips[0]?.city} />
                             ) : (
-                                <p>No city information avaiable</p>
+                                <p>No weather information avaiable</p>
                             )}
                         </div>
                         <div>
                         {activeTrips.length > 0 ? (
                             <ForecastInfo cityName={activeTrips[0]?.city} />
                         ) : (
-                            <p>No city information avaiable</p>
+                            <p>No forecast information avaiable</p>
                         )}
                         </div>
                     </>
@@ -58,12 +60,20 @@ export default function Trip() {
                     {activeTrips.length > 0 ? (
                         <MustSeePlaces cityName={activeTrips[0]?.city} />
                     ) : (
-                        <p>No city information avaiable</p>
+                        <p>No must-see information avaiable</p>
                     )}
                     </div>
                 )
             case "Hidden gems":
-                return <div>Hidden gems in your area</div>
+                return (
+                    <div>
+                        {activeTrips.length > 0 ? (
+                        <HiddenGems cityName={activeTrips[0]?.city} />
+                    ) : (
+                        <p>No gems information avaiable</p>
+                    )} 
+                    </div>
+                )
             default:
                 return null;
         }

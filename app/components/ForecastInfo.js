@@ -35,7 +35,7 @@ export default function ForecastInfo({ cityName }) {
     if (!forecastData) return <div>Loading forecast data...</div>;
 
     return (
-        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 0, marginTop: 5,backgroundColor: '#f5f5f5' }}>
+        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 2, marginTop: 2, backgroundColor: '#f5f5f5' }}>
         <CardContent>
             <Typography variant="h6" color="text.primary" gutterBottom>
                 8-Days Forecast

@@ -32,7 +32,7 @@ export default function WeatherInfo({ cityName }) {
     if (!weatherData) return <div>Loading weather data...</div>;
 
     return (
-        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 0, backgroundColor: '#f5f5f5' }}>
+        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 2, backgroundColor: '#f5f5f5', marginTop: 2 }}>
             <CardContent>
             <Typography variant="h6" color="text.primary" gutterBottom>
                 Today

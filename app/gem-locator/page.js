@@ -42,8 +42,6 @@ export default function GemLocator() {
             }
         };
 
-  
-
         const handleAddGem = () => {
             router.push("/add-gems");
         };
