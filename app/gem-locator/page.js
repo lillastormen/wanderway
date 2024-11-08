@@ -64,7 +64,7 @@ export default function GemLocator() {
                     </Typography>
                     
         
-                    <Box sx={{ marginBottom: 2 }}>
+                    <Box sx={{ marginBottom: 2, marginTop: 2 }}>
                         <SearchBar 
                             onSearch={handleSearchButtonClick}
                             onAutocompleteChange={handleAutocompleteChange}  />
@@ -87,10 +87,10 @@ export default function GemLocator() {
                         }}
                     >
                         <AddIcon />
-                        <Typography variant="body1">Add new gem</Typography>
+                        <Typography variant="body2">Add new gem</Typography>
                     </Button>
 
-                    {selectedGems && selectedGems.length > 0 && (
+                    {/* {selectedGems && selectedGems.length > 0 && (
                         <ul className="suggestions-list" style={{ listStyleType: 'none', padding: 0 }}>
                             {selectedGems.map((gem, index) => (
                                 <li
@@ -103,7 +103,7 @@ export default function GemLocator() {
                                 </li>
                             ))}
                         </ul>
-                    )}
+                    )} */}
 
                     {noResults && (
                         <div className="no-results">
@@ -112,7 +112,7 @@ export default function GemLocator() {
                     )}
 
                     {selectedGems && selectedGems.length > 0 && (
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 3 }}>
                             {selectedGems.map((gem) => (
                                 <Box key={gem.id} sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 2, boxShadow: 1 }}>
                                     <Typography variant="h6" color="text.primary" gutterBottom>
