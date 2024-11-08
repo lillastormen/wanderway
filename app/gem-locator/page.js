@@ -55,66 +55,49 @@ export default function GemLocator() {
     };
 
     return (
-        <div className="gem-locator">
-            <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 2, marginTop: 2, backgroundColor: '#f5f5f5' }}>
-                <CardContent>
-
-                    <Typography variant="h6" color="text.primary" gutterBottom>
+        <Box sx={{ maxWidth: 400, padding: 4, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+            <Typography variant="h5" gutterBottom>
                         Gem Locator
                     </Typography>
                     
-        
-                    <Box sx={{ marginBottom: 2, marginTop: 2 }}>
+                    <Box sx={{ marginBottom: 2 }}>
                         <SearchBar 
                             onSearch={handleSearchButtonClick}
-                            onAutocompleteChange={handleAutocompleteChange}  />
+                            onAutocompleteChange={handleAutocompleteChange}
+                        />
                     </Box>
 
                     <Button
                         onClick={handleAddGem}
-                        sx={{
-                            backgroundColor: 'gray', 
-                            color: 'white', 
-                            padding: 1,
-                            // borderRadius: '%',
-                            boxShadow: 1,
-                            "&:hover": {
-                                backgroundColor: 'darkgray', 
-                            },
-                            display: 'flex', // Align text and icon horizontally
-                           
-                            gap: 1, // Space between icon and text
-                        }}
+                        type="submit" 
+                        variant="contained" 
+                        color="primary" 
+                        size="large"  
                     >
-                        <AddIcon />
-                        <Typography variant="body2">Add new gem</Typography>
+                        {/* <AddIcon /> */}
+                        Add new location
                     </Button>
 
-                    {/* {selectedGems && selectedGems.length > 0 && (
-                        <ul className="suggestions-list" style={{ listStyleType: 'none', padding: 0 }}>
-                            {selectedGems.map((gem, index) => (
-                                <li
-                                    key={index}
-                                    onClick={() => setSelectedGems([gem])} // Display selected gem details on click
-                                    className="suggestion-item"
-                                    style={{ padding: '8px', backgroundColor: '#fff', borderRadius: '8px', marginBottom: '8px', cursor: 'pointer' }}
-                                >
-                                    {gem.name}
-                                </li>
-                            ))}
-                        </ul>
-                    )} */}
-
                     {noResults && (
-                        <div className="no-results">
-                            <p>No results found for the entered city.</p>
-                        </div>
+                        <Box sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 2, marginTop: 2, boxShadow: 1, textAlign: 'center' }}>
+                            <Typography variant="body2" color="text.secondary">
+                                No results found for the entered city.
+                            </Typography>
+                        </Box>
                     )}
 
                     {selectedGems && selectedGems.length > 0 && (
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, marginTop: 3 }}>
+                        <Stack spacing={2} marginTop={3}>
                             {selectedGems.map((gem) => (
-                                <Box key={gem.id} sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 2, boxShadow: 1 }}>
+                                <Box 
+                                    key={gem.id} 
+                                    sx={{
+                                        padding: 2,
+                                        backgroundColor: '#fff',
+                                        borderRadius: 2,
+                                        boxShadow: 1,
+                                    }}
+                                >
                                     <Typography variant="h6" color="text.primary" gutterBottom>
                                         {gem.name}
                                     </Typography>
@@ -131,15 +114,18 @@ export default function GemLocator() {
                                         Description: {gem.description}
                                     </Typography>
                                     {gem.picture && (
-                                        <img src={gem.picture} alt={gem.name} className="gem-picture" style={{ maxWidth: '100%', borderRadius: '8px' }} />
+                                        <img 
+                                            src={gem.picture} 
+                                            alt={gem.name} 
+                                            style={{ maxWidth: '100%', borderRadius: '8px', marginTop: 10 }} 
+                                        />
                                     )}
                                 </Box>
                             ))}
-                        </Box>
+                        </Stack>
                     )}
-                    
-                </CardContent>
-            </Card>
-        </div>
+            
+        
+        </Box>
     );
 }
