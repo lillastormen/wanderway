@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Users } from "../controllers/userController";
 import { useRouter } from "next/navigation";
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, TextField, Typography} from "@mui/material";
 
 export default function UserSurvey() {
 
@@ -64,265 +65,89 @@ export default function UserSurvey() {
 
   
   return (
-    <>    
-    <h2>User info</h2>
-    <form>
-      <div>
-        <p>Name</p>
-        <input 
-          type="text" 
-          id="name" 
-          name="name" 
-          value={formData.name} 
-          onChange={handleFormChange}
-          />  
-      </div>
-      <div>
-        <p>Email</p>
-        <input 
-          type="text" 
-          id="email" 
-          name="email" 
-          value={formData.email} 
-          onChange={handleFormChange}
-          />  
-      </div>
-      <div>
-        <p>Age</p>
-        <div>
-          <input 
-            type="radio" 
-            id="age1" 
-            name="age_group"
-            value="-25"
-            onChange={handleFormChange}
-          />  
-          <label htmlFor="age1">-25</label>
-        </div>
-        <div>
-          <input 
-            type="radio" 
-            id="age2" 
-            name="age_group"
-            value="25-31"
-            onChange={handleFormChange}
-          /> 
-          <label htmlFor="age2">25-31</label> 
-        </div>
-        <div>
-          <input 
-            type="radio" 
-            id="age3" 
-            name="age_group"
-            value="32-38"
-            onChange={handleFormChange}
-          />  
-          <label htmlFor="age3">32-38</label> 
-        </div>
-        <div>
-          <input 
-            type="radio" 
-            id="age4" 
-            name="age_group"
-            value="39-45"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="age4">39-45</label>  
-        </div>
-        <div>
-          <input 
-            type="radio" 
-            id="age5" 
-            name="age_group"
-            value="45+"
-            onChange={handleFormChange}
-          />  
-          <label htmlFor="age5">45+</label> 
-        </div>
-      </div>
-      <div>
-        <p>Identity</p>
-        <div>
-        <input
-          type="radio"
-          id="female"
-          name="gender"
-          value="female"
-          onChange={handleFormChange}
-        /> 
-          <label htmlFor="female">Female</label> 
-        </div>
-        <div>
-        <input
-          type="radio"
-          id="male"
-          name="gender"
-          value="male"
-          onChange={handleFormChange}
-        />  
-          <label htmlFor="male">Male</label> 
-        </div>
-        <div>
-        <input
-          type="radio"
-          id="non-binary"
-          name="gender"
-          value="non-binary"
-          onChange={handleFormChange}
-        /> 
-          <label htmlFor="non-binary">Non-binary</label> 
-        </div>
-        <div>
-        <input
-          type="radio"
-          id="secret"
-          name="gender"
-          value="prefer-not-to-say"
-          onChange={handleFormChange}
-        />  
-          <label htmlFor="secret">Prefer not to say</label> 
-        </div>
-      </div>
-      <div>
-        <p>Traveller type</p>
-        <div>
-        <input
-          type="radio"
-          id="solo"
-          name="traveler_type"
-          value="solo"
-          onChange={handleFormChange}
-        />  
-          <label htmlFor="solo">Solo</label> 
-        </div>
-        <div>
-        <input
-          type="radio"
-          id="friends"
-          name="traveler_type"
-          value="friends"
-          onChange={handleFormChange}
-        />
-          <label htmlFor="friends">Friends</label>  
-        </div>
-        <div>
-        <input
-          type="radio"
-          id="family"
-          name="traveler_type"
-          value="family"
-          onChange={handleFormChange}
-        />
-          <label htmlFor="family">Family</label> 
-        </div>
-      </div>
-      <div>
-        <p>Interests</p>
-        <div>
-          <input 
-            type="checkbox" 
-            id="museums" 
-            name="interest" 
-            value="1"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="museums">Museums</label>
-          <input 
-            type="checkbox" 
-            id="art-galleries" 
-            name="interest" 
-            value="2"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="art-galleries">Art-galleries</label>
-          <input 
-            type="checkbox" 
-            id="nightlife" 
-            name="interest" 
-            value="3"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="nightlife">Nightlife</label>
-          <input 
-            type="checkbox" 
-            id="food" 
-            name="interest" 
-            value="4"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="food">Food</label>
-          <input 
-            type="checkbox" 
-            id="hiking" 
-            name="interest" 
-            value="5"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="hiking">Hiking</label>
-          <input 
-            type="checkbox" 
-            id="beaches" 
-            name="interest" 
-            value="6"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="beaches">Beaches</label>
-          <input 
-            type="checkbox" 
-            id="shopping" 
-            name="interest" 
-            value="7"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="shopping">Shopping</label>
-          <input 
-            type="checkbox" 
-            id="music" 
-            name="interest" 
-            value="8"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="music">Music</label>
-          <input 
-            type="checkbox" 
-            id="theater" 
-            name="interest" 
-            value="9"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="theater">Theater</label>
-          <input 
-            type="checkbox" 
-            id="architecture" 
-            name="interest" 
-            value="10"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="architecture">Architecture</label>
-          <input 
-            type="checkbox" 
-            id="photo-ops" 
-            name="interest" 
-            value="11"
-            onChange={handleFormChange}
-          />
-          <label htmlFor="photo-ops">Photo Ops</label>
-        </div>
-      </div> 
-     
-      
-        <button 
-          className="border-solid border-"
-          onClick={handleFormSubmit}
-        >
-          <p>Ready!</p>
-        </button>
-      
-   
-    </form>
-   
+    <Box component="form" onSubmit={handleFormSubmit} sx={{ padding: 3, maxWidth: 500, mx: "auto" }}>
+      <Typography variant="h4" gutterBottom>User Info</Typography>
 
-    </>
+      {/* Name */}
+      <TextField
+        fullWidth
+        label="Name"
+        variant="outlined"
+        margin="normal"
+        name="name"
+        value={formData.name}
+        onChange={handleFormChange}
+      />
+
+      {/* Email */}
+      <TextField
+        fullWidth
+        label="Email"
+        variant="outlined"
+        margin="normal"
+        name="email"
+        value={formData.email}
+        onChange={handleFormChange}
+      />
+
+      {/* Age Group */}
+      <FormControl component="fieldset" margin="normal">
+        <FormLabel component="legend">Age Group</FormLabel>
+        <RadioGroup name="age_group" value={formData.age_group} onChange={handleFormChange}>
+          {["-25", "25-31", "32-38", "39-45", "45+"].map((age, index) => (
+            <FormControlLabel key={index} value={age} control={<Radio />} label={age} />
+          ))}
+        </RadioGroup>
+      </FormControl>
+
+      {/* Gender */}
+      <FormControl component="fieldset" margin="normal">
+        <FormLabel component="legend">Gender</FormLabel>
+        <RadioGroup name="gender" value={formData.gender} onChange={handleFormChange}>
+          {["female", "male", "non-binary", "prefer-not-to-say"].map((gender, index) => (
+            <FormControlLabel key={index} value={gender} control={<Radio />} label={gender.charAt(0).toUpperCase() + gender.slice(1)} />
+          ))}
+        </RadioGroup>
+      </FormControl>
+
+      {/* Traveler Type */}
+      <FormControl component="fieldset" margin="normal">
+        <FormLabel component="legend">Traveler Type</FormLabel>
+        <RadioGroup name="traveler_type" value={formData.traveler_type} onChange={handleFormChange}>
+          {["solo", "friends", "family"].map((type, index) => (
+            <FormControlLabel key={index} value={type} control={<Radio />} label={type.charAt(0).toUpperCase() + type.slice(1)} />
+          ))}
+        </RadioGroup>
+      </FormControl>
+
+      {/* Interests */}
+      <FormControl component="fieldset" margin="normal">
+        <FormLabel component="legend">Interests</FormLabel>
+        <FormGroup>
+          {[
+            "Museums", "Art-galleries", "Nightlife", "Food", "Hiking", 
+            "Beaches", "Shopping", "Music", "Theater", "Architecture", "Photo Ops"
+          ].map((interest, index) => (
+            <FormControlLabel
+              key={index}
+              control={
+                <Checkbox
+                  name="interest"
+                  value={index + 1}
+                  checked={formData.interests.includes((index + 1).toString())}
+                  onChange={handleFormChange}
+                />
+              }
+              label={interest}
+            />
+          ))}
+        </FormGroup>
+      </FormControl>
+
+      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+        Ready!
+      </Button>
+    </Box>
 
   );
 }

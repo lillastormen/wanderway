@@ -84,7 +84,6 @@ export default function Trip() {
         const fetchActiveTrips = async () => {
 
             const userId = localStorage.getItem('user_id');
-
             const response = await Trips.readTripByUserId(userId);
 
             if (response.success) {
@@ -133,8 +132,7 @@ export default function Trip() {
     //         console.error('Failed to add new trip:', response.error)
     //     }
     // }
-
-
+    
 
     return (
         <div>

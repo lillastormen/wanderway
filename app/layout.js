@@ -1,5 +1,6 @@
 import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { Container, CssBaseline } from "@mui/material";
 
 export const metadata = {
   title: "wanderway",
@@ -10,14 +11,25 @@ export default function Layout({ children }) {
 
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
-      <body>
-        <AppRouterCacheProvider>
-          <div>{children}</div>
-        </AppRouterCacheProvider>
-      </body>
-    </html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+      <AppRouterCacheProvider>
+        <CssBaseline />
+        <Container
+          maxWidth="lg"
+          sx={{
+            backgroundColor: "#f5f5f5",
+            minHeight: "100vh",
+            padding: "20px",
+          }}
+          id="main-container"
+        >
+          {children}
+        </Container>
+      </AppRouterCacheProvider>
+    </body>
+  </html>
   );
 }
