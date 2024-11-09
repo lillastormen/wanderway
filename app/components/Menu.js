@@ -34,44 +34,73 @@ export default function Menu() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-around',
-                        height: 70
-                    
-                        
+                        height: 75 
                     }}
                 >
                     <BottomNavigationAction
                         label="Home"
                         value="/trip"
                         icon={<HomeOutlinedIcon sx={{ fontSize: 41}}/>}
-                        sx={{ minWidth: 0, padding: 0, lineHeight: 0 }}
-                     
-                        
+                        sx={{ 
+                            minWidth: 0, 
+                            padding: 0, 
+                            lineHeight: 0,
+                            '& .MuiBottomNavigationAction-label': {
+                                marginTop: 0.5, 
+                            },
+                        }}
                     />    
                     <BottomNavigationAction
                         label="Gem Locator"
                         value="/gem-locator"
                         icon={<RoomOutlinedIcon sx={{ fontSize: 35}}/>}
-                        sx={{ minWidth: 0, padding: 0, lineHeight: 0 }}
-                     
-                        
+                        sx={{ 
+                            minWidth: 0, 
+                            padding: 0, 
+                            lineHeight: 0,
+                            '& .MuiBottomNavigationAction-label': {
+                                marginTop: 0.5, 
+                            },
+                        }}
                     />
                     <BottomNavigationAction
                         label="Add New Trip"
                         value="/survey-trip"
                         icon={<AddBoxOutlinedIcon sx={{ fontSize: 35}}/>}
-                        sx={{ minWidth: 0, padding: 0, lineHeight: 0 }}
+                        sx={{ 
+                            minWidth: 0, 
+                            padding: 0, 
+                            lineHeight: 0,
+                            '& .MuiBottomNavigationAction-label': {
+                                marginTop: 0.5,
+                            },
+                        }}
                     />
                     <BottomNavigationAction
                         label="Past Trips"
                         value="/past-trips"
                         icon={<CheckCircleOutlineOutlinedIcon sx={{ fontSize: 35}}/>}
-                        sx={{ minWidth: 0, padding: 0, lineHeight: 0 }}
+                        sx={{ 
+                            minWidth: 0, 
+                            padding: 0, 
+                            lineHeight: 0,
+                            '& .MuiBottomNavigationAction-label': {
+                                marginTop: 0.5, 
+                            },
+                        }}
                     />
                     <BottomNavigationAction
                         label="My Account"
                         value="/user-account"
                         icon={<Person2OutlinedIcon sx={{ fontSize: 35}} />}
-                        sx={{ minWidth: 0, padding: 0, lineHeight: 0 }}
+                        sx={{ 
+                            minWidth: 0, 
+                            padding: 0, 
+                            lineHeight: 0,
+                            '& .MuiBottomNavigationAction-label': {
+                                marginTop: 0.5, 
+                            },
+                        }}
                     />
             </BottomNavigation>
         </Paper>
