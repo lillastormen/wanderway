@@ -192,9 +192,30 @@ export default function Trip() {
         )}
 
         {activeTrips.length > 0 && (
-            <Box sx={{ display: 'flex', justifyContent: 'space-around', marginBottom: 4 }}>
-                {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"].map(tab => (
-                    <Button key={tab}   sx={{ marginTop: 2 }} onClick={() => setActiveTab(tab)} variant={activeTab === tab ? "contained" : "outlined"}>{tab}</Button>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"]
+                .map(tab => (
+                    <Button 
+                        key={tab}   
+                        sx={{ 
+                            marginTop: 1, 
+                            flexGrow: 1,
+                            fontWeight: 'bold',
+                            fontSize: '10px',
+                            borderWidth: 0.5,
+                            borderRadius: 1,
+                           
+                            '&.MuiButton-outlined': {
+                                borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
+                            },
+                        }} 
+                    
+                        color="primary"
+                        onClick={() => setActiveTab(tab)} 
+                        variant={activeTab === tab ? "contained" : "outlined"}>
+                            {tab}
+          
+                    </Button>
                 ))}
             </Box>
         )}

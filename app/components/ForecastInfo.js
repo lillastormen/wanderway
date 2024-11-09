@@ -35,28 +35,28 @@ export default function ForecastInfo({ cityName }) {
     if (!forecastData) return <div>Loading forecast data...</div>;
 
     return (
-        <Card sx={{ maxWidth: 800, margin: 'auto', padding: 0, marginTop: 2, backgroundColor: '#f5f5f5' }}>
-        <CardContent>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-                8-Days Forecast
-            </Typography>
-            
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                    {forecastData.map((forecast, index) => (
-                        <Box key={index} sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 1, flex: '1 1 45%' }}>
-                            <Typography variant="body1" color="text.primary" gutterBottom>
-                                {new Date(forecast.dt * 1000).toLocaleDateString()}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Temperature: {(forecast.temp.day - 273.15).toFixed(1)}°C
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Weather: {forecast.weather[0].main}
-                            </Typography>
-                        </Box>
-                    ))}
-                </Box>
-        </CardContent>
-    </Card>
+        <Card sx={{ margin: 'auto', padding: 0, marginTop: 2, backgroundColor: '#f5f5f5' }}>
+            <CardContent>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                    8-Days Forecast
+                </Typography>
+                
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                        {forecastData.map((forecast, index) => (
+                            <Box key={index} sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 1, flex: '1 1 45%' }}>
+                                <Typography variant="body1" color="text.primary" gutterBottom>
+                                    {new Date(forecast.dt * 1000).toLocaleDateString()}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Temperature: {(forecast.temp.day - 273.15).toFixed(1)}°C
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Weather: {forecast.weather[0].main}
+                                </Typography>
+                            </Box>
+                        ))}
+                    </Box>
+            </CardContent>
+        </Card>
     )
 }

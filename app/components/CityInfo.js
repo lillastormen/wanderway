@@ -38,17 +38,23 @@ export default function CityInfo({ cityName }) {
     }
 
     return (
-        <Box sx={{ display: 'flex', marginTop: 2 }}>
-            <Card sx={{ maxWidth: 800, padding: 3, backgroundColor: '#ffffff', boxShadow: 1 }}>
-                <CardContent>
-                    {/* Render city data as HTML content */}
-                    <Box
-                        dangerouslySetInnerHTML={{ __html: cityData }}
-                        sx={{ color: 'text.secondary', lineHeight: 1.6 }}
-                    />
-                </CardContent>
-            </Card>
-        </Box>
+        <Card sx={{ margin: 'auto', padding: 0, marginTop: 2, backgroundColor: '#f5f5f5' }}>
+            <CardContent>
+               
+
+                <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <Card sx={{ padding: 1, backgroundColor: '#ffffff', boxShadow: 1 }}>
+                        <CardContent>
+                            {/* Render city data as HTML content */}
+                            <Box
+                                dangerouslySetInnerHTML={{ __html: cityData }}
+                                sx={{ color: 'text.secondary', lineHeight: 1.6 }}
+                            />
+                        </CardContent>
+                    </Card>
+                </Box>
+            </CardContent>
+        </Card>
     );
 }
 

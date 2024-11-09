@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Gems } from "../controllers/gemController";
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography, Box, Card, CardContent, CardHeader } from "@mui/material";
 
 export default function HiddenGems ({ cityName }) {
 
@@ -43,44 +43,48 @@ export default function HiddenGems ({ cityName }) {
                 </Typography>
             </Box>
         ) : (
-         <Stack spacing={2} marginTop={3}>
-            {hiddenGems.map((gem) => (
-                <Box 
-                    key={gem.id} 
-                    sx={{
-                        padding: 2,
-                        backgroundColor: '#fff',
-                        borderRadius: 2,
-                        boxShadow: 1,
-                    }}
-                >
+            hiddenGems.map((gem) => (
+                <Card sx={{ padding: 1, paddingBottom: 0, backgroundColor: '#f5f5f5', boxShadow: 1 }}>
                     <Typography variant="h6" color="text.primary" gutterBottom>
                         {gem.name}
                     </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        City: {gem.city}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        Country: {gem.country}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        Location: {gem.location}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        Description: {gem.description}
-                    </Typography>
-                    {gem.picture && (
-                        <img 
-                            src={gem.picture} 
-                            alt={gem.name} 
-                            style={{ maxWidth: '100%', borderRadius: '8px', marginTop: 10 }} 
-                        />
-                    )}
-                </Box>
-            ))}
-        </Stack>
+                    <CardContent sx={{ padding: '0 8px 0 8px' }}>
+                        <Stack spacing={2} marginTop={1}>
+                            {hiddenGems.map((gem) => (
+                                <Box 
+                                    key={gem.id} 
+                                    sx={{
+                                        padding: 2,
+                                        backgroundColor: '#fff',
+                                        borderRadius: 2,
+                                    }}
+                                >
+                                    <Typography variant="body1" color="text.secondary">
+                                        City: {gem.city}
+                                    </Typography>
+                                    <Typography variant="body1" color="text.secondary">
+                                        Country: {gem.country}
+                                    </Typography>
+                                    <Typography variant="body1" color="text.secondary">
+                                        Location: {gem.location}
+                                    </Typography>
+                                    <Typography variant="body1" color="text.secondary">
+                                        Description: {gem.description}
+                                    </Typography>
+                                    {gem.picture && (
+                                        <img 
+                                            src={gem.picture} 
+                                            alt={gem.name} 
+                                            style={{ maxWidth: '100%', borderRadius: '8px', marginTop: 10 }} 
+                                        />
+                                    )}
+                                </Box>
+                            ))}
+                        </Stack>
+                    </CardContent>
+                </Card>
+            ))
         )}
-        </>
-    )
-    
+    </>
+    ) 
 }
