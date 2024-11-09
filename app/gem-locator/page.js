@@ -12,16 +12,14 @@ import HiddenGems from "../components/HiddenGems";
 export default function GemLocator() {
     
     const router = useRouter();
-    const [selectedGems, setSelectedGems] = useState(null);
-    const [noResults, setNoResults] = useState(false);
     const [selectedCity, setSelectedCity] = useState(""); // To store the selected city
 
    
-    const handleSearchButtonClick = async (searchTerm) => {
-        if (searchTerm && searchTerm.length > 1) {
-            await handleSearch(searchTerm); // Trigger search when button is clicked
-        }
-    };
+    // const handleSearchButtonClick = async (searchTerm) => {
+    //     if (searchTerm && searchTerm.length > 1) {
+    //         await handleSearch(searchTerm); // Trigger search when button is clicked
+    //     }
+    // };
 
     const handleAddGem = () => {
         router.push("/add-gems"); // Navigate to add gems page
@@ -41,7 +39,7 @@ export default function GemLocator() {
                     
                     <Box sx={{ marginBottom: 2 }}>
                         <SearchBar 
-                            onSearch={handleSearchButtonClick}
+                            // onSearch={handleSearchButtonClick}
                             onAutocompleteChange={handleAutocompleteChange}
                         />
                     </Box>
@@ -56,7 +54,6 @@ export default function GemLocator() {
                         {/* <AddIcon /> */}
                         Add new location
                     </Button>
-
 
                     <HiddenGems cityName={selectedCity} />
         </Box>

@@ -12,6 +12,7 @@ import HiddenGems from "../components/HiddenGems";
 import { Box, Typography, Button, Stack, Tabs, Tab, TextField } from '@mui/material';
 
 
+
 export default function Trip() {
 
     // const router = useRouter();
@@ -200,13 +201,6 @@ export default function Trip() {
 
         {activeTrips.length > 0 && <Box>{switchTab()}</Box>}
 
-        <Stack direction="row" spacing={2} justifyContent="center" sx={{ marginTop: 4 }}>
-            <Link href="/" passHref><Button variant="text">Home</Button></Link>
-            <Link href="/gem-locator" passHref><Button variant="text">Gem Locator</Button></Link>
-            <Link href="/survey-trip" passHref><Button variant="text">Add New Trip</Button></Link>
-            <Link href="/past-trips" passHref><Button variant="text">Past Trips</Button></Link>
-            <Link href="/user-account" passHref><Button variant="text">My Account</Button></Link>
-        </Stack>
     </Box>
     ); 
 }

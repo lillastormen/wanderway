@@ -14,9 +14,9 @@ export default function SearchBar({ onSearch, onAutocompleteChange }) {
 
     };
 
-    const handleSearchButtonClick = () => {
-        onSearch(searchTerm);
-    };
+    // const handleSearchButtonClick = () => {
+    //     onSearch(searchTerm);
+    // };
 
     return (
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -42,9 +42,9 @@ export default function SearchBar({ onSearch, onAutocompleteChange }) {
             )}
             sx={{ flexGrow: 1 }} // Make autocomplete fill available space
         />
-        <IconButton onClick={handleSearchButtonClick}>
+        {/* <IconButton onClick={handleSearchButtonClick}>
             <SearchIcon />
-        </IconButton>
+        </IconButton> */}
     </div>
     );
 }
