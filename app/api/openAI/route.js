@@ -8,7 +8,7 @@ import { NextResponse, searchParams } from "next/server";
 export async function GET(req) {
 
     const { searchParams } = new URL(req.url);
-    const tripId = searchParams.get('tripId'); // Extract the city name from the query string
+    const tripId = searchParams.get('tripId'); // Extract ids from the query 
     const userId = searchParams.get('userId');
 
     const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
@@ -42,7 +42,7 @@ export async function GET(req) {
 
     const fetchUserInterests = async (userId) => {
         try {
-            // Step 1: Get the interest IDs from Users_Interests table
+            //Get the interest IDs from Users_Interests table
             const { success, data, error } = await Interests.readUserInterests(userId);
             if (!success || error) {
                 console.error('Error fetching interest IDs:', error.message);
@@ -52,7 +52,7 @@ export async function GET(req) {
             // Extract interest IDs from the response
             const interestIds = data.map(entry => entry.interest_id);
     
-            // Step 2: Fetch the interest names/details by IDs from Interests table
+            // Fetch the interest names/details by IDs from Interests table
             const { success: interestSuccess, data: interestData, error: interestError } = await Interests.readInterestsByIds(interestIds);
             if (!interestSuccess || interestError) {
                 console.error('Error fetching interests by IDs:', interestError.message);
