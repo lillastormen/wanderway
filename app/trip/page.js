@@ -9,6 +9,7 @@ import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
 import MustSeePlaces from "../components/MustSeePlaces";
 import HiddenGems from "../components/HiddenGems";
+import { Box, Typography, Button, Stack, Tabs, Tab, TextField } from '@mui/material';
 
 
 export default function Trip() {
@@ -24,55 +25,51 @@ export default function Trip() {
     const switchTab = () => {
         switch (activeTab) {
             case "Intinerary": 
-                return <div>Itinerary details go here</div>;
+                return <Typography variant="body1">Itinerary details go here</Typography>;
             case "City Info":
                 return (
-                    <div>
-                        {activeTrips.length > 0 ? (
-                            <CityInfo cityName={activeTrips[0]?.city} />
-                        ) : (
-                            <p>No city information avaiable</p>
-                        )}
-                    </div>
+                    <Box>
+                        {activeTrips.length > 0 ? 
+                            <CityInfo cityName={activeTrips[0]?.city} /> : 
+                                <p>No city information available</p>
+                        }
+                    </Box>
                 );
             case "Weather":
                 return (
-                    <>
-                        <div>
-                            {activeTrips.length > 0 ? (
-                                <WeatherInfo cityName={activeTrips[0]?.city} />
-                            ) : (
-                                <p>No weather information avaiable</p>
-                            )}
-                        </div>
-                        <div>
-                        {activeTrips.length > 0 ? (
-                            <ForecastInfo cityName={activeTrips[0]?.city} />
-                        ) : (
-                            <p>No forecast information avaiable</p>
-                        )}
-                        </div>
-                    </>
+                    <>                    
+                        <Box>
+                            {activeTrips.length > 0 ? 
+                                <WeatherInfo cityName={activeTrips[0]?.city} /> : 
+                                    <p>No city information available</p>
+                            }
+                        </Box>
+                        <Box>
+                            {activeTrips.length > 0 ? 
+                                <ForecastInfo cityName={activeTrips[0]?.city} /> : 
+                                    <p>No city information available</p>
+                            }
+                        </Box>
+                     </>
+
                 );
             case "Must see":
                 return (
-                    <div>
-                    {activeTrips.length > 0 ? (
-                        <MustSeePlaces cityName={activeTrips[0]?.city} />
-                    ) : (
-                        <p>No locations info avaiable</p>
-                    )}
-                    </div>
+                    <Box>
+                        {activeTrips.length > 0 ? 
+                            <MustSeePlaces cityName={activeTrips[0]?.city} /> : 
+                                <p>No city information available</p>
+                        }
+                    </Box>
                 )
             case "Hidden gems":
                 return (
-                    <div>
-                        {activeTrips.length > 0 ? (
-                        <HiddenGems cityName={activeTrips[0]?.city} />
-                    ) : (
-                        <p>No gems information avaiable</p>
-                    )} 
-                    </div>
+                    <Box>
+                        {activeTrips.length > 0 ? 
+                            <HiddenGems cityName={activeTrips[0]?.city} /> : 
+                                <p>No city information available</p>
+                        }
+                    </Box>
                 )
             default:
                 return null;
@@ -135,91 +132,81 @@ export default function Trip() {
 
 
     return (
-        <div>
-            <h2>Trip</h2>
-            {activeTrips.length > 0 ? (
-                activeTrips.map((trip) => (
-                    <div key={trip.id} className="trip-container">
-                        {editingTripId === trip.id ? (
-                             <form onSubmit={(e) => handleSave(e, trip.id)}>
-                                <div>
-                                    <label>Country:</label>
-                                    <input
-                                        type="text"
-                                        name="country"
-                                        value={trip.country}
-                                        onChange={(e) => handleFormChange(e, trip.id)}
-                                    />
-                                </div>
-                                <div>
-                                    <label>City:</label>
-                                    <input
-                                        type="city"
-                                        name="city"
-                                        value={trip.city}
-                                        onChange={(e) => handleFormChange(e, trip.id)}
-                                    />
-                                </div>
-                                <div>
-                                    <label>Start Date:</label>
-                                    <input
-                                        type="date"
-                                        name="start_date"
-                                        value={trip.start_date}
-                                        onChange={(e) => handleFormChange(e, trip.id)}
-                                    />
-                                </div>
-                                <div>
-                                    <label>End Date:</label>
-                                    <input
-                                        type="date"
-                                        name="end_date"
-                                        value={trip.end_date}
-                                        onChange={(e) => handleFormChange(e, trip.id)}
-                                    />
-                                </div>
-                                <button type="submit">Save</button>
-                                <button type="button" onClick={() => setEditingTripId(false)}>Cancel</button>
-                            </form>                    
-                        ) : (
-                            <>
-                                {/* <div>{trip.id}</div> */}
-                                <div>{trip.country}, {trip.city}</div>
-                                <div>{trip.start_date} - {trip.end_date}</div>
-                                <button onClick={() => setEditingTripId(trip.id)}>Edit</button>
-                            </>
-                        )}
-                    </div>
-                ))
-            ) : (
-                <div>
-                    <p>No active trip available. Please add a new trip.</p>
-                </div>
-            )}
-            
-            {activeTrips.length > 0 && (
-                <div className="flex gap-10">
-                    <button onClick={() => setActiveTab("Intinerary")}>Intinerary</button>
-                    <button onClick={() => setActiveTab("City Info")}>City Info</button>
-                    <button onClick={() => setActiveTab("Weather")}>Weather</button>
-                    <button onClick={() => setActiveTab("Must see")}>Must see</button>
-                    <button onClick={() => setActiveTab("Hidden gems")}>Hidden gems</button>
-                </div>
-            )}
+        <Box sx={{ padding: 4, maxWidth: 800, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+        <Typography variant="h4" gutterBottom>Trip</Typography>
 
-            {activeTrips.length > 0 && (
-                <div>
-                    {switchTab()}
-                </div>
-            )}
+        {activeTrips.length > 0 ? (
+            activeTrips.map(trip => (
+                <Box key={trip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
+                    {editingTripId === trip.id ? (
+                        <form onSubmit={(e) => handleSave(e, trip.id)}>
+                            <TextField
+                                label="Country"
+                                name="country"
+                                value={trip.country}
+                                onChange={(e) => handleFormChange(e, trip.id)}
+                                fullWidth
+                                sx={{ marginBottom: 2 }}
+                            />
+                            <TextField
+                                label="City"
+                                name="city"
+                                value={trip.city}
+                                onChange={(e) => handleFormChange(e, trip.id)}
+                                fullWidth
+                                sx={{ marginBottom: 2 }}
+                            />
+                            <TextField
+                                label="Start Date"
+                                name="start_date"
+                                type="date"
+                                value={trip.start_date}
+                                onChange={(e) => handleFormChange(e, trip.id)}
+                                fullWidth
+                                sx={{ marginBottom: 2 }}
+                            />
+                            <TextField
+                                label="End Date"
+                                name="end_date"
+                                type="date"
+                                value={trip.end_date}
+                                onChange={(e) => handleFormChange(e, trip.id)}
+                                fullWidth
+                                sx={{ marginBottom: 2 }}
+                            />
+                            <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
+                            <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
+                        </form>
+                    ) : (
+                        <>
+                            <Typography variant="h6">{trip.country}, {trip.city}</Typography>
+                            <Typography variant="body2">{trip.start_date} - {trip.end_date}</Typography>
+                            <Button onClick={() => setEditingTripId(trip.id)} variant="outlined" color="secondary" sx={{ marginTop: 2 }}>Edit</Button>
+                        </>
+                    )}
+                </Box>
+            ))
+        ) : (
+            <Typography variant="body1">No active trip available. Please add a new trip.</Typography>
+        )}
 
-            <ul className="flex gap-10">
-                <li key="home"><Link href="/">Home</Link></li>
-                <li key="gems"><Link href="/gem-locator">Gem Locator</Link></li>
-                <li key="surveyTrip"><Link href="/survey-trip">Add New Trip</Link></li>
-                <li key="pastTrips"><Link href="/past-trips">Past Trips</Link></li>
-                <li key="userAccount"><Link href="/user-account">My Account</Link></li>
-            </ul>
-        </div>  
+        {activeTrips.length > 0 && (
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', marginBottom: 4 }}>
+                {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"].map(tab => (
+                    <Button key={tab} onClick={() => setActiveTab(tab)} variant={activeTab === tab ? "contained" : "outlined"}>{tab}</Button>
+                ))}
+            </Box>
+        )}
+
+        {activeTrips.length > 0 && <Box>{switchTab()}</Box>}
+
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ marginTop: 4 }}>
+            <Link href="/" passHref><Button variant="text">Home</Button></Link>
+            <Link href="/gem-locator" passHref><Button variant="text">Gem Locator</Button></Link>
+            <Link href="/survey-trip" passHref><Button variant="text">Add New Trip</Button></Link>
+            <Link href="/past-trips" passHref><Button variant="text">Past Trips</Button></Link>
+            <Link href="/user-account" passHref><Button variant="text">My Account</Button></Link>
+        </Stack>
+    </Box>
     ); 
 }

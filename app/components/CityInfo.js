@@ -38,8 +38,8 @@ export default function CityInfo({ cityName }) {
     }
 
     return (
-        <Box sx={{ display: 'flex', marginLeft: 2, marginTop: 2 }}>
-            <Card sx={{ maxWidth: 600, padding: 3, backgroundColor: '#f5f5f5', boxShadow: 1 }}>
+        <Box sx={{ display: 'flex', marginTop: 2 }}>
+            <Card sx={{ maxWidth: 800, padding: 3, backgroundColor: '#ffffff', boxShadow: 1 }}>
                 <CardContent>
                     {/* Render city data as HTML content */}
                     <Box

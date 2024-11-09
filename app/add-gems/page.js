@@ -94,10 +94,8 @@ export default function addGem() {
                                 label="City, Country"
                                 variant="outlined"
                                 fullWidth
-                             
                             />
                         )}
-                    
                     />
                     {/* <TextField 
                         label="Country" 

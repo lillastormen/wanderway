@@ -35,7 +35,7 @@ export default function ForecastInfo({ cityName }) {
     if (!forecastData) return <div>Loading forecast data...</div>;
 
     return (
-        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 2, marginTop: 2, backgroundColor: '#f5f5f5' }}>
+        <Card sx={{ maxWidth: 800, margin: 'auto', padding: 0, marginTop: 2, backgroundColor: '#f5f5f5' }}>
         <CardContent>
             <Typography variant="h6" color="text.primary" gutterBottom>
                 8-Days Forecast
@@ -43,7 +43,7 @@ export default function ForecastInfo({ cityName }) {
             
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                     {forecastData.map((forecast, index) => (
-                        <Box key={index} sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 2, boxShadow: 1, flex: '1 1 45%' }}>
+                        <Box key={index} sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 1, flex: '1 1 45%' }}>
                             <Typography variant="body1" color="text.primary" gutterBottom>
                                 {new Date(forecast.dt * 1000).toLocaleDateString()}
                             </Typography>

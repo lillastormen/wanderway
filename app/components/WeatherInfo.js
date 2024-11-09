@@ -32,11 +32,12 @@ export default function WeatherInfo({ cityName }) {
     if (!weatherData) return <div>Loading weather data...</div>;
 
     return (
-        <Card sx={{ maxWidth: 400, margin: 'auto', padding: 0, marginLeft: 2, backgroundColor: '#f5f5f5', marginTop: 2 }}>
+        <Card sx={{ maxWidth: 800, margin: 'auto', padding: 0, backgroundColor: '#f5f5f5', marginTop: 2 }}>
             <CardContent>
             <Typography variant="h6" color="text.primary" gutterBottom>
                 Today
             </Typography>
+            <Box sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 1}}>
                 <Typography variant="body1" color="text.secondary" gutterBottom>
                     Temperature: {(weatherData.main.temp - 273.15).toFixed(1)}°C
                 </Typography>
@@ -58,6 +59,7 @@ export default function WeatherInfo({ cityName }) {
                 <Typography variant="body1" color="text.secondary" gutterBottom>
                     Wind: {(weatherData.wind.speed * 3.6).toFixed(2)} km/h
                 </Typography>
+            </Box>
         </CardContent>
     </Card>
     );
