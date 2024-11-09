@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
+import { Box, Typography, List, ListItem, Paper, Stack } from "@mui/material";
 import { Trips } from "../controllers/tripController";
 
 export default function PastTrips() {
@@ -36,23 +37,30 @@ export default function PastTrips() {
     }, []);
 
     return (
-       
-            <div>
-                <h2>Past Trips</h2>
-                {pastTrips.length > 0 ? (
-                    <ul>
-                        {pastTrips.map((trip) => (
-                            <li key={trip.id}>
-                                <p>Country: {trip.country}</p>
-                                <p>City: {trip.city}</p>
-                                <p>Dates: {trip.start_date} - {trip.end_date}</p>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No past trips available.</p>
-                )}
-            </div>
-        );
+        <Box sx={{ padding: 4, maxWidth: 800, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+            <Typography variant="h4" gutterBottom>Past Trips</Typography>
+
+            {pastTrips.length > 0 ? (
+                <List sx={{ marginTop: 2 }}>
+                    {pastTrips.map((trip) => (
+                        <ListItem key={trip.id} sx={{ padding: 0 }}>
+                            <Paper elevation={2} sx={{ padding: 2, width: '100%', marginBottom: 2 }}>
+                                <Typography variant="h6">Country: {trip.country}</Typography>
+                                <Typography variant="body1">City: {trip.city}</Typography>
+                                <Typography variant="body2">Dates: {trip.start_date} - {trip.end_date}</Typography>
+                            </Paper>
+                        </ListItem>
+                    ))}
+                </List>
+            ) : (
+                <Box sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 2, marginTop: 2, boxShadow: 1, textAlign: 'center' }}>
+                    <Typography variant="body2" color="text.secondary">
+                    No past trips available.
+                    </Typography>
+                </Box>
+            )}
+        </Box>
+
+    );
    
 }

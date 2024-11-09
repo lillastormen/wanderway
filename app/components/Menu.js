@@ -35,7 +35,7 @@ export default function Menu() {
                 >
                     <BottomNavigationAction
                         label="Home"
-                        value="/"
+                        value="/trip"
                         icon={<HomeIcon sx={{ fontSize: 30}}/>}
                     />    
                     <BottomNavigationAction
