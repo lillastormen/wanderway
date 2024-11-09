@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Users } from "../controllers/userController"
 import { Interests } from "../controllers/interestController"
+import { Box, Typography, TextField, Select, MenuItem, Checkbox, FormControlLabel, Button, Stack, Paper } from "@mui/material";
 
 export default function UserProfile() {
 
@@ -120,113 +121,123 @@ export default function UserProfile() {
     }
 
     return (
-        <div>
-            <h2>Your profile</h2>
+        <Box sx={{ padding: 1, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+            <Typography variant="h5" gutterBottom>Your Profile</Typography>
+
             {editMode ? (
                 <form onSubmit={handleSave}>
-                    <div>
-                        <label>Name: </label>
-                        <input
-                            type="text"
+                    <Stack spacing={3}>
+                        <TextField
+                            label="Name"
                             name="name"
+                            variant="outlined"
+                            fullWidth
                             value={userData.name}
                             onChange={handleFormChange}
                         />
-                    </div>
-                    <div>
-                        <label>E-mail: </label>
-                        <input
-                            type="text"
+                        <TextField
+                            label="E-mail"
                             name="email"
+                            variant="outlined"
+                            fullWidth
                             value={userData.email}
                             onChange={handleFormChange}
                         />
-                    </div>
-                    <div>
-                        <label>Age Group: </label>
-                        <select 
+                        <Select
+                            label="Age Group"
                             name="age_group"
                             value={userData.age_group}
+                            fullWidth
                             onChange={handleFormChange}
                         >
-                            <option value="">Select Your Age Group</option>
-                            <option value="-25">-25</option>
-                            <option value="25-31">25-31</option>
-                            <option value="32-38">32-38</option>
-                            <option value="39-45">39-45</option>
-                            <option value="45+">45?</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Gender: </label>
-                        <select
+                            <MenuItem value="">Select Your Age Group</MenuItem>
+                            <MenuItem value="-25">-25</MenuItem>
+                            <MenuItem value="25-31">25-31</MenuItem>
+                            <MenuItem value="32-38">32-38</MenuItem>
+                            <MenuItem value="39-45">39-45</MenuItem>
+                            <MenuItem value="45+">45+</MenuItem>
+                        </Select>
+                        <Select
+                            label="Gender"
                             name="gender"
                             value={userData.gender}
+                            fullWidth
                             onChange={handleFormChange}
                         >
-                            <option value="">Select Your Gender</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                            <option value="non-binary">Non-binary</option>
-                            <option value="prefer-not-to-say">Prefer not to say</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Traveler Type: </label>
-                        <select
+                            <MenuItem value="">Select Your Gender</MenuItem>
+                            <MenuItem value="female">Female</MenuItem>
+                            <MenuItem value="male">Male</MenuItem>
+                            <MenuItem value="non-binary">Non-binary</MenuItem>
+                            <MenuItem value="prefer-not-to-say">Prefer not to say</MenuItem>
+                        </Select>
+                        <Select
+                            label="Traveler Type"
                             name="traveler_type"
                             value={userData.traveler_type}
+                            fullWidth
                             onChange={handleFormChange}
                         >
-                            <option value="">Select Your Traveler Type</option>
-                            <option value="solo">Solo</option>
-                            <option value="friends">Friends</option>
-                            <option value="family">Family</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Interests: </label>
+                            <MenuItem value="">Select Your Traveler Type</MenuItem>
+                            <MenuItem value="solo">Solo</MenuItem>
+                            <MenuItem value="friends">Friends</MenuItem>
+                            <MenuItem value="family">Family</MenuItem>
+                        </Select>
+
+                        <Typography variant="subtitle1">Interests</Typography>
                         {allInterests.length > 0 ? (
                             allInterests.map((interest) => (
-                                <div key={interest.id}>
-                                    <input
-                                        type="checkbox"
-                                        id={`interest-${interest.id}`}
-                                        value={interest.id}
-                                        checked={userInterests.includes(interest.id)}
-                                        onChange={handleInterestsFormChange}
-                                    />
-                                    <label htmlFor={`interest-${interest.id}`}>{interest.interest}</label>
-                                </div>
+                                <FormControlLabel
+                                    key={interest.id}
+                                    control={
+                                        <Checkbox
+                                            checked={userInterests.includes(interest.id)}
+                                            onChange={handleInterestsFormChange}
+                                            value={interest.id}
+                                        />
+                                    }
+                                    label={interest.interest}
+                                />
                             ))
                         ) : (
-                            <p>Loading interests...</p>
+                            <Typography>Loading interests...</Typography>
                         )}
-                    </div>
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
+                    </Stack>
+                    <Stack direction="row" spacing={2} sx={{ marginTop: 3 }}>
+                        <Button type="submit" variant="contained" color="primary">Save</Button>
+                        <Button variant="outlined" color="secondary" onClick={() => setEditMode(false)}>Cancel</Button>
+                    </Stack>
                 </form>
-                ) : (
-                <div>
-                    <div>Name: {userData.name}</div>
-                    <div>Email: {userData.email}</div>
-                    <div>Age Group: {userData.age_group}</div>
-                    <div>Gender: {userData.gender}</div>
-                    <div>Traveler Type: {userData.traveler_type}</div>
-                    <div>Interests: {userInterests.length > 0 
-                        ? userInterests
-                            .map((id) => {
-                                const interest = allInterests.find((item) => item.id === id);
-                                return interest ? interest.interest : '';
-                            })
-                            .filter(Boolean) //remove empty strings
-                            .join(", ")
-                        : "None"}
-                    </div>
-                    <button onClick={() => setEditMode(true)}>Edit</button>
-                </div>
-              
+            ) : (
+                <Paper elevation={3} sx={{ padding: 3 }}>
+                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <Typography >Name: {userData.name}</Typography>
+                        <Typography>Email: {userData.email}</Typography>
+                        <Typography>Age Group: {userData.age_group}</Typography>
+                        <Typography>Gender: {userData.gender}</Typography>
+                        <Typography>Traveler Type: {userData.traveler_type}</Typography>
+                        <Typography>
+                            Interests: {userInterests.length > 0 
+                                ? userInterests
+                                    .map((id) => {
+                                        const interest = allInterests.find((item) => item.id === id);
+                                        return interest ? interest.interest : '';
+                                    })
+                                    .filter(Boolean)
+                                    .join(", ")
+                                : "None"}
+                        </Typography>
+                    </Box>
+                    <Button 
+                        color="primary"
+                        size="large"
+                        variant="contained" 
+                        sx={{ marginTop: 2 }} 
+                        onClick={() => setEditMode(true)}
+                    >
+                        Edit
+                    </Button>
+                </Paper>
             )}
-        </div>
+        </Box>
     );
 }

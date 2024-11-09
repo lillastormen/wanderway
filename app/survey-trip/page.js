@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 import cities from '/data/cities.json'
-import { TextField, Autocomplete, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel } from "@mui/material";
+import { TextField, Autocomplete, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel, Box, Typography, Button, Stack } from "@mui/material";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -78,10 +78,15 @@ console.log(cities);
 
 return (
     <>
-<h2>Trip info</h2>
-<form>
-    <div>
-        <p>Destination</p>
+
+
+    <Box sx={{ padding: 1, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+        <Typography variant="h5" gutterBottom>Trip Info</Typography>
+        
+        <form onSubmit={handleFormSubmit}>
+            <Stack spacing={3}>
+        <Box>
+            <Typography variant="body2" fontWeight="bold">Destination</Typography>
             <Autocomplete
                 disablePortal
                 options={cities}
@@ -94,40 +99,39 @@ return (
                     country: value?.country || "",
                     });
                 }}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="City" />}
+                
+                renderInput={(params) => <TextField {...params} label="City, Country" variant="outlined" fullWidth />}
             />
-    </div>
-    <div>
-    <p>Start Date</p>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-                <DatePicker
-                    value={formData.start_date}
-                    onChange={(newValue) => setFormData({ ...formData, start_date: newValue })}
-                    views={['year', 'month', 'day']}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </DemoContainer>
-        </LocalizationProvider>
-    </div>
-    <div>
-        <p>End Date</p>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-                <DatePicker
-                    value={formData.end_date}
-                    onChange={(newValue) => setFormData({ ...formData, end_date: newValue })}
-                    views={['year', 'month', 'day']}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </DemoContainer>
-        </LocalizationProvider>
-    </div>
-    <div>
-        <p>Budget</p>
+        </Box>
+        <Box>
+            <Typography variant="body2" fontWeight="bold">Start Date</Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker']}>
+                    <DatePicker
+                        value={formData.start_date}
+                        onChange={(newValue) => setFormData({ ...formData, start_date: newValue })}
+                        views={['year', 'month', 'day']}
+                        renderInput={(params) => <TextField {...params} label="Start Date" variant="outlined" fullWidth />}
+                    />
+                </DemoContainer>
+            </LocalizationProvider>
+        </Box>
+        <Box>
+            <Typography variant="body2" fontWeight="bold">End Date</Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker']}>
+                    <DatePicker
+                        value={formData.end_date}
+                        onChange={(newValue) => setFormData({ ...formData, end_date: newValue })}
+                        views={['year', 'month', 'day']}
+                        renderInput={(params) => <TextField {...params} label="End Date" variant="outlined" fullWidth/>}
+                    />
+                </DemoContainer>
+            </LocalizationProvider>
+        </Box>
+        <Box>
+            <Typography variant="body2" fontWeight="bold">Budget</Typography>
             <FormControl component="fieldset">
-                <FormLabel component="legend">Budget</FormLabel>
                 <RadioGroup
                     name="budget"
                     value={formData.budget}
@@ -150,42 +154,46 @@ return (
                     />
                 </RadioGroup>
             </FormControl>
-    </div>
-    <div> 
-        <p>Peace</p>
-        <FormControl component="fieldset">
-            <FormLabel component="legend">Peace</FormLabel>
-            <RadioGroup
-                name="peace"
-                value={formData.peace}
-                onChange={handleFormChange}
-            >
-                <FormControlLabel
-                    value="relaxed"
-                    control={<Radio />}
-                    label="Relaxed"
-                />
-                <FormControlLabel
-                    value="adventurer"
-                    control={<Radio />}
-                    label="Adventurer"
-                />
-                <FormControlLabel
-                    value="thrill-seeker"
-                    control={<Radio />}
-                    label="Thrill-seeker"
-                />
-            </RadioGroup>
-        </FormControl>
-    </div>
-    <button 
-        className="border-solid border-"
-        onClick={handleFormSubmit}
-    >
-        <p>Ready!</p>
-    </button>
-      
-</form>
+        </Box>
+        <Box>
+            <Typography variant="body2" fontWeight="bold">Peace</Typography>
+            <FormControl component="fieldset">
+                <RadioGroup
+                    name="peace"
+                    value={formData.peace}
+                    onChange={handleFormChange}
+                >
+                    <FormControlLabel
+                        value="relaxed"
+                        control={<Radio />}
+                        label="Relaxed"
+                    />
+                    <FormControlLabel
+                        value="adventurer"
+                        control={<Radio />}
+                        label="Adventurer"
+                    />
+                    <FormControlLabel
+                        value="thrill-seeker"
+                        control={<Radio />}
+                        label="Thrill-seeker"
+                    />
+                </RadioGroup>
+            </FormControl>
+        </Box>
+        <Button 
+            variant="contained" 
+            type="submit"
+            onClick={handleFormSubmit} 
+            color="primary"
+            size="large"
+            sx={{ marginTop: 2 }} 
+        >
+            Ready!
+        </Button>
+        </Stack>
+        </form>
+    </Box>
 
 </>
 )

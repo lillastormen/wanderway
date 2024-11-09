@@ -32,7 +32,7 @@ export default function GemLocator() {
     };
 
     return (
-        <Box sx={{ maxWidth: 800, padding: 4, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+        <Box sx={{ padding: 1, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
             <Typography variant="h5" gutterBottom>
                         Gem Locator
                     </Typography>
@@ -50,6 +50,7 @@ export default function GemLocator() {
                         variant="contained" 
                         color="primary" 
                         size="large"  
+                        sx={{ marginTop: 2 }} 
                     >
                         {/* <AddIcon /> */}
                         Add new location

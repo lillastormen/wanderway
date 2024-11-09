@@ -37,8 +37,8 @@ export default function PastTrips() {
     }, []);
 
     return (
-        <Box sx={{ padding: 4, maxWidth: 800, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-            <Typography variant="h4" gutterBottom>Past Trips</Typography>
+        <Box sx={{ padding: 1, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+            <Typography variant="h5" gutterBottom>Past Trips</Typography>
 
             {pastTrips.length > 0 ? (
                 <List sx={{ marginTop: 2 }}>

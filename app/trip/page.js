@@ -133,8 +133,8 @@ export default function Trip() {
 
 
     return (
-        <Box sx={{ padding: 4, maxWidth: 800, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-        <Typography variant="h4" gutterBottom>Trip</Typography>
+        <Box sx={{ padding: 1, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+        <Typography variant="h5" gutterBottom>Trip</Typography>
 
         {activeTrips.length > 0 ? (
             activeTrips.map(trip => (
@@ -194,7 +194,7 @@ export default function Trip() {
         {activeTrips.length > 0 && (
             <Box sx={{ display: 'flex', justifyContent: 'space-around', marginBottom: 4 }}>
                 {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"].map(tab => (
-                    <Button key={tab} onClick={() => setActiveTab(tab)} variant={activeTab === tab ? "contained" : "outlined"}>{tab}</Button>
+                    <Button key={tab}   sx={{ marginTop: 2 }} onClick={() => setActiveTab(tab)} variant={activeTab === tab ? "contained" : "outlined"}>{tab}</Button>
                 ))}
             </Box>
         )}

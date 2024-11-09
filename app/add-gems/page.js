@@ -62,7 +62,7 @@ export default function addGem() {
     };
 
     return (
-        <Box sx={{ maxWidth: 400, padding: 4, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+        <Box sx={{ padding: 1, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
             <Typography variant="h5" gutterBottom>
                 Add New Gem
             </Typography>
@@ -147,6 +147,7 @@ export default function addGem() {
                         variant="contained" 
                         color="primary" 
                         size="large"
+                        sx={{ marginTop: 2 }} 
                     >
                         Add
                     </Button>
