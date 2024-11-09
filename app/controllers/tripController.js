@@ -1,4 +1,5 @@
 import { supabase } from "@/db/dbConnection";
+import OpenAI from "openai";
 
 export const Trips = {
     
@@ -7,12 +8,30 @@ export const Trips = {
         .from('Trips')
         .insert( trip )
         .select('*')
+        .single()
 
         if (error) {
             console.error('Error creating trip:', error.message);  // More detailed error message
             return { success: false, error };
         }
-    
+
+        // Call AI API to create itinerary
+        try {
+            const aiResponse = await fetch(`/api/openAI?tripId=${data.id}&userId=${data.user_id}`);
+            const itinerary = await aiResponse.json();
+            if (itinerary) {
+                const updatedData = { ...data, itinerary:itinerary.message.content };
+               
+                const { update, error } = await supabase
+                .from('Trips')
+                .update(updatedData)
+                .eq('id', updatedData.id)
+                .select('*')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
         return { success: true, data };
     },
 
@@ -36,6 +55,8 @@ export const Trips = {
         .eq('id', tripId)
         .single()
 
+        console.log(tripId);
+
         if (error) {
             console.error('Error fetching a trip', error.message);
             return { success: false, error}
@@ -48,7 +69,7 @@ export const Trips = {
         // console.log('Fetching trips for user ID:', userId)
         const { data, error } = await supabase
         .from('Trips')
-        .select('country, city, start_date, end_date, id')
+        .select()
         .eq('user_id', userId)
 
         if (error) {    
@@ -66,6 +87,7 @@ export const Trips = {
         .eq('id', tripId)
         .select('*')
 
+        console.log('in update')
         if (error) {
             console.error(`Error updating a trip with ID ${tripId}`, error.message)
             return { success: false, error }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Gems } from "../controllers/gemController";
-import { Stack, Typography, Box, Card, CardContent, CardHeader } from "@mui/material";
+import { Stack, Typography, Box, Card, CardContent } from "@mui/material";
 
 export default function HiddenGems ({ cityName }) {
 

@@ -43,9 +43,7 @@ export default function Intinerary() {
             <div>When: {trip.start_date} - {trip.end_date}</div>
         <div>Intinerary</div>
         <div>
-            <div>Day 1</div>
-            <div>Day 2</div>
-            <div>Day 3</div>
+            {trip.itinerary}
         </div>
        
             <button 

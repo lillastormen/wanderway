@@ -21,12 +21,19 @@ export default function Trip() {
     const [activeTrips, setActiveTrips] = useState([]);
     // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
-
+ 
+    console.log(activeTrips)
 
     const switchTab = () => {
         switch (activeTab) {
             case "Intinerary": 
-                return <Typography variant="body1">Itinerary details go here</Typography>;
+                return  (
+                    <Box>
+                    {activeTrips.length > 0 ? 
+                        <>{activeTrips[0].itinerary}</> : <p>No intinerary information available</p>
+                        }
+                    </Box>
+                )
             case "City Info":
                 return (
                     <Box>
@@ -204,17 +211,19 @@ export default function Trip() {
                             fontSize: '10px',
                             borderWidth: 0.5,
                             borderRadius: 1,
-                           
                             '&.MuiButton-outlined': {
                                 borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
                             },
+                            backgroundColor: activeTab === tab ? 'transparent' : '#1976d2',  // Transparent for active, blue for others
+                            color: activeTab === tab ? '#1976d2' : '#fff',  // Text color: blue for active, white for others
+                            borderColor: activeTab === tab ? '#1976d2' : '#1976d2',  // Border color
+               
                         }} 
                     
                         color="primary"
                         onClick={() => setActiveTab(tab)} 
                         variant={activeTab === tab ? "contained" : "outlined"}>
                             {tab}
-          
                     </Button>
                 ))}
             </Box>
