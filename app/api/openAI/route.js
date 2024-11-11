@@ -78,11 +78,11 @@ export async function GET(req) {
     console.log("Trip Info:", tripInfo);
     console.log("User Interests:", interests);
 
-    const tripDetails =`${tripInfo.data.city}, ${tripInfo.data.country} for period ${tripInfo.data.start_date} - ${tripInfo.data.end_date} at ${tripInfo.data.peace} peace and a ${tripInfo.data.budget} level budget`;
+    const tripDetails =`${tripInfo.data.city}, ${tripInfo.data.country} for period ${tripInfo.data.start_date} - ${tripInfo.data.end_date} at ${tripInfo.data.peace} peace (where relaxed is easy peace, thrill-seeker looks for adrenaline and adventurer is somewhere in between these two) and a ${tripInfo.data.budget} level budget (where explorer is the economic one, comfort the normal one and indulge almost a luxury)`;
     const interestsList = interests.map(interest => interest.interest).join(", ");
 
     const messageContent = `
-        You are a travel planner creating an intinerary for ${userInfo.data.name}'s trip. They are of age ${userInfo.data.age_group}, gender ${userInfo.data.gender} and they are traveling with ${userInfo.data.traveler_type}. The user has planned the following trip: ${tripDetails}. This user is interested in: ${interestsList}. Please create an intinerary that caters to this type of user, their interests and trip details.   
+        You are a travel planner creating an intinerary for ${userInfo.data.name}'s trip. They are of age ${userInfo.data.age_group}, gender ${userInfo.data.gender} and they are traveling with ${userInfo.data.traveler_type}. The user has planned the following trip: ${tripDetails}. This user is interested in: ${interestsList}. Please create an itinerary as a JSON object, structured by day, with each day's activities under keys for Day 1, Day 2, etc. and times of the day: morning, afternoon evening. Adjust itinerary to all these preferences.
     `;
     console.log(messageContent)
 
@@ -92,7 +92,11 @@ export async function GET(req) {
     //     model: "gpt-3.5-turbo", //gtp-4o
     // });
 
-    // return NextResponse.json({ message: complementation.choices[0].message});
+    
+    // const itineraryResponse = complementation.choices[0].message.content;
+    // const itinerary = JSON.parse(itineraryResponse);
+    // return NextResponse.json({ itinerary });
+
     return NextResponse.json({"message":{"role":"assistant","content":"Based on Alinka's interests in museums, art galleries, food, beaches, shopping, and architecture, here is a suggested itinerary for her trip to Barcelona, Spain:\n\nDay 1:\n- Morning: Visit the Picasso Museum to explore the works of the famous artist.\n- Afternoon: Enjoy a delicious Spanish lunch at a local tapas bar.\n- Evening: Take a relaxing stroll along Barceloneta Beach and watch the sunset.\n\nDay 2:\n- Morning: Visit the Sagrada Familia to marvel at Gaudi's masterpiece of architecture.\n- Afternoon: Explore the Gothic Quarter, where you can find charming shops and boutiques for some shopping.\n- Evening: Have dinner at a traditional Catalan restaurant for a taste of authentic local cuisine.\n\nDay 3:\n- Morning: Visit Park Guell to admire more of Gaudi's unique architectural creations.\n- Afternoon: Head to El Born district to visit contemporary art galleries and trendy fashion stores.\n- Evening: Relax with some seafood paella at a beachfront restaurant.\n\nDay 4:\n- Morning: Take a day trip to Montserrat to see the stunning mountain views and visit the monastery.\n- Afternoon: Enjoy a leisurely lunch at a local restaurant in Montserrat.\n- Evening: Return to Barcelona and unwind with some evening shopping along Passeig de Gracia.\n\nDay 5:\n- Morning: Visit the Barcelona Contemporary Art Museum for a dose of modern art.\n- Afternoon: Explore the bustling La Boqueria Market for delicious local food and souvenirs.\n- Evening: Take a leisurely walk along the La Rambla street for street performances and more shopping opportunities.\n\nDay 6:\n- Morning: Visit the National Art Museum of Catalonia to see a vast collection of Catalan art.\n- Afternoon: Take a relaxing boat tour along the coast for a different perspective of Barcelona's architecture.\n- Evening: Enjoy a farewell dinner at a rooftop restaurant overlooking the city skyline.\n\nThis itinerary combines Alinka's interests with the sights and activities Barcelona has to offer. Have a wonderful trip!","refusal":null}});
 
 }

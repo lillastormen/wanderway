@@ -84,7 +84,25 @@ export default function MustSeePlaces({ cityName }) {
                 {places.map((place, index) => (
                     <li key={index}>
                         <h3>{place.name}</h3>
-                        <p>{place.address}</p>
+                        <p>{place.address_obj?.address_string}</p>
+
+
+                        {/* Display photos if available */}
+                        {place.photos && place.photos.length > 0 && (
+                            <div>
+                              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                              {place.photos.map((photo, photoIndex) => (
+                                  <img
+                                      key={photoIndex}
+                                      src={photo.image_url || 'https://via.placeholder.com/100'}
+                                      alt={place.name || 'Location photo'}
+                                      style={{ width: '100px', height: '100px' }}
+                                  />
+                              ))}
+                          </div>
+                          </div>
+                        )}
+                 
                     </li>
                 ))}
             </ul>
