@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Box, Typography, Button } from "@mui/material";
 
+
 export default function Home() {
+
   return (
     <Box
       sx={{

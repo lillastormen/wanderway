@@ -5,6 +5,7 @@ import { Container, CssBaseline } from "@mui/material";
 import Menu from "./components/Menu";
 import Header from "./components/Header";
 import { usePathname } from "next/navigation";
+import path from 'path';
 
 
 
@@ -12,6 +13,7 @@ export default function Layout({ children }) {
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const isInfoPage = pathname === "/info";
 
   return (
       <html lang="en">
@@ -32,7 +34,7 @@ export default function Layout({ children }) {
           >
 
             {children}
-            {!isHomePage && <Menu />}
+            {!isHomePage && !isInfoPage && <Menu />}
           </Container>
         </AppRouterCacheProvider>
       </body>
