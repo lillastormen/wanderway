@@ -38,9 +38,9 @@ export default function Menu() {
                     }}
                 >
                     <BottomNavigationAction
-                        label="Home"
+                        // label="Home"
                         value="/trip"
-                        icon={<HomeOutlinedIcon sx={{ fontSize: 41}}/>}
+                        icon={<HomeOutlinedIcon sx={{ fontSize: 45}}/>}
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 
@@ -51,9 +51,9 @@ export default function Menu() {
                         }}
                     />    
                     <BottomNavigationAction
-                        label="Gem Locator"
+                        // label="Gem Locator"
                         value="/gem-locator"
-                        icon={<RoomOutlinedIcon sx={{ fontSize: 35}}/>}
+                        icon={<RoomOutlinedIcon sx={{ fontSize: 40}}/>}
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 
@@ -64,9 +64,9 @@ export default function Menu() {
                         }}
                     />
                     <BottomNavigationAction
-                        label="Add New Trip"
+                        // label="Add New Trip"
                         value="/survey-trip"
-                        icon={<AddBoxOutlinedIcon sx={{ fontSize: 35}}/>}
+                        icon={<AddBoxOutlinedIcon sx={{ fontSize: 40}}/>}
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 
@@ -77,9 +77,9 @@ export default function Menu() {
                         }}
                     />
                     <BottomNavigationAction
-                        label="Past Trips"
+                        // label="Past Trips"
                         value="/past-trips"
-                        icon={<CheckCircleOutlineOutlinedIcon sx={{ fontSize: 35}}/>}
+                        icon={<CheckCircleOutlineOutlinedIcon sx={{ fontSize: 40}}/>}
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 
@@ -90,9 +90,9 @@ export default function Menu() {
                         }}
                     />
                     <BottomNavigationAction
-                        label="My Account"
+                        // label="My Account"
                         value="/user-account"
-                        icon={<Person2OutlinedIcon sx={{ fontSize: 35}} />}
+                        icon={<Person2OutlinedIcon sx={{ fontSize: 40}} />}
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 

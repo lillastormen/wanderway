@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Trips } from "../controllers/tripController";
-import { Navigation } from "swiper/modules";
+
 import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
@@ -10,8 +10,12 @@ import MustSeePlaces from "../components/MustSeePlaces";
 import HiddenGems from "../components/HiddenGems";
 import { Box, Typography, Button, Stack, Tabs, Tab, TextField, useMediaQuery } from '@mui/material';
 import ItineraryTab from "../components/ItineraryTab";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
+import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined';
+import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
+
 
 
 
@@ -198,35 +202,42 @@ export default function Trip() {
             <Typography variant="body1">No active trip available. Please add a new trip.</Typography>
         )}
 
-{activeTrips.length > 0 && (
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"]
-                .map(tab => (
-                    <Button 
-                        key={tab}   
-                        sx={{ 
-                            marginTop: 1, 
-                            flexGrow: 1,
-                            fontWeight: 'bold',
-                            fontSize: '10px',
-                            borderWidth: 0.5,
-                            borderRadius: 1,
-                            '&.MuiButton-outlined': {
-                                borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
-                            },
-                            backgroundColor: activeTab === tab ? 'transparent' : '#1976d2',  // Transparent for active, blue for others
-                            color: activeTab === tab ? '#1976d2' : '#fff',  // Text color: blue for active, white for others
-                            borderColor: activeTab === tab ? '#1976d2' : '#1976d2',  // Border color
-               
-                        }} 
-                    
-                        color="primary"
-                        onClick={() => setActiveTab(tab)} 
-                        variant={activeTab === tab ? "contained" : "outlined"}>
-                            {tab}
-                    </Button>
-                ))}
-            </Box>
+        {activeTrips.length > 0 && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5, marginBottom: 3 }}>
+            {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"]
+              .map((tab, index) => (
+                <Box key={tab} sx={{ textAlign: 'center' }}>
+                  <Button
+                    sx={{
+                      marginTop: 1,
+                      padding: 1.5,
+                      '&.MuiButton-outlined': {
+                        borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
+                      },
+                      backgroundColor: activeTab === tab ? 'transparent' : '#1976d2',
+                      color: activeTab === tab ? '#1976d2' : '#fff',
+                      borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
+                    }}
+                    onClick={() => setActiveTab(tab)}
+                    variant={activeTab === tab ? 'contained' : 'outlined'}
+                  >
+                 
+                    {index === 0 && <MapOutlinedIcon sx={{ fontSize: 50 }} />}
+                    {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 50 }} />}
+                    {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 50 }} />}
+                    {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 50 }} />}
+                    {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 50 }} />}
+                  </Button>
+        
+                  {/* show the label when tab is active */}
+                  {activeTab === tab && (
+                    <Typography sx={{ fontSize: '12px', marginTop: 0.5, color: '#1976d2', textTransform: 'uppercase' }}>
+                      {tab}
+                    </Typography>
+                  )}
+                </Box>
+              ))}
+          </Box>
         )}
 
         {activeTrips.length > 0 && <Box>{switchTab()}</Box>}

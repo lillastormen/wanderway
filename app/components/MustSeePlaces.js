@@ -53,20 +53,24 @@ export default function MustSeePlaces({ cityName }) {
                         <h3>Name: {place.name}</h3>
                         <p>Address: {place.address_obj?.address_string}</p>   
                         <p>Details: {place.details?.description || 'No description avaiable'}</p> 
-
-                       {/* {place.photos && place.photos.length > 0 ? (
+{/* 
+                       {place.photos && place.photos.length > 0 ? (
                             <div>Photos: 
-                               
+                                <img
+                                    src={place.photos[0]?.images?.medium?.url || ''} 
+                                    alt={`${place.name} image`}
+                                    style={{ width: "400px", height: "400px"}}
+                                />
                             </div>
                         ) : (
                             <p>No photos avaiable</p>
-                        )}  */}
+                        )} 
 
                             {place.details?.web_url && (
                             <a href={place.details.web_url} target="_blank" rel="noopener noreferrer">
                                 More about {place.name}
                             </a>
-                        )}
+                        )} */}
                     </li>
                 ))}
             </ul>
