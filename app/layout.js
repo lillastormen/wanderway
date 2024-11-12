@@ -1,15 +1,17 @@
-import "./globals.css";
+'use client';
+
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Container, CssBaseline } from "@mui/material";
 import Menu from "./components/Menu";
 import Header from "./components/Header";
+import { usePathname } from "next/navigation";
 
-export const metadata = {
-  title: "wanderway",
-  description: "Ultimate travel planning tool, designed to effortlessly create personalized travel itineraries"
-};
+
 
 export default function Layout({ children }) {
+
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   return (
       <html lang="en">
@@ -21,17 +23,16 @@ export default function Layout({ children }) {
           <CssBaseline />
           <Header />
           <Container
-            maxWidth="lg"
             sx={{
+              paddingBottom: "70px",
               backgroundColor: "#f5f5f5",
-              minHeight: "100vh",
-              padding: "20px",
+              minHeight: "calc(100vh - 70px )"
             }}
             id="main-container"
           >
-         
+
             {children}
-          <Menu />
+            {!isHomePage && <Menu />}
           </Container>
         </AppRouterCacheProvider>
       </body>
