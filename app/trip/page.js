@@ -1,17 +1,17 @@
 'use client'
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Trips } from "../controllers/tripController";
-// import { useRouter } from "next/navigation";
+import { Navigation } from "swiper/modules";
 import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
 import MustSeePlaces from "../components/MustSeePlaces";
 import HiddenGems from "../components/HiddenGems";
-import { Box, Typography, Button, Stack, Tabs, Tab, TextField } from '@mui/material';
-import IntineraryTab from "../components/ItineraryTab";
+import { Box, Typography, Button, Stack, Tabs, Tab, TextField, useMediaQuery } from '@mui/material';
 import ItineraryTab from "../components/ItineraryTab";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 
 
@@ -23,6 +23,8 @@ export default function Trip() {
     const [activeTrips, setActiveTrips] = useState([]);
     // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
+    const tabs = ["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"];
+ 
  
     console.log(activeTrips)
 
@@ -138,7 +140,7 @@ export default function Trip() {
 
 
     return (
-        <Box sx={{ padding: 1, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
+        <Box sx={{ padding: 0.5, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
         <Typography variant="h5" gutterBottom>Trip</Typography>
 
         {activeTrips.length > 0 ? (
@@ -196,7 +198,7 @@ export default function Trip() {
             <Typography variant="body1">No active trip available. Please add a new trip.</Typography>
         )}
 
-        {activeTrips.length > 0 && (
+{activeTrips.length > 0 && (
             <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                 {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"]
                 .map(tab => (
@@ -230,5 +232,5 @@ export default function Trip() {
         {activeTrips.length > 0 && <Box>{switchTab()}</Box>}
 
     </Box>
-    ); 
+    );
 }
