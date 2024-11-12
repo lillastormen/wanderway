@@ -15,14 +15,14 @@ import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
-
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 
 
 export default function Trip() {
 
     // const router = useRouter();
-    const [activeTab, setActiveTab] = useState("Intinerary");
+    const [activeTab, setActiveTab] = useState("Itinerary");
     // const [trip, setTrip] = useState({ destination: "Loading...", start_date: "Loading...", end_date: "Loading..."});
     const [activeTrips, setActiveTrips] = useState([]);
     // const [tripEdit, setTripEdit] = useState(false);
@@ -34,7 +34,7 @@ export default function Trip() {
 
     const switchTab = () => {
         switch (activeTab) {
-            case "Intinerary": 
+            case "Itinerary": 
                 return  (
                     <ItineraryTab activeTrips={activeTrips} />
                 );
@@ -144,6 +144,7 @@ export default function Trip() {
 
 
     return (
+      
         <Box sx={{ padding: 0.5, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
         <Typography variant="h5" gutterBottom>Trip</Typography>
 
@@ -190,11 +191,22 @@ export default function Trip() {
                             <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
                         </form>
                     ) : (
-                        <>
-                            <Typography variant="h6">{trip.country}, {trip.city}</Typography>
-                            <Typography variant="body2">{trip.start_date} - {trip.end_date}</Typography>
-                            <Button onClick={() => setEditingTripId(trip.id)} variant="outlined" color="secondary" sx={{ marginTop: 2 }}>Edit</Button>
-                        </>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 1}}>
+                            <Box>
+                                <Typography variant="h6">{trip.country}, {trip.city}</Typography>
+                                <Typography variant="body2">{trip.start_date} - {trip.end_date}</Typography>
+                            </Box>
+                            <Button 
+                                onClick={() => setEditingTripId(trip.id)} 
+                                sx={{ 
+                                    marginTop: 1,
+                                     color: "#555555"
+
+                                }}
+                            >
+                            <EditOutlinedIcon />
+                            </Button>
+                        </Box>
                     )}
                 </Box>
             ))
@@ -204,7 +216,7 @@ export default function Trip() {
 
         {activeTrips.length > 0 && (
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5, marginBottom: 3 }}>
-            {["Intinerary", "City Info", "Weather", "Must see", "Hidden gems"]
+            {["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"]
               .map((tab, index) => (
                 <Box key={tab} sx={{ textAlign: 'center' }}>
                   <Button
@@ -222,11 +234,11 @@ export default function Trip() {
                     variant={activeTab === tab ? 'contained' : 'outlined'}
                   >
                  
-                    {index === 0 && <MapOutlinedIcon sx={{ fontSize: 50 }} />}
-                    {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 50 }} />}
-                    {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 50 }} />}
-                    {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 50 }} />}
-                    {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 50 }} />}
+                    {index === 0 && <MapOutlinedIcon sx={{ fontSize: 45 }} />}
+                    {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 45 }} />}
+                    {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 45 }} />}
+                    {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 45 }} />}
+                    {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 45 }} />}
                   </Button>
         
                   {/* show the label when tab is active */}

@@ -2,6 +2,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Container, CssBaseline } from "@mui/material";
 import Menu from "./components/Menu";
+import Header from "./components/Header";
 
 export const metadata = {
   title: "wanderway",
@@ -18,6 +19,7 @@ export default function Layout({ children }) {
       <body>
         <AppRouterCacheProvider>
           <CssBaseline />
+          <Header />
           <Container
             maxWidth="lg"
             sx={{
@@ -27,6 +29,7 @@ export default function Layout({ children }) {
             }}
             id="main-container"
           >
+         
             {children}
           <Menu />
           </Container>
