@@ -10,6 +10,8 @@ import ForecastInfo from "../components/ForecastInfo";
 import MustSeePlaces from "../components/MustSeePlaces";
 import HiddenGems from "../components/HiddenGems";
 import { Box, Typography, Button, Stack, Tabs, Tab, TextField } from '@mui/material';
+import IntineraryTab from "../components/ItineraryTab";
+import ItineraryTab from "../components/ItineraryTab";
 
 
 
@@ -28,12 +30,8 @@ export default function Trip() {
         switch (activeTab) {
             case "Intinerary": 
                 return  (
-                    <Box>
-                    {activeTrips.length > 0 ? 
-                        <>{activeTrips[0].itinerary}</> : <p>No intinerary information available</p>
-                        }
-                    </Box>
-                )
+                    <ItineraryTab activeTrips={activeTrips} />
+                );
             case "City Info":
                 return (
                     <Box>

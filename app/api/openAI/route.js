@@ -86,15 +86,15 @@ export async function GET(req) {
     `;
 
     // Create openAI chat completion
-    const completions = await openai.chat.completions.create({
-        messages: [{ role: "system", content: messageContent}],
-        model: "gpt-3.5-turbo", //gtp-4o
-    });
+    // const completions = await openai.chat.completions.create({
+    //     messages: [{ role: "system", content: messageContent}],
+    //     model: "gpt-3.5-turbo", //gtp-4o
+    // });
     
-    const itineraryResponse = completions.choices[0].message.content;
-    const itinerary = itineraryResponse;
-    return NextResponse.json({ itinerary });
+    // const itineraryResponse = completions.choices[0].message.content;
+    // const itinerary = itineraryResponse;
+    // return NextResponse.json({ itinerary });
 
-    // return NextResponse.json({"message":{"role":"assistant","content":"Based on Alinka's interests in museums, art galleries, food, beaches, shopping, and architecture, here is a suggested itinerary for her trip to Barcelona, Spain:\n\nDay 1:\n- Morning: Visit the Picasso Museum to explore the works of the famous artist.\n- Afternoon: Enjoy a delicious Spanish lunch at a local tapas bar.\n- Evening: Take a relaxing stroll along Barceloneta Beach and watch the sunset.\n\nDay 2:\n- Morning: Visit the Sagrada Familia to marvel at Gaudi's masterpiece of architecture.\n- Afternoon: Explore the Gothic Quarter, where you can find charming shops and boutiques for some shopping.\n- Evening: Have dinner at a traditional Catalan restaurant for a taste of authentic local cuisine.\n\nDay 3:\n- Morning: Visit Park Guell to admire more of Gaudi's unique architectural creations.\n- Afternoon: Head to El Born district to visit contemporary art galleries and trendy fashion stores.\n- Evening: Relax with some seafood paella at a beachfront restaurant.\n\nDay 4:\n- Morning: Take a day trip to Montserrat to see the stunning mountain views and visit the monastery.\n- Afternoon: Enjoy a leisurely lunch at a local restaurant in Montserrat.\n- Evening: Return to Barcelona and unwind with some evening shopping along Passeig de Gracia.\n\nDay 5:\n- Morning: Visit the Barcelona Contemporary Art Museum for a dose of modern art.\n- Afternoon: Explore the bustling La Boqueria Market for delicious local food and souvenirs.\n- Evening: Take a leisurely walk along the La Rambla street for street performances and more shopping opportunities.\n\nDay 6:\n- Morning: Visit the National Art Museum of Catalonia to see a vast collection of Catalan art.\n- Afternoon: Take a relaxing boat tour along the coast for a different perspective of Barcelona's architecture.\n- Evening: Enjoy a farewell dinner at a rooftop restaurant overlooking the city skyline.\n\nThis itinerary combines Alinka's interests with the sights and activities Barcelona has to offer. Have a wonderful trip!","refusal":null}});
+    return NextResponse.json('itinerary comes heeeerreeee');
 
 }
