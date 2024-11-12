@@ -4,6 +4,7 @@ import { Trips } from "../controllers/tripController";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Typography, Button, Paper } from '@mui/material';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 export default function Itinerary() {
 
@@ -36,8 +37,8 @@ export default function Itinerary() {
 
         fetchTrip();
     }, []);
-    
 
+    
   return (
 
     <Box sx={{ padding: 2, backgroundColor: '#f5f5f5', display: 'flex', justifyContent: 'center' }}>
@@ -65,12 +66,11 @@ export default function Itinerary() {
                 </Box>
 
                 <Box sx={{ marginBottom: 2 }}>
-                    <Typography variant="body1" color="text.primary" sx={{ fontWeight: 'bold' }}>
+                    {/* <Typography variant="body1" color="text.primary" sx={{ fontWeight: 'bold' }}>
                         Itinerary:
-                    </Typography>
-                    <Typography variant="body1" color="text.primary">
-                        {trip.itinerary}
-                    </Typography>
+                    </Typography> */}
+                    <MarkdownPreview source={trip.itinerary} wrapperElement={{"data-color-mode": "light"}} />
+             
                 </Box>
 
                 <Button

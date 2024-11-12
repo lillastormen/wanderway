@@ -66,7 +66,7 @@ export default function TripSurvey() {
             //storing generated id in the localstorage
             localStorage.setItem('trip_id', tripId);
 
-            router.push(`/intinerary`)
+            router.push(`/itinerary`)
           } else {
             console.error('Failed to add trip:', response.error);
           }

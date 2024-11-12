@@ -18,15 +18,19 @@ export const Trips = {
         // Call AI API to create itinerary
         try {
             const aiResponse = await fetch(`/api/openAI?tripId=${data.id}&userId=${data.user_id}`);
-            const itinerary = await aiResponse.json();
-            if (itinerary) {
-                const updatedData = { ...data, itinerary:itinerary.message.content };
+            const aiData = await aiResponse.json();
+
+            console.log(aiData.itinerary);
+            if (aiData.itinerary) {
+                const updatedData = { ...data, itinerary: aiData.itinerary };
                
                 const { update, error } = await supabase
                 .from('Trips')
                 .update(updatedData)
                 .eq('id', updatedData.id)
                 .select('*')
+
+                
             }
         } catch (error) {
             console.log(error);
