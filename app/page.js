@@ -31,6 +31,7 @@ export default function Home() {
         Plan your next journey.
       </Typography>
 
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1}}>
       <Link href="/survey-user" passHref>
         <Button 
           variant="contained" 
@@ -38,6 +39,7 @@ export default function Home() {
           size="large"
           sx={{
             fontWeight: "normal",
+            width: '100%',
             borderRadius: 1,
             marginTop: 4,
             backgroundColor: '#1976d2',
@@ -46,9 +48,29 @@ export default function Home() {
             },
           }}
         >
-          START
+          SIGN UP
         </Button>
       </Link>
+      <Link href="/login" passHref>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          size="large"
+          sx={{
+            fontWeight: "normal",
+            width: '100%',
+            borderRadius: 1,
+            marginTop: 1,
+            backgroundColor: '#1976d2',
+            '&:hover': {
+              backgroundColor: '#1565c0',
+            },
+          }}
+        >
+          LOG IN
+        </Button>
+      </Link>
+      </Box>
     </Box>
   </Box>
   );
