@@ -7,7 +7,7 @@ import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
 import MustSeePlaces from "../components/MustSeePlaces";
 import HiddenGems from "../components/HiddenGems";
-import { Box, Typography, Button, TextField, Autocomplete } from '@mui/material';
+import { Box, Typography, Button, TextField, Autocomplete, MenuItem, Select } from '@mui/material';
 import ItineraryTab from "../components/ItineraryTab";
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
@@ -29,9 +29,11 @@ export default function Trip() {
     const [activeTab, setActiveTab] = useState("Itinerary");
     // const [trip, setTrip] = useState({ destination: "Loading...", start_date: "Loading...", end_date: "Loading..."});
     const [activeTrips, setActiveTrips] = useState([]);
+    const [activeTripId, setActiveTripId] = useState([]);
     // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
     const tabs = ["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"];
+    
  
 
     const switchTab = () => {
@@ -159,6 +161,41 @@ export default function Trip() {
       
         <Box sx={{ padding: 0.5, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
         <Typography variant="h5" paddingTop={2} gutterBottom>Trip</Typography>
+
+        <Box sx={{ marginBottom: 2 }}>
+    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', marginBottom: 1 }}>Select a Trip:</Typography>
+    <Select
+        fullWidth
+        value={activeTripId || ""}
+        onChange={(e) => setActiveTripId(e.target.value)}
+        sx={{
+            backgroundColor: '#ffffff',
+            borderRadius: 1,
+            padding: 1.5,
+            boxShadow: 1,
+            fontSize: '16px',
+            fontWeight: '400',
+            '&.MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: '#1976d2',
+                },
+                '&:hover fieldset': {
+                    borderColor: '#1976d2',
+                },
+                '&.Mui-focused fieldset': {
+                    borderColor: '#1976d2',
+                }
+            },
+        }}
+        
+    >
+        {activeTrips.map((trip) => (
+            <MenuItem key={trip.id} value={trip.id} sx={{ fontSize: '16px', fontWeight: '400' }}>
+                {trip.city}, {trip.country}
+            </MenuItem>
+        ))}
+    </Select>
+</Box>
 
         {activeTrips.length > 0 ? (
             activeTrips.map(trip => (
