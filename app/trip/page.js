@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { Trips } from "../controllers/tripController";
 import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
@@ -29,17 +29,15 @@ export default function Trip() {
     const [activeTab, setActiveTab] = useState("Itinerary");
     // const [trip, setTrip] = useState({ destination: "Loading...", start_date: "Loading...", end_date: "Loading..."});
     const [activeTrips, setActiveTrips] = useState([]);
-    const [activeTripId, setActiveTripId] = useState([]);
+    const [activeTripId, setActiveTripId] = useState(null);
+    const [selectedTrip, setSelectedTrip] = useState(null)
     // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
     const tabs = ["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"];
-    
- 
 
     const switchTab = () => {
 
-        if(!activeTripId) return null;
-        const selectedTrip = activeTrips.find(trip => trip.id === activeTripId);
+        if(!activeTripId || !selectedTrip) return null;
 
         switch (activeTab) {
             case "Itinerary": 
@@ -99,12 +97,19 @@ export default function Trip() {
         }
     };
 
+    useEffect(() => {
+        if(activeTripId){
+            setSelectedTrip(activeTrips.find(trip => trip.id === activeTripId));
+        }
+    }, [activeTripId])
+
     //fetch the current trip
     useEffect(() => { 
         const fetchActiveTrips = async () => {
 
             const userId = localStorage.getItem('user_id');
             const response = await Trips.readTripByUserId(userId);
+            setActiveTripId(localStorage.getItem('trip_id'));
 
             console.log(userId, response);
             if (response.success) {
@@ -170,100 +175,99 @@ export default function Trip() {
         <Typography variant="h5" paddingTop={2} gutterBottom>Trip</Typography>
 
         <Box sx={{ marginBottom: 2 }}>
-    <Typography variant="subtitle1" sx={{ fontWeight: 'bold', marginBottom: 1 }}>Select a Trip:</Typography>
-    <Select
-        fullWidth
-        value={activeTripId || ""}
-        onChange={(e) => setActiveTripId(e.target.value)}
-        sx={{
-            backgroundColor: '#ffffff',
-            borderRadius: 1,
-            padding: 1.5,
-            boxShadow: 1,
-            fontSize: '16px',
-            fontWeight: '400',
-            '&.MuiOutlinedInput-root': {
-                '& fieldset': {
-                    borderColor: '#1976d2',
-                },
-                '&:hover fieldset': {
-                    borderColor: '#1976d2',
-                },
-                '&.Mui-focused fieldset': {
-                    borderColor: '#1976d2',
-                }
-            },
-        }}
-        
-    >
+        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', marginBottom: 1 }}>Active Trip:</Typography>
+            <Select
+                fullWidth
+                value={activeTripId || ""}
+                onChange={(e) => setActiveTripId(e.target.value)}
+                sx={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: 1,
+                    padding: 1.5,
+                    boxShadow: 1,
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    '&.MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#1976d2',
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#1976d2',
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#1976d2',
+                        }
+                    },
+                }}
+                
+            >
         {activeTrips.map((trip) => (
             <MenuItem key={trip.id} value={trip.id} sx={{ fontSize: '16px', fontWeight: '400' }}>
-                {trip.city}, {trip.country}
+                {trip.city}, {trip.country}&nbsp;<br/><Typography variant="caption">({trip.start_date} - {trip.end_date})</Typography>
             </MenuItem>
         ))}
-    </Select>
-</Box>
+            </Select>
+        </Box>
+        {selectedTrip && selectedTrip.id}
 
-        {activeTrips.length > 0 ? (
-            activeTrips.map(trip => (
-                <Box key={trip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
-                    {editingTripId === trip.id ? (
-                        <form onSubmit={(e) => handleSave(e, trip.id)}>
-                           
-                            <Autocomplete
-                                disablePortal
-                                options={cities}
-                                getOptionLabel={(option) => `${option.label}, ${option.country}`}
-                                value={cities.find(city => city.label === trip.city && city.country === trip.country) || null}
-                                onChange={(event, value) => 
-                                    handleFormChange(value, trip.id)}
-                                renderInput={(params) => (
-                                    <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
-                                )}
-                            />
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker
-                                label="Start Date"
-                                value={dayjs(trip.start_date)}
-                                onChange={(newValue) => handleFormChange({ target: { name: 'start_date', value: newValue } }, trip.id)}
-                                renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
-                            />
-                            <DatePicker
-                                label="End Date"
-                                value={dayjs(trip.end_date)}
-                                onChange={(newValue) => handleFormChange({ target: { name: 'end_date', value: newValue } }, trip.id)}
-                                renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
-                            />
-                        </LocalizationProvider>
-                            <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
-                            <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
-                        </form>
-                    ) : (
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 1}}>
-                            <Box>
-                                <Typography variant="h6">{trip.country}, {trip.city}</Typography>
-                                <Typography variant="body2">{trip.start_date} - {trip.end_date}</Typography>
-                            </Box>
-                            <Button 
-                                onClick={() => setEditingTripId(trip.id)} 
-                                sx={{ 
-                                    
-                                    marginTop: 1,
-                                     color: "#555555"
-
-                                }}
-                            >
-                            <EditOutlinedIcon />
-                            </Button>
+        {selectedTrip ? (
+            <Box key={selectedTrip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
+                {editingTripId === selectedTrip.id ? (
+                    <form onSubmit={(e) => handleSave(e, selectedTrip.id)}>
+                        
+                        <Autocomplete
+                            disablePortal
+                            options={cities}
+                            getOptionLabel={(option) => `${option.label}, ${option.country}`}
+                            value={cities.find(city => city.label === selectedTrip.city && city.country === selectedTrip.country) || null}
+                            onChange={(event, value) => 
+                                handleFormChange(value, selectedTrip.id)}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
+                            )}
+                        />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                            label="Start Date"
+                            value={dayjs(selectedTrip.start_date)}
+                            onChange={(newValue) => handleFormChange({ target: { name: 'start_date', value: newValue } }, selectedTrip.id)}
+                            renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
+                        />
+                        <DatePicker
+                            label="End Date"
+                            value={dayjs(selectedTrip.end_date)}
+                            onChange={(newValue) => handleFormChange({ target: { name: 'end_date', value: newValue } }, selectedTrip.id)}
+                            renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
+                        />
+                    </LocalizationProvider>
+                        <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
+                        <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
+                    </form>
+                ) : (
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 1}}>
+                        <Box>
+                            <Typography variant="h6">{selectedTrip.country}, {selectedTrip.city}</Typography>
+                            <Typography variant="body2">{selectedTrip.start_date} - {selectedTrip.end_date}</Typography>
                         </Box>
-                    )}
-                </Box>
-            ))
+                        <Button 
+                            onClick={() => setEditingTripId(selectedTrip.id)} 
+                            sx={{ 
+                                
+                                marginTop: 1,
+                                    color: "#555555"
+
+                            }}
+                        >
+                        <EditOutlinedIcon />
+                        </Button>
+                    </Box>
+                )}
+            </Box>
         ) : (
             <Typography variant="body1">No active trip available. Please add a new trip.</Typography>
         )}
 
-        {activeTrips.length > 0 && (
+        {selectedTrip && (
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5, marginBottom: 3 }}>
             {["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"]
               .map((tab, index) => (

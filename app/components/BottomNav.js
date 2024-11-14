@@ -1,9 +1,7 @@
-
 'use client'
 
-import Link from "next/link";
 import { useState } from "react";
-import { Stack, Button, BottomNavigation, BottomNavigationAction, Box, Paper } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, IconButton, Paper, Menu, MenuItem } from "@mui/material";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
@@ -11,24 +9,41 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import { useRouter } from "next/navigation";
 
-export default function Menu() {
+export default function BottomNav() {
 
-    const [value, setValue] = useState('home');
+    const [value, setValue] = useState('/');
     const router = useRouter();
+    const [anchorEl, setAnchorEl] = useState(null)
     
     const handleChange = (event, newValue) => {
         setValue(newValue);
         router.push(newValue);
-    }
+    };
 
+    const handleUserMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+
+    const handleUserMenuClose = () => {
+    setAnchorEl(null);
+    };
+
+    const handleMenuItemClick = (path) => {
+        handleUserMenuClose();
+        if (path === "/logout") {
+            console.log("User logged out");
+            router.push("/");
+        } else {
+            router.push(path);
+        }
+    }
     return (
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                 <BottomNavigation
-                    // showLabels
                     value={value}
                     onChange={handleChange}
                     sx={{
-                    
                         boxShadow: '0px -2px 10px rgba(0, 0, 0, 0.1)',
                         borderTop: '1px solid #e0e0e0',
                         display: 'flex',
@@ -38,7 +53,6 @@ export default function Menu() {
                     }}
                 >
                     <BottomNavigationAction
-                        // label="Home"
                         value="/trip"
                         icon={<HomeOutlinedIcon sx={{ fontSize: 45}}/>}
                         sx={{ 
@@ -51,7 +65,6 @@ export default function Menu() {
                         }}
                     />    
                     <BottomNavigationAction
-                        // label="Gem Locator"
                         value="/gem-locator"
                         icon={<RoomOutlinedIcon sx={{ fontSize: 40}}/>}
                         sx={{ 
@@ -64,7 +77,6 @@ export default function Menu() {
                         }}
                     />
                     <BottomNavigationAction
-                        // label="Add New Trip"
                         value="/survey-trip"
                         icon={<AddBoxOutlinedIcon sx={{ fontSize: 40}}/>}
                         sx={{ 
@@ -77,7 +89,6 @@ export default function Menu() {
                         }}
                     />
                     <BottomNavigationAction
-                        // label="Past Trips"
                         value="/past-trips"
                         icon={<CheckCircleOutlineOutlinedIcon sx={{ fontSize: 40}}/>}
                         sx={{ 
@@ -89,10 +100,14 @@ export default function Menu() {
                             },
                         }}
                     />
+
                     <BottomNavigationAction
-                        // label="My Account"
-                        value="/user-account"
-                        icon={<Person2OutlinedIcon sx={{ fontSize: 40}} />}
+                        value="/user-profile"
+                        icon={
+                            <IconButton onClick={handleUserMenuOpen} sx={{ padding: 0 }}>
+                                <Person2OutlinedIcon sx={{ fontSize: 42 }} />
+                            </IconButton>
+                        }
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 
@@ -103,6 +118,27 @@ export default function Menu() {
                         }}
                     />
             </BottomNavigation>
+            <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleUserMenuClose}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
+                sx={{
+                    padding: 0, 
+                    '& .MuiMenuItem-root': {
+                        display: 'flex',
+                        justifyContent: 'center', 
+                        padding: '10px 20px', 
+                        textAlign: 'center',
+                    }
+                }}
+            >
+                <MenuItem onClick={() => handleMenuItemClick("/user-profile")}>Profile</MenuItem>
+                <MenuItem onClick={() => handleMenuItemClick("/user-account")}>Account</MenuItem>
+                <MenuItem onClick={() => handleMenuItemClick("/logout")}>Logout</MenuItem>
+            </Menu>
+        
         </Paper>
     );
  }

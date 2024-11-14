@@ -2,7 +2,7 @@
 
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Container, CssBaseline } from "@mui/material";
-import Menu from "./components/Menu";
+import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
 import { usePathname } from "next/navigation";
 import path from 'path';
@@ -34,7 +34,7 @@ export default function Layout({ children }) {
           >
 
             {children}
-            {!isHomePage && !isInfoPage && <Menu />}
+            {!isHomePage && !isInfoPage && <BottomNav />}
           </Container>
         </AppRouterCacheProvider>
       </body>
