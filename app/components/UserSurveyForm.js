@@ -114,7 +114,9 @@ const buttonStyle = {
     backgroundColor: "white",
     border: "1px solid #ccc",
     borderRadius: 1,
-    padding: "5px 9px",
+    padding: "3px",
+    paddingTop: "4px",
+    paddingBottom: "4px",
     display: "inline-block",
     cursor: "pointer",
     textAlign: "center",
@@ -129,11 +131,11 @@ export default function UserSurveyForm({
 }) {
   
     return (
-    <Box component="form" onSubmit={handleFormSubmit} sx={{ mx: "auto" }}>
+    <Box component="form" onSubmit={handleFormSubmit} sx={{ mx: "auto", padding: 1 }}>
       <Typography variant="h5" paddingTop={2} gutterBottom>User Info</Typography>
      
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend">Age Group</FormLabel>
+        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Age Group</FormLabel>
         <Box sx={{ display: "flex", flexDirection: "row", gap: 1, paddingTop: 0.5 }}>
           {["-25", "25-31", "32-38", "39-45", "45+"].map((age, index) => (
             <Button
@@ -154,7 +156,7 @@ export default function UserSurveyForm({
 
     
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend">Gender</FormLabel>
+        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Gender</FormLabel>
         <Box sx={{ display: "flex", flexDirection: "row", gap: '2px', paddingTop: 0.5}}>
           {["female", "male", "non-binary", "prefer-not-to-say"].map((gender, index) => (
             <Button
@@ -175,7 +177,7 @@ export default function UserSurveyForm({
 
 
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend">Traveler Type</FormLabel>
+        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Traveler Type</FormLabel>
         <Box sx={{ display: "flex", flexDirection: "row", gap: 1, paddingTop: 0.5 }}>
           {["solo", "friends", "family"].map((traveler_type, index) => (
             <Button
@@ -196,7 +198,7 @@ export default function UserSurveyForm({
 
 
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend">Interests</FormLabel>
+        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Interests</FormLabel>
         <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 1, paddingTop: 0.5 }}>
           {[
             "Museums", "Art-galleries", "Nightlife", "Food", "Hiking", 
@@ -225,7 +227,7 @@ export default function UserSurveyForm({
         </Box>
       </FormControl>
 
-      <Typography variant="body1" color="grey"  paddingTop={2}  gutterBottom>Login info</Typography>
+      <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)"  paddingTop={2} gutterBottom>Login info</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", mt: -2, mb: 2 }}>
             <TextField
                 fullWidth
@@ -269,24 +271,24 @@ export default function UserSurveyForm({
         </Box>
             
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-        <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            size="large"
-            sx={{
-            fontWeight: "normal",
-            width: '50%',
-            margin: '0 auto',
-            borderRadius: 1,
-            marginTop: 2,
-            marginBottom: 3,
-            backgroundColor: '#1976d2',
-            }}
-        >
-        CONFIRM
-        </Button>
-      </Box>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                sx={{
+                fontWeight: "normal",
+                width: '50%',
+                margin: '0 auto',
+                borderRadius: 1,
+                marginTop: 2,
+                marginBottom: 3,
+                backgroundColor: '#1976d2',
+                }}
+            >
+            CONFIRM
+            </Button>
+        </Box>
     </Box>
   );
 }
