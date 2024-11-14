@@ -37,16 +37,23 @@ export default function Trip() {
  
 
     const switchTab = () => {
+
+        if(!activeTripId) return null;
+        const selectedTrip = activeTrips.find(trip => trip.id === activeTripId);
+
         switch (activeTab) {
             case "Itinerary": 
                 return  (
-                    <ItineraryTab activeTrips={activeTrips} />
-                );
+                    <Box>
+                        {/* // <ItineraryTab activeTrips={activeTrips} /> */}
+                        <ItineraryTab itinerary={selectedTrip?.itinerary || []} />
+                    </Box>
+                )
             case "City Info":
                 return (
                     <Box>
-                        {activeTrips.length > 0 ? 
-                            <CityInfo cityName={activeTrips[0]?.city} /> : 
+                        {selectedTrip ? 
+                            <CityInfo cityName={selectedTrip.city} /> : 
                                 <p>No city information available</p>
                         }
                     </Box>
@@ -55,14 +62,14 @@ export default function Trip() {
                 return (
                     <>                    
                         <Box>
-                            {activeTrips.length > 0 ? 
-                                <WeatherInfo cityName={activeTrips[0]?.city} /> : 
+                            {selectedTrip ? 
+                                <WeatherInfo cityName={selectedTrip.city} /> : 
                                     <p>No city information available</p>
                             }
                         </Box>
                         <Box>
-                            {activeTrips.length > 0 ? 
-                                <ForecastInfo cityName={activeTrips[0]?.city} /> : 
+                            {selectedTrip ? 
+                                <ForecastInfo cityName={selectedTrip.city} /> : 
                                     <p>No city information available</p>
                             }
                         </Box>
@@ -72,8 +79,8 @@ export default function Trip() {
             case "Must see":
                 return (
                     <Box>
-                        {activeTrips.length > 0 ? 
-                            <MustSeePlaces cityName={activeTrips[0]?.city} /> : 
+                        {selectedTrip ? 
+                            <MustSeePlaces cityName={selectedTrip.city} /> : 
                                 <p>No city information available</p>
                         }
                     </Box>
@@ -81,8 +88,8 @@ export default function Trip() {
             case "Hidden gems":
                 return (
                     <Box>
-                        {activeTrips.length > 0 ? 
-                            <HiddenGems cityName={activeTrips[0]?.city} /> : 
+                        {selectedTrip  ? 
+                            <HiddenGems cityName={selectedTrip.city} /> : 
                                 <p>No city information available</p>
                         }
                     </Box>

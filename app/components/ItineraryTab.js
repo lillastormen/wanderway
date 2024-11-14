@@ -6,14 +6,13 @@ import MarkdownPreview from '@uiw/react-markdown-preview';
 export default function ItineraryTab ({ activeTrips }) {
     return (
         <Box>
-            {activeTrips.length > 0 ? (
-            <Paper sx={{ padding: 2, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-                {/* Render the itinerary as markdown */}
-                <MarkdownPreview
-                source={activeTrips[0].itinerary}
-                wrapperElement={{ "data-color-mode": "light" }} 
-                />
-            </Paper>
+            {activeTrips ? (
+                <Paper sx={{ padding: 2, backgroundColor: '#f5f5f5', borderRadius: 2, marginTop: 2 }}>
+                    <MarkdownPreview
+                        source={activeTrips.itinerary} // Render the markdown content
+                        wrapperElement={{ 'data-color-mode': 'light' }}
+                    />
+                </Paper>
             ) : (
             <Typography variant="body1">No itinerary information available</Typography>
             )}
