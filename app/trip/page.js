@@ -15,7 +15,11 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import cities from '/data/cities.json'
+import cities from '/data/cities.json';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+
 
 
 
@@ -161,36 +165,32 @@ export default function Trip() {
                 <Box key={trip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
                     {editingTripId === trip.id ? (
                         <form onSubmit={(e) => handleSave(e, trip.id)}>
+                           
                             <Autocomplete
-                            disablePortal
-                            options={cities}
-                            getOptionLabel={(option) => `${option.label}, ${option.country}`}
-                            value={cities.find(city => city.label === trip.city && city.country === trip.country) || null}
-                            onChange={(event, value) => 
-                                handleFormChange(value, trip.id)}
-                            renderInput={(params) => (
-                                <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
-                            )}
-                        />
-                          
-                            <TextField
+                                disablePortal
+                                options={cities}
+                                getOptionLabel={(option) => `${option.label}, ${option.country}`}
+                                value={cities.find(city => city.label === trip.city && city.country === trip.country) || null}
+                                onChange={(event, value) => 
+                                    handleFormChange(value, trip.id)}
+                                renderInput={(params) => (
+                                    <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
+                                )}
+                            />
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
                                 label="Start Date"
-                                name="start_date"
-                                type="date"
-                                value={trip.start_date}
-                                onChange={(e) => handleFormChange(e, trip.id)}
-                                fullWidth
-                                sx={{ marginBottom: 2 }}
+                                value={dayjs(trip.start_date)}
+                                onChange={(newValue) => handleFormChange({ target: { name: 'start_date', value: newValue } }, trip.id)}
+                                renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
                             />
-                            <TextField
+                            <DatePicker
                                 label="End Date"
-                                name="end_date"
-                                type="date"
-                                value={trip.end_date}
-                                onChange={(e) => handleFormChange(e, trip.id)}
-                                fullWidth
-                                sx={{ marginBottom: 2 }}
+                                value={dayjs(trip.end_date)}
+                                onChange={(newValue) => handleFormChange({ target: { name: 'end_date', value: newValue } }, trip.id)}
+                                renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
                             />
+                        </LocalizationProvider>
                             <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
                             <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
                         </form>
@@ -203,6 +203,7 @@ export default function Trip() {
                             <Button 
                                 onClick={() => setEditingTripId(trip.id)} 
                                 sx={{ 
+                                    
                                     marginTop: 1,
                                      color: "#555555"
 

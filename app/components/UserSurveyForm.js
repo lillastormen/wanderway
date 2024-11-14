@@ -227,7 +227,7 @@ export default function UserSurveyForm({
         </Box>
       </FormControl>
 
-      <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)"  paddingTop={2} gutterBottom>Login info</Typography>
+      <Typography variant="body1" sx={{ fontSize: '0.9rrem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)"  paddingTop={2} gutterBottom>Login info</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", mt: -2, mb: 2 }}>
             <TextField
                 fullWidth

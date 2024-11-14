@@ -37,7 +37,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
             <form onSubmit={handleFormSubmit}>
                 <Stack spacing={3}>
                     <Box>
-                        <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)" paddingBottom={1}>Destination</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '0.9rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)" paddingBottom={1}>Destination</Typography>
                         <Autocomplete
                             disablePortal
                             options={cities}
@@ -52,7 +52,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
                         />
                     </Box>
                     <Box>
-                        <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">Start Date</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '0.9rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">Start Date</Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker']}>
                                 <DatePicker
@@ -74,7 +74,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
                         </LocalizationProvider>
                     </Box>
                     <Box>
-                        <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">End Date</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '0.9rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">End Date</Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker']} >
                                 <DatePicker
@@ -99,7 +99,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
                         </LocalizationProvider>
                     </Box>
                     <Box>
-                        <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">Budget</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '0.9rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">Budget</Typography>
                             <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
                             {["explorer", "comfort", "indulge"].map((value) => (
                                 <Button
@@ -118,7 +118,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
                             </Box>
                     </Box>
                     <Box>
-                        <Typography variant="body1" sx={{ fontSize: '0.885 rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">Peace</Typography>
+                        <Typography variant="body1" sx={{ fontSize: '0.9rem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)">Peace</Typography>
                         <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
                         {["relaxed", "adventurer", "thrill-seeker"].map((value) => (
                             <Button
