@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Trips } from "../controllers/tripController";
-
 import CityInfo from "../components/CityInfo";
 import WeatherInfo from "../components/WeatherInfo";
 import ForecastInfo from "../components/ForecastInfo";
 import MustSeePlaces from "../components/MustSeePlaces";
 import HiddenGems from "../components/HiddenGems";
-import { Box, Typography, Button, Stack, Tabs, Tab, TextField, useMediaQuery } from '@mui/material';
+import { Box, Typography, Button, TextField, Autocomplete } from '@mui/material';
 import ItineraryTab from "../components/ItineraryTab";
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
@@ -16,6 +15,7 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import cities from '/data/cities.json'
 
 
 
@@ -108,11 +108,15 @@ export default function Trip() {
         fetchActiveTrips();
     }, []);
 
-    const handleFormChange = (e, tripId) => {
-        const { name, value } = e.target;
+    const handleFormChange = (value, tripId) => {
         setActiveTrips((prevTrips) =>
             prevTrips.map((trip) =>
-                trip.id === tripId ? { ...trip, [name]: value } : trip
+                trip.id === tripId ? { 
+                    ...trip, 
+                    city: value?.label || "",
+                    country: value?.country || ""
+                }
+                : trip
             )
         );
     };
@@ -120,7 +124,12 @@ export default function Trip() {
     const handleSave = async (e, tripId) => {
         e.preventDefault();
         const tripToUpdate = activeTrips.find((trip) => trip.id === tripId);
-        const response = await Trips.update(tripId, tripToUpdate);
+        
+        const response = await Trips.update(tripId, { 
+            ...tripToUpdate,
+            city: tripToUpdate.city,
+        country: tripToUpdate.country
+        });
 
         if (response.success) {
             console.log('Trip updated successfully!')
@@ -145,29 +154,25 @@ export default function Trip() {
     return (
       
         <Box sx={{ padding: 0.5, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-        <Typography variant="h5" gutterBottom>Trip</Typography>
+        <Typography variant="h5" paddingTop={2} gutterBottom>Trip</Typography>
 
         {activeTrips.length > 0 ? (
             activeTrips.map(trip => (
                 <Box key={trip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
                     {editingTripId === trip.id ? (
                         <form onSubmit={(e) => handleSave(e, trip.id)}>
-                            <TextField
-                                label="Country"
-                                name="country"
-                                value={trip.country}
-                                onChange={(e) => handleFormChange(e, trip.id)}
-                                fullWidth
-                                sx={{ marginBottom: 2 }}
-                            />
-                            <TextField
-                                label="City"
-                                name="city"
-                                value={trip.city}
-                                onChange={(e) => handleFormChange(e, trip.id)}
-                                fullWidth
-                                sx={{ marginBottom: 2 }}
-                            />
+                            <Autocomplete
+                            disablePortal
+                            options={cities}
+                            getOptionLabel={(option) => `${option.label}, ${option.country}`}
+                            value={cities.find(city => city.label === trip.city && city.country === trip.country) || null}
+                            onChange={(event, value) => 
+                                handleFormChange(value, trip.id)}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
+                            )}
+                        />
+                          
                             <TextField
                                 label="Start Date"
                                 name="start_date"
