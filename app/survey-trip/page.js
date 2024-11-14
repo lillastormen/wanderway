@@ -32,11 +32,21 @@ export default function TripSurvey() {
 
     //Handle form data change
     const handleFormChange = (e) => {
+        console.log(e.target.name, e.target.value);
         setFormData({
-        ...formData, //Keep the exsisting data in the FormData state
-        [e.target.name]: e.target.value //Update only the field that changed
-    });
+            ...formData, //Keep the exsisting data in the FormData state
+            [e.target.name]: e.target.value //Update only the field that changed
+        });
+        console.log(formData);
     };
+
+    const handleDestination = (e) => {
+        setFormData({
+            ...formData, //Keep the exsisting data in the FormData state
+            city: e.city, //Update only the field that changed
+            country: e.country,
+        });
+    }
 
     //Handle form submit
     const handleFormSubmit = async (e) => {
@@ -48,7 +58,7 @@ export default function TripSurvey() {
             alert("No user ID found. Please create an account or log in.");
             return;
         }
-
+        console.log(formData);
         const response = await Trips.create(formData);
 
         console.log("Trip creation response:", response);
@@ -75,6 +85,7 @@ return (
         <TripForm 
             formData={formData}
             handleFormChange={handleFormChange}
+            handleDestination={handleDestination}
             handleFormSubmit={handleFormSubmit}
             cities={cities}
         />

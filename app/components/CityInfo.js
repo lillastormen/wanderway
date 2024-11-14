@@ -22,6 +22,7 @@ export default function CityInfo({ cityName }) {
                     striped = striped.replace(/\(\/.*\)&#91;n. 1&#93; /gm, '');
                     striped = striped.replace(/&#\d*;/gm, '');
 
+                    console.log(striped);
                     setCityData(striped)
                 } catch (error) {
                     setError('Error fetching city info')

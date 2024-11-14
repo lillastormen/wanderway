@@ -29,8 +29,6 @@ export default function Trip() {
     const [editingTripId, setEditingTripId] = useState(null);
     const tabs = ["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"];
  
- 
-    console.log(activeTrips)
 
     const switchTab = () => {
         switch (activeTab) {
@@ -95,6 +93,7 @@ export default function Trip() {
             const userId = localStorage.getItem('user_id');
             const response = await Trips.readTripByUserId(userId);
 
+            console.log(userId, response);
             if (response.success) {
                 // const fetchedTrip = response.data;
                 const today = new Date();
@@ -112,7 +111,7 @@ export default function Trip() {
     const handleFormChange = (e, tripId) => {
         const { name, value } = e.target;
         setActiveTrips((prevTrips) =>
-            prevTrips.mpa((trip) =>
+            prevTrips.map((trip) =>
                 trip.id === tripId ? { ...trip, [name]: value } : trip
             )
         );

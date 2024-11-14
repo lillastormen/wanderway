@@ -20,7 +20,7 @@ const buttonStyle = {
     }
 };
 
-export default function TripForm({ formData, handleFormChange, handleFormSubmit, cities }) {
+export default function TripForm({ formData, handleFormChange, handleDestination, handleFormSubmit, cities }) {
 
     const handleButtonClick = (e, name) => {
         handleFormChange({
@@ -43,17 +43,9 @@ export default function TripForm({ formData, handleFormChange, handleFormSubmit,
                             options={cities}
                             getOptionLabel={(option) => `${option.label}, ${option.country}`}
                             onChange={(event, value) => {
-                                handleFormChange({
-                                    target: {
-                                        name: 'city',
-                                        value: value?.label || "",
-                                    }
-                                });
-                                handleFormChange({
-                                    target: {
-                                        name: 'country',
-                                        value: value?.country || "",
-                                    }
+                                handleDestination({
+                                    country: value?.country || "",
+                                    city: value?.label || "",
                                 });
                             }}
                             renderInput={(params) => <TextField {...params} label="City, Country" variant="outlined" fullWidth sx={{ backgroundColor: 'white' }} />}
