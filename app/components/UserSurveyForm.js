@@ -228,8 +228,10 @@ export default function UserSurveyForm({
         </Box>
       </FormControl>
 
+
       <Typography variant="body1" sx={{ fontWeight: "bold" }} color="#30323D" paddingBottom={1} paddingTop={2}>Login Credentials</Typography>
-        <Box component="form" autoComplete="off" sx={{ display: "flex", flexDirection: "column", mt: -2, mb: 2 }}>
+        <Box autoComplete="off" sx={{ display: "flex", flexDirection: "column", mt: -2, mb: 2 }}>
+            
             <TextField
                 fullWidth
                 placeholder="Name"

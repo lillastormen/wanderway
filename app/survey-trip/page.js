@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Trips } from "../controllers/tripController";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -13,22 +13,28 @@ export default function TripSurvey() {
 
     const router = useRouter();
     const searchParams = useSearchParams();
-    const urlUserId = searchParams.get('user_id');
+    const urlUserId = searchParams.get('user_id');       
+    
+    const [formData, setFormData] = useState({}); 
+   
+    useEffect(() => {  
+        
+        // If user_id is available from the URL, store it in localStorage (this can be done inside state initialization)
+        if (urlUserId && !localStorage.getItem('user_id')) {
+            localStorage.setItem('user_id', urlUserId); // Store user_id in localStorage
+        }
+        setFormData({
+            user_id: localStorage.getItem('user_id') || urlUserId || '',
+            country:'',
+            city:'',
+            start_date: dayjs(),
+            end_date: dayjs(),
+            budget:'',
+            peace:'',
+        })   
 
-    const [formData, setFormData] = useState({
-        user_id: localStorage.getItem('user_id') || urlUserId || '',
-        country:'',
-        city:'',
-        start_date: dayjs(),
-        end_date: dayjs(),
-        budget:'',
-        peace:'',
-    });
+    }, [])
 
-    // If user_id is available from the URL, store it in localStorage (this can be done inside state initialization)
-    if (urlUserId && !localStorage.getItem('user_id')) {
-        localStorage.setItem('user_id', urlUserId); // Store user_id in localStorage
-    }
 
     //Handle form data change
     const handleFormChange = (e) => {
@@ -75,7 +81,7 @@ export default function TripSurvey() {
             console.error('Failed to add trip:', response.error);
           }
         };
-        
+
     return (
         <>
             <TripForm 

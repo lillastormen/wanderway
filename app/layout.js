@@ -6,6 +6,7 @@ import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
 import { usePathname } from "next/navigation";
 import path from 'path';
+import { Suspense } from 'react';
 
 
 
@@ -32,8 +33,8 @@ export default function Layout({ children }) {
             }}
             id="main-container"
           >
+            <Suspense>{children}</Suspense>
 
-            {children}
             {!isHomePage && !isInfoPage && <BottomNav />}
           </Container>
         </AppRouterCacheProvider>
