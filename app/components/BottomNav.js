@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { BottomNavigation, BottomNavigationAction, IconButton, Paper, Menu, MenuItem } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, IconButton, Paper, Menu, MenuItem, Icon } from "@mui/material";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
@@ -104,10 +104,9 @@ export default function BottomNav() {
                     <BottomNavigationAction
                         value="/user-profile"
                         icon={
-                            <IconButton onClick={handleUserMenuOpen} sx={{ padding: 0 }}>
-                                <Person2OutlinedIcon sx={{ fontSize: 42 }} />
-                            </IconButton>
+                            <Person2OutlinedIcon sx={{ fontSize: 42 }} /> 
                         }
+                        onClick={handleUserMenuOpen}
                         sx={{ 
                             minWidth: 0, 
                             padding: 0, 

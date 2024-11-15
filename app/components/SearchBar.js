@@ -1,7 +1,6 @@
 
 import { useState } from "react"
 import { TextField, IconButton, Autocomplete } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"
 import cities from '/data/cities.json';
 
 export default function SearchBar({ onSearch, onAutocompleteChange }) {
@@ -37,14 +36,13 @@ export default function SearchBar({ onSearch, onAutocompleteChange }) {
                     label="City, Country"
                     variant="outlined"
                     fullWidth
-                    size="small"
+                    size="medium"
+                    sx={{backgroundColor: "white"}}
                 />
             )}
             sx={{ flexGrow: 1 }} // Make autocomplete fill available space
         />
-        {/* <IconButton onClick={handleSearchButtonClick}>
-            <SearchIcon />
-        </IconButton> */}
+    
     </div>
     );
 }

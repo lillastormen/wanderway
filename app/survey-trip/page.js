@@ -75,21 +75,17 @@ export default function TripSurvey() {
             console.error('Failed to add trip:', response.error);
           }
         };
- 
-
-
-console.log(cities);
-
-return (
-    <>
-        <TripForm 
-            formData={formData}
-            handleFormChange={handleFormChange}
-            handleDestination={handleDestination}
-            handleFormSubmit={handleFormSubmit}
-            cities={cities}
-        />
-    </>
-)
+        
+    return (
+        <>
+            <TripForm 
+                formData={formData}
+                handleFormChange={handleFormChange}
+                handleDestination={handleDestination}
+                handleFormSubmit={handleFormSubmit}
+                cities={cities}
+            />
+        </>
+    )
 } 
 

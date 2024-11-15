@@ -38,16 +38,16 @@ export default function PastTrips() {
 
     return (
         <Box sx={{ padding: 1, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-            <Typography variant="h5" gutterBottom>Past Trips</Typography>
+             <Typography variant="h5" paddingTop={2} gutterBottom>Past Trips</Typography>
 
             {pastTrips.length > 0 ? (
                 <List sx={{ marginTop: 2 }}>
                     {pastTrips.map((trip) => (
                         <ListItem key={trip.id} sx={{ padding: 0 }}>
                             <Paper elevation={2} sx={{ padding: 2, width: '100%', marginBottom: 2 }}>
-                                <Typography variant="h6">Country: {trip.country}</Typography>
-                                <Typography variant="body1">City: {trip.city}</Typography>
-                                <Typography variant="body2">Dates: {trip.start_date} - {trip.end_date}</Typography>
+                                <Typography variant="h6"><strong>Country: </strong>{trip.country}</Typography>
+                                <Typography variant="body1"><strong>City: </strong>{trip.city}</Typography>
+                                <Typography variant="body2"><strong>Dates: </strong>{trip.start_date} - {trip.end_date}</Typography>
                             </Paper>
                         </ListItem>
                     ))}

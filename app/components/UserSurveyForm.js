@@ -109,6 +109,7 @@
 'use client';
 
 import { Box, Button, FormControl, FormLabel, Typography, TextField } from "@mui/material";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const buttonStyle = {
     backgroundColor: "white",
@@ -132,11 +133,11 @@ export default function UserSurveyForm({
   
     return (
     <Box component="form" onSubmit={handleFormSubmit} sx={{ mx: "auto", padding: 1 }}>
-      <Typography variant="h5" paddingTop={2} gutterBottom>User Info</Typography>
+      <Typography variant="h5" paddingTop={2} gutterBottom>Create a user</Typography>
      
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Age Group</FormLabel>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: 1, paddingTop: 0.5 }}>
+      <FormLabel sx={{ variant: "body1", fontWeight: "bold", color:"#30323D", paddingBottom: 1}}>Age Group</FormLabel>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: 1}}>
           {["-25", "25-31", "32-38", "39-45", "45+"].map((age, index) => (
             <Button
               key={index}
@@ -156,8 +157,8 @@ export default function UserSurveyForm({
 
     
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Gender</FormLabel>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: '2px', paddingTop: 0.5}}>
+      <FormLabel sx={{ variant: "body1", fontWeight: "bold", color:"#30323D", paddingBottom: 1}}>Gender</FormLabel>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: '2px'}}>
           {["female", "male", "non-binary", "prefer-not-to-say"].map((gender, index) => (
             <Button
               key={index}
@@ -177,8 +178,8 @@ export default function UserSurveyForm({
 
 
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Traveler Type</FormLabel>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: 1, paddingTop: 0.5 }}>
+      <FormLabel sx={{ variant: "body1", fontWeight: "bold", color:"#30323D", paddingBottom: 1}}>Traveler Type</FormLabel>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: 1}}>
           {["solo", "friends", "family"].map((traveler_type, index) => (
             <Button
               key={index}
@@ -198,8 +199,8 @@ export default function UserSurveyForm({
 
 
       <FormControl component="fieldset" margin="normal">
-        <FormLabel component="legend" sx={{fontWeight: "bold"}}>Interests</FormLabel>
-        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 1, paddingTop: 0.5 }}>
+        <FormLabel sx={{ variant: "body1", fontWeight: "bold", color:"#30323D", paddingBottom: 1}}>Interests</FormLabel>
+        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 1 }}>
           {[
             "Museums", "Art-galleries", "Nightlife", "Food", "Hiking", 
             "Beaches", "Shopping", "Music", "Theater", "Architecture", "Photo Ops"
@@ -227,10 +228,11 @@ export default function UserSurveyForm({
         </Box>
       </FormControl>
 
-      <Typography variant="body1" sx={{ fontSize: '0.9rrem', fontWeight: "bold" }} color="rgba(0, 0, 0, 0.6)"  paddingTop={2} gutterBottom>Login info</Typography>
-        <Box sx={{ display: "flex", flexDirection: "column", mt: -2, mb: 2 }}>
+      <Typography variant="body1" sx={{ fontWeight: "bold" }} color="#30323D" paddingBottom={1} paddingTop={2}>Login Credentials</Typography>
+        <Box component="form" autoComplete="off" sx={{ display: "flex", flexDirection: "column", mt: -2, mb: 2 }}>
             <TextField
                 fullWidth
+                placeholder="Name"
                 label="Name"
                 variant="outlined"
                 margin="normal"
@@ -258,9 +260,11 @@ export default function UserSurveyForm({
             <TextField
                 fullWidth
                 label="Password"
+                password="Password"
                 variant="outlined"
                 margin="normal"
                 name="password"
+                type="password"
                 value={formData.password}
                 onChange={handleFormChange}
                 sx={{
@@ -283,7 +287,6 @@ export default function UserSurveyForm({
                 borderRadius: 1,
                 marginTop: 2,
                 marginBottom: 3,
-                backgroundColor: '#1976d2',
                 }}
             >
             CONFIRM

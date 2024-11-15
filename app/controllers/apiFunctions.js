@@ -79,15 +79,12 @@ export async function fetchLocationSearch (cityName) {
                 'Access-Control-Allow-Origin': '*',
                 referer: 'wanderway-sigma.vercel.app/'
             },
-       
-        
     })
 
     console.log(response);
     if(!response.ok) {
         throw new Error('Failed to fetch locations');
     }
-
     return response.json();
 }
 

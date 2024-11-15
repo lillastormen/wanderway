@@ -34,7 +34,6 @@ export default function Itinerary() {
                 console.error('Failed to fetch trip:', response.error)
             }
         };
-
         fetchTrip();
     }, []);
 

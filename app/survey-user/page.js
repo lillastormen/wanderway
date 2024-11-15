@@ -255,3 +255,69 @@ export default function UserSurvey() {
 // // }
 
 
+// // 'use client';
+
+// // import { useState } from "react";
+// // import { Users } from "../controllers/userController";
+// // import { useRouter } from "next/navigation";
+// // import UserSurveyForm from "../components/UserSurveyForm";
+
+// // export default function UserSurvey() {
+// //   const router = useRouter();
+
+// //   const [formData, setFormData] = useState({
+// //     name: '',
+// //     email: '',
+// //     age_group: '',
+// //     gender: '',
+// //     traveler_type: '',
+// //     interests: [],
+// //   });
+
+// //   // Handle form data change
+// //   const handleFormChange = (e) => {
+// //     const { name, value, type, checked } = e.target;
+
+// //     if (type === "checkbox" && name === "interest") {
+// //       setFormData((prevData) => ({
+// //         ...prevData,
+// //         interests: checked
+// //           ? [...prevData.interests, value]
+// //           : prevData.interests.filter((interest) => interest !== value),
+// //       }));
+// //     } else {
+// //       setFormData({
+// //         ...formData,
+// //         [name]: value,
+// //       });
+// //     }
+// //   };
+
+// //   // Handle form submit
+// //   const handleFormSubmit = async (e) => {
+// //     e.preventDefault();
+
+// //     const userData = { ...formData };
+// //     const userInterests = formData.interests;
+
+// //     const response = await Users.create(userData, userInterests);
+
+// //     if (response.success) {
+// //       const userId = response.data.id;
+// //       alert("User added successfully!");
+// //       router.push(`/survey-trip?user_id=${userId}`);
+// //     } else {
+// //       console.error(response.error);
+// //       alert("Failed to add user");
+// //     }
+// //   };
+
+// //   return (
+// //     <UserSurveyForm 
+// //       formData={formData} 
+// //       handleFormChange={handleFormChange} 
+// //       handleFormSubmit={handleFormSubmit} 
+// //     />
+// //   );
+// // }
+

@@ -44,7 +44,7 @@ export default function HiddenGems ({ cityName }) {
             </Box>
         ) : (
             hiddenGems.map((gem) => (
-                <Card sx={{ padding: 1, paddingBottom: 0, backgroundColor: '#f5f5f5', boxShadow: 1 }}>
+                <Card sx={{ padding: 1, paddingBottom: 0, backgroundColor: '#f5f5f5', boxShadow: 1 }} key={gem.id}>
                     <Typography variant="h6" color="text.primary" gutterBottom>
                         {gem.name}
                     </Typography>
@@ -60,16 +60,16 @@ export default function HiddenGems ({ cityName }) {
                                     }}
                                 >
                                     <Typography variant="body1" color="text.secondary">
-                                        City: {gem.city}
+                                        <strong>City: </strong>{gem.city}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                        Country: {gem.country}
+                                    <strong>Country: </strong>{gem.country}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                        Location: {gem.location}
+                                    <strong>Location: </strong>{gem.location}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                        Description: {gem.description}
+                                    <strong>Description:  </strong> {gem.description}
                                     </Typography>
                                     {gem.picture && (
                                         <img 

@@ -33,28 +33,34 @@ export default function GemLocator() {
 
     return (
         <Box sx={{ padding: 1, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-            <Typography variant="h5" gutterBottom>
-                        Gem Locator
+            <Typography variant="h5" paddingTop={2} paddingBottom={1} gutterBottom>
+                        Hidden Gems
                     </Typography>
                     
                     <Box sx={{ marginBottom: 2 }}>
                         <SearchBar 
-                            // onSearch={handleSearchButtonClick}
                             onAutocompleteChange={handleAutocompleteChange}
                         />
                     </Box>
 
-                    <Button
-                        onClick={handleAddGem}
-                        type="submit" 
-                        variant="contained" 
-                        color="primary" 
-                        size="large"  
-                        sx={{ marginTop: 2 }} 
-                    >
-                        {/* <AddIcon /> */}
-                        Add new location
-                    </Button>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', paddingTop: 3 }}>
+                        <Button
+                            onClick={handleAddGem}
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            sx={{
+                                width: '60%',
+                                margin: '0 auto',
+                                borderRadius: 1,
+                                marginTop: 2,
+                                marginBottom: 3,
+                                backgroundColor: '#1976d2',
+                            }}
+                            >
+                            Add New Location
+                        </Button>
+                    </Box>
 
                     <HiddenGems cityName={selectedCity} />
         </Box>

@@ -172,10 +172,10 @@ export default function Trip() {
     return (
       
         <Box sx={{ padding: 0.5, margin: '0 auto', backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-        <Typography variant="h5" paddingTop={2} gutterBottom>Trip</Typography>
+        <Typography variant="h5" paddingTop={2} gutterBottom>Trips</Typography>
 
         <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', marginBottom: 1 }}>Active Trip:</Typography>
+        <Typography variant="body1" sx={{ fontWeight: "bold" }} color="#30323D" paddingBottom={1}>Active Trip: </Typography>
             <Select
                 fullWidth
                 value={activeTripId || ""}
@@ -208,7 +208,6 @@ export default function Trip() {
         ))}
             </Select>
         </Box>
-        {selectedTrip && selectedTrip.id}
 
         {selectedTrip ? (
             <Box key={selectedTrip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
