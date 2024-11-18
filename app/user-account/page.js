@@ -17,7 +17,7 @@ export default function UserAccount() {
     
     useEffect(() => {
         const fetchUserDataAndInterests = async () => {
-            const userId = localStorage.getItem('user_id');
+            const userId = localStorage.getItem('userId');
             if (!userId) {
                 console.error('No user ID found in the local storage');
                 return
@@ -45,7 +45,7 @@ export default function UserAccount() {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const userId = localStorage.getItem('user_id');
+        const userId = localStorage.getItem('userId');
 
         const response = await Users.update(userId, userData);
         if (response.success) {

@@ -20,7 +20,7 @@ export default function Itinerary() {
 
     useEffect(() => { 
         const fetchTrip = async () => {
-            const tripId = localStorage.getItem('trip_id');
+            const tripId = localStorage.getItem('tripId');
             if (!tripId) {
                 console.error('No trip ID found in the localstorage');
                 return;

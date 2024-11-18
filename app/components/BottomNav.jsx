@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BottomNavigation, BottomNavigationAction, IconButton, Paper, Menu, MenuItem, Icon } from "@mui/material";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
@@ -14,7 +14,7 @@ export default function BottomNav() {
     const [value, setValue] = useState('/');
     const router = useRouter();
     const [anchorEl, setAnchorEl] = useState(null)
-    
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
         router.push(newValue);
@@ -32,12 +32,14 @@ export default function BottomNav() {
     const handleMenuItemClick = (path) => {
         handleUserMenuClose();
         if (path === "/logout") {
+            localStorage.clear();
             console.log("User logged out");
             router.push("/");
         } else {
             router.push(path);
         }
     }
+
     return (
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                 <BottomNavigation

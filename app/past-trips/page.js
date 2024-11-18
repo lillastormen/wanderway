@@ -11,7 +11,7 @@ export default function PastTrips() {
 
      useEffect(() => {
         const fetchTrips = async () => {
-            const userId = localStorage.getItem('user_id');
+            const userId = localStorage.getItem('userId');
             if (!userId) {
                 console.log('No user ID found in local storage');
                 return;

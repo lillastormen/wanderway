@@ -1,42 +1,26 @@
-'use server'
+"use server";
 
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
-import { supabase } from '@/db/dbConnection'
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { Users } from '../controllers/userController';
 
 export async function login(formData) {
- 
+  const { email, password } = formData;
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
-    email: formData.get('email'),
-    password: formData.get('password'),
+  try {
+    const { success, data, error } = await Users.loginUser(email, password);
+
+    if (!success || error) {
+      // Log the entire error object to inspect it
+      console.error('Login failed:', error); 
+      throw new Error(error?.message || 'Login failed. Please check your credentials.');
+    }
+    return data;
+
+    // If login successful, revalidate the path and redirect to trip page
+  } catch (err) {
+    // Log the complete error object for better debugging
+    console.error('Error during login process:', err); 
+    throw new Error('Login failed. Please try again.');
   }
-
-  const { error } = await supabase.auth.signInWithPassword(data)
-
-  if (error) {
-     console.log(error);
-  }  
-
-  revalidatePath('/')
-  redirect('/trip')
 }
-
-// export async function signup(formData) {
-//   const supabase = await createClient()
-
-//   const data = {
-//     email: formData.get('email'),
-//     password: formData.get('password'),
-//   }
-
-//   const { error } = await supabase.auth.signUp(data)
-
-//   if (error) {
-//     redirect('/error')
-//   }
-
-//   revalidatePath('/', 'layout')
-//   redirect('/account')

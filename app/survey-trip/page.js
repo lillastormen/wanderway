@@ -13,18 +13,18 @@ export default function TripSurvey() {
 
     const router = useRouter();
     const searchParams = useSearchParams();
-    const urlUserId = searchParams.get('user_id');       
+    const urlUserId = searchParams.get('userId');       
     
-    const [formData, setFormData] = useState({}); 
+    const [formData, setFormData] = useState(); 
    
     useEffect(() => {  
         
         // If user_id is available from the URL, store it in localStorage (this can be done inside state initialization)
-        if (urlUserId && !localStorage.getItem('user_id')) {
-            localStorage.setItem('user_id', urlUserId); // Store user_id in localStorage
+        if (urlUserId && !localStorage.getItem('userId')) {
+            localStorage.setItem('userId', urlUserId); // Store user_id in localStorage
         }
         setFormData({
-            user_id: localStorage.getItem('user_id') || urlUserId || '',
+            user_id: localStorage.getItem('userId') || urlUserId || '',
             country:'',
             city:'',
             start_date: dayjs(),
@@ -74,7 +74,7 @@ export default function TripSurvey() {
             console.log('Trip created with ID:', tripId);
 
             //storing generated id in the localstorage
-            localStorage.setItem('trip_id', tripId);
+            localStorage.setItem('tripId', tripId);
 
             router.push(`/itinerary`)
           } else {

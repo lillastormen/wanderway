@@ -47,6 +47,23 @@ export const Users = {
         return { success: true, data}
     },
 
+    loginUser: async (email, password) => {
+        const { data, error} = await supabase
+        .from('Users')
+        .select('id')
+        .eq('email', email)
+        .eq('password', password)
+        .single()
+
+        if (error) {
+            console.error(`Error fetching user with email ${email}:`, error.message);
+            return { success: false, error};
+        }
+
+        console.log('User data fetched:', data);
+        return { success: true, data}
+    },
+
     update: async (userId, updatedData) => {
         const { data, error } = await supabase
         .from('Users')

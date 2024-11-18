@@ -31,6 +31,10 @@ export default function TripForm({ formData, handleFormChange, handleDestination
         });
       };
 
+
+    if(!formData) {
+        return <></>;
+    }
     return (
         <Box sx={{ padding: 1, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
             <Typography variant="h5" paddingTop={2} paddingBottom={1} gutterBottom>Define your trip</Typography>

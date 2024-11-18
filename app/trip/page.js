@@ -107,9 +107,9 @@ export default function Trip() {
     useEffect(() => { 
         const fetchActiveTrips = async () => {
 
-            const userId = localStorage.getItem('user_id');
+            const userId = localStorage.getItem('userId');
             const response = await Trips.readTripByUserId(userId);
-            setActiveTripId(localStorage.getItem('trip_id'));
+            setActiveTripId(localStorage.getItem('tripId'));
 
             console.log(userId, response);
             if (response.success) {
