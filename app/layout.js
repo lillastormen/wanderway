@@ -15,6 +15,7 @@ export default function Layout({ children }) {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isInfoPage = pathname === "/info";
+  const isLoginPage = pathname === "/login";
 
   return (
       <html lang="en">
@@ -35,7 +36,7 @@ export default function Layout({ children }) {
           >
             <Suspense>{children}</Suspense>
 
-            {!isHomePage && !isInfoPage && <BottomNav />}
+            {!isHomePage && !isInfoPage && !isLoginPage && <BottomNav />}
           </Container>
         </AppRouterCacheProvider>
       </body>
