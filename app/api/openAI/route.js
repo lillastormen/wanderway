@@ -86,14 +86,14 @@ export async function GET(req) {
     `;
 
     // Create openAI chat completion
-    // const completions = await openai.chat.completions.create({
-    //     messages: [{ role: "system", content: messageContent}],
-    //     model: "gpt-3.5-turbo", //gtp-4o
-    // });
+    const completions = await openai.chat.completions.create({
+        messages: [{ role: "system", content: messageContent}],
+        model: "gpt-3.5-turbo", //gtp-4o
+    });
     
-    // const itineraryResponse = completions.choices[0].message.content;
-    // const itinerary = itineraryResponse;
-    // return NextResponse.json({ itinerary });
+    const itineraryResponse = completions.choices[0].message.content;
+    const itinerary = itineraryResponse;
+    return NextResponse.json({ itinerary });
 
 
 

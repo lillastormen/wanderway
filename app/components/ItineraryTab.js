@@ -1,22 +1,24 @@
 import React from "react";
-import { Box, Paper, Typography } from '@mui/material'
+import { Box, Card, CardContent, Typography } from '@mui/material'
 import MarkdownPreview from '@uiw/react-markdown-preview';
 
 
-export default function ItineraryTab ({ activeTrips }) {
+export default function ItineraryTab ({ itinerary }) {
     return (
-        <Box>
-            {activeTrips ? (
-                <Paper sx={{ padding: 2, backgroundColor: '#f5f5f5', borderRadius: 2, marginTop: 2 }}>
+        <Card sx={{ margin: 'auto', padding: 0, marginTop: 2, backgroundColor: '#f5f5f5' }}>
+            <CardContent>
+            {itinerary ? (
+                <Card sx={{ padding: 2, backgroundColor: '#ffffff', boxShadow: 1 }}>
                     <MarkdownPreview
-                        source={activeTrip.itinerary} // Render the markdown content
+                        source={itinerary} // Render the markdown content
                         wrapperElement={{ 'data-color-mode': 'light' }}
                     />
-                </Paper>
+                </Card>
             ) : (
-            <Typography variant="body1">No itinerary information available</Typography>
+                <Typography variant="body1">No itinerary information available</Typography>
             )}
-        </Box>
+            </CardContent>
+        </Card>
         );
     };
   

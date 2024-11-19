@@ -38,12 +38,13 @@ export default function Trip() {
 
         if(!activeTripId || !selectedTrip) return null;
 
+        console.log(selectedTrip.itinerary);
         switch (activeTab) {
             case "Itinerary": 
                 return  (
                     <Box>
                         {/* // <ItineraryTab activeTrips={activeTrips} /> */}
-                        <ItineraryTab itinerary={selectedTrip?.itinerary || []} />
+                        <ItineraryTab itinerary={selectedTrip.itinerary} />
                     </Box>
                 )
             case "City Info":
@@ -138,7 +139,6 @@ export default function Trip() {
 };
 
     useEffect(() => {
-        console.log('asd')
         setActiveTripId(localStorage.getItem('tripId'));
         setShouldFetchTrips(!shouldFetchTrips);
     },[])
