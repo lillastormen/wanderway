@@ -23,7 +23,7 @@ export default function AddGem() {
     useEffect(() => {
         // Run this code only on the client side
         if (typeof window !== "undefined") {
-            const userId = localStorage.getItem('user_id');
+            const userId = localStorage.getItem('userId');
             if (userId) {
                 setFormData((prevData) => ({ ...prevData, user_id: userId }));
             }
@@ -47,7 +47,7 @@ export default function AddGem() {
             console.log('Gem addes successfully!');
             setFormData({
                 //resting the form
-                user_id: localStorage.getItem('user_id') || '',
+                user_id: localStorage.getItem('userId') || '',
                 name: '',
                 country: '',
                 city: '',

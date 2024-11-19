@@ -33,9 +33,12 @@ export default function GemLocator() {
 
     return (
         <Box sx={{ padding: 1, backgroundColor: '#f5f5f5', borderRadius: 2 }}>
-            <Typography variant="h5" paddingTop={2} paddingBottom={1} gutterBottom>
-                        Hidden Gems
-                    </Typography>
+            <Typography variant="h5" paddingTop={2}>
+                Hidden Gems
+            </Typography>
+            <Typography variant="body2" paddingTop={1} paddingBottom={1} gutterBottom>
+                Search: 
+            </Typography>
                     
                     <Box sx={{ marginBottom: 2 }}>
                         <SearchBar 

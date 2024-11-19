@@ -31,9 +31,10 @@ export default function Trip() {
     const [activeTrips, setActiveTrips] = useState([]);
     const [activeTripId, setActiveTripId] = useState(null);
     const [selectedTrip, setSelectedTrip] = useState(null)
+    const [shouldFetchTrips, setShouldFetchTrips] = useState(false);
     // const [tripEdit, setTripEdit] = useState(false);
     const [editingTripId, setEditingTripId] = useState(null);
-    const tabs = ["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"];
+    const tabs = ["Itinerary", "City Info", "Weather", "Must see", "Hidden gems", "Edit"];
 
     const switchTab = () => {
 
@@ -92,21 +93,66 @@ export default function Trip() {
                         }
                     </Box>
                 )
+            case "Edit":
+                return (
+                    <Box key={selectedTrip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
+                        {selectedTrip && 
+                           <form onSubmit={(e) => handleSave(e, selectedTrip.id)}>
+                        
+                                <Autocomplete
+                                    disablePortal
+                                    options={cities}
+                                    getOptionLabel={(option) => `${option.label}, ${option.country}`}
+                                    value={cities.find(city => city.label === selectedTrip.city && city.country === selectedTrip.country) || null}
+                                    onChange={(event, value) => 
+                                        handleFormChange('location', value, selectedTrip.id)}
+                                    renderInput={(params) => (
+                                        <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
+                                    )}
+                                />
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker
+                                    label="Start Date"
+                                    value={dayjs(selectedTrip.start_date)}
+                                    onChange={(newValue) => handleFormChange('start_date', newValue, selectedTrip.id)}
+                                    renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
+                                />
+                                <DatePicker
+                                    label="End Date"
+                                    value={dayjs(selectedTrip.end_date)}
+                                    onChange={(newValue) => handleFormChange('end_date', newValue, selectedTrip.id)}
+                                    renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
+                                />
+                            </LocalizationProvider>
+                                <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
+                                <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
+                            </form> 
+                        }
+                    </Box>
+                )
+            break;
             default:
                 return null;
         }
     };
 
+
     useEffect(() => {
-        if(activeTripId){
-            setSelectedTrip(activeTrips.find(trip => trip.id === activeTripId));
+        console.log('asd')
+        setActiveTripId(localStorage.getItem('tripId'));
+        setShouldFetchTrips(!shouldFetchTrips);
+    },[])
+
+    useEffect(() => {
+        if(activeTripId && activeTrips){
+            localStorage.setItem('tripId', activeTripId);
+            setSelectedTrip(activeTrips.find(trip => trip.id == activeTripId));
         }
-    }, [activeTripId])
+    }, [activeTripId, activeTrips])
 
     //fetch the current trip
     useEffect(() => { 
-        const fetchActiveTrips = async () => {
-
+            const fetchActiveTrips = async () => {
             const userId = localStorage.getItem('userId');
             const response = await Trips.readTripByUserId(userId);
             setActiveTripId(localStorage.getItem('tripId'));
@@ -124,49 +170,45 @@ export default function Trip() {
         };
 
         fetchActiveTrips();
-    }, []);
+    }, [shouldFetchTrips]);
 
-    const handleFormChange = (value, tripId) => {
-        setActiveTrips((prevTrips) =>
-            prevTrips.map((trip) =>
-                trip.id === tripId ? { 
-                    ...trip, 
-                    city: value?.label || "",
-                    country: value?.country || ""
-                }
-                : trip
-            )
-        );
+    const handleFormChange = (field, value, tripId) => {
+
+        console.log(field, value);
+
+        if(field === 'location'){
+            setSelectedTrip( { ...selectedTrip, 'city': value.label, 'country': value.country });
+        } else {
+            setSelectedTrip( { ...selectedTrip, [field]: value });
+        }
+        
+
+        // setActiveTrips((prevTrips) =>
+        //     prevTrips.map((trip) =>
+        //         trip.id === tripId ? { 
+        //             ...trip, 
+        //             city: value?.label || "",
+        //             country: value?.country || ""
+        //         }
+        //         : trip
+        //     )
+        // );
     };
 
-    const handleSave = async (e, tripId) => {
+    const handleSave = async (e) => {
         e.preventDefault();
-        const tripToUpdate = activeTrips.find((trip) => trip.id === tripId);
+        const tripToUpdate = selectedTrip;
         
-        const response = await Trips.update(tripId, { 
-            ...tripToUpdate,
-            city: tripToUpdate.city,
-        country: tripToUpdate.country
-        });
+        const response = await Trips.update(selectedTrip.id, selectedTrip);
 
         if (response.success) {
             console.log('Trip updated successfully!')
             setEditingTripId(false);
+            setShouldFetchTrips(!shouldFetchTrips);
         } else {
             console.error('Failed to update the trip:', response.error)
         }
     };
-
-    // //handle adding a new trip
-    // const handleAddNewTrip = async (newTripData) => {
-    //     const response = await Trips.create(newTripData);
-    //     if (response.success && response.data && response.data[0]) {
-    //         const newTrip = response.data[0];
-    //         setActiveTrips((prevTrips) => [...prevTrips, newTrip]);
-    //     } else {
-    //         console.error('Failed to add new trip:', response.error)
-    //     }
-    // }
 
 
     return (
@@ -185,7 +227,7 @@ export default function Trip() {
                     borderRadius: 1,
                     padding: 1.5,
                     boxShadow: 1,
-                    fontSize: '16px',
+                    fontSize: '20px',
                     fontWeight: '400',
                     '&.MuiOutlinedInput-root': {
                         '& fieldset': {
@@ -202,73 +244,15 @@ export default function Trip() {
                 
             >
         {activeTrips.map((trip) => (
-            <MenuItem key={trip.id} value={trip.id} sx={{ fontSize: '16px', fontWeight: '400' }}>
-                {trip.city}, {trip.country}&nbsp;<br/><Typography variant="caption">({trip.start_date} - {trip.end_date})</Typography>
+            <MenuItem key={trip.id} value={trip.id}>
+                {trip.city}, {trip.country}&nbsp;<br/><Typography variant="body2">({trip.start_date} - {trip.end_date})</Typography>
             </MenuItem>
         ))}
             </Select>
         </Box>
-
-        {selectedTrip ? (
-            <Box key={selectedTrip.id} sx={{ marginBottom: 4, padding: 2, backgroundColor: '#ffffff', borderRadius: 1, boxShadow: 1 }}>
-                {editingTripId === selectedTrip.id ? (
-                    <form onSubmit={(e) => handleSave(e, selectedTrip.id)}>
-                        
-                        <Autocomplete
-                            disablePortal
-                            options={cities}
-                            getOptionLabel={(option) => `${option.label}, ${option.country}`}
-                            value={cities.find(city => city.label === selectedTrip.city && city.country === selectedTrip.country) || null}
-                            onChange={(event, value) => 
-                                handleFormChange(value, selectedTrip.id)}
-                            renderInput={(params) => (
-                                <TextField {...params} label="Destination" variant="outlined" fullWidth sx={{ marginBottom: 2 }} />
-                            )}
-                        />
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                            label="Start Date"
-                            value={dayjs(selectedTrip.start_date)}
-                            onChange={(newValue) => handleFormChange({ target: { name: 'start_date', value: newValue } }, selectedTrip.id)}
-                            renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
-                        />
-                        <DatePicker
-                            label="End Date"
-                            value={dayjs(selectedTrip.end_date)}
-                            onChange={(newValue) => handleFormChange({ target: { name: 'end_date', value: newValue } }, selectedTrip.id)}
-                            renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
-                        />
-                    </LocalizationProvider>
-                        <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
-                        <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
-                    </form>
-                ) : (
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 1}}>
-                        <Box>
-                            <Typography variant="h6">{selectedTrip.country}, {selectedTrip.city}</Typography>
-                            <Typography variant="body2">{selectedTrip.start_date} - {selectedTrip.end_date}</Typography>
-                        </Box>
-                        <Button 
-                            onClick={() => setEditingTripId(selectedTrip.id)} 
-                            sx={{ 
-                                
-                                marginTop: 1,
-                                    color: "#555555"
-
-                            }}
-                        >
-                        <EditOutlinedIcon />
-                        </Button>
-                    </Box>
-                )}
-            </Box>
-        ) : (
-            <Typography variant="body1">No active trip available. Please add a new trip.</Typography>
-        )}
-
         {selectedTrip && (
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5, marginBottom: 3 }}>
-            {["Itinerary", "City Info", "Weather", "Must see", "Hidden gems"]
+            {tabs
               .map((tab, index) => (
                 <Box key={tab} sx={{ textAlign: 'center' }}>
                   <Button
@@ -285,12 +269,12 @@ export default function Trip() {
                     onClick={() => setActiveTab(tab)}
                     variant={activeTab === tab ? 'contained' : 'outlined'}
                   >
-                 
-                    {index === 0 && <MapOutlinedIcon sx={{ fontSize: 45 }} />}
-                    {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 45 }} />}
-                    {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 45 }} />}
-                    {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 45 }} />}
-                    {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 45 }} />}
+                    {index === 0 && <MapOutlinedIcon sx={{ fontSize: 40 }} />}
+                    {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 40 }} />}
+                    {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 40 }} />}
+                    {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 40 }} />}
+                    {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 40 }} />}
+                    {index === 5 && <EditOutlinedIcon sx={{ fontSize: 40 }} />}
                   </Button>
         
                   {/* show the label when tab is active */}

@@ -6,7 +6,7 @@ export const Gems = {
         const { data, error } = await supabase
         .from('Hidden_Gems')
         .insert( gem )
-        .select('*')
+        .select()
 
         if (error) {
             console.error('Error creating gem:', error.message)
