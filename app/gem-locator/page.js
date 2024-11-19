@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import SearchBar from "../components/SearchBar";
 import { Gems } from "../controllers/gemController";
 import { Box, Typography, Card, CardContent, IconButton, Button, Stack } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add'
+
 import HiddenGems from "../components/HiddenGems";
 
 

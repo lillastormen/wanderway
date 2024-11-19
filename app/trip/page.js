@@ -111,21 +111,25 @@ export default function Trip() {
                                     )}
                                 />
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker
-                                    label="Start Date"
-                                    value={dayjs(selectedTrip.start_date)}
-                                    onChange={(newValue) => handleFormChange('start_date', newValue, selectedTrip.id)}
-                                    renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
-                                />
-                                <DatePicker
-                                    label="End Date"
-                                    value={dayjs(selectedTrip.end_date)}
-                                    onChange={(newValue) => handleFormChange('end_date', newValue, selectedTrip.id)}
-                                    renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
-                                />
-                            </LocalizationProvider>
-                                <Button type="submit" variant="contained" color="primary" sx={{ marginRight: 2 }}>Save</Button>
-                                <Button variant="outlined" onClick={() => setEditingTripId(false)}>Cancel</Button>
+                                    <Box display={"flex"} sx={{gap: 2}}>
+                                        <DatePicker
+                                            label="Start Date"
+                                            value={dayjs(selectedTrip.start_date)}
+                                            onChange={(newValue) => handleFormChange('start_date', newValue, selectedTrip.id)}
+                                            renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
+                                        />
+                                        <DatePicker
+                                            label="End Date"
+                                            value={dayjs(selectedTrip.end_date)}
+                                            onChange={(newValue) => handleFormChange('end_date', newValue, selectedTrip.id)}
+                                            renderInput={(params) => <TextField {...params} fullWidth sx={{ marginBottom: 2 }} />}
+                                        />
+                                        </Box>
+                                </LocalizationProvider>
+                                    <Box display={"flex"} justifyContent={"center"} gap={1}>
+                                        <Button type="submit" variant="contained" color="primary" sx={{ width: "30%", marginTop: 3}}>Save</Button>
+                                        <Button variant="outlined" onClick={() => setEditingTripId(false)} sx={{ width: "30%", marginTop: 3}}>Cancel</Button>
+                                    </Box>
                             </form> 
                         }
                     </Box>
@@ -181,18 +185,6 @@ export default function Trip() {
         } else {
             setSelectedTrip( { ...selectedTrip, [field]: value });
         }
-        
-
-        // setActiveTrips((prevTrips) =>
-        //     prevTrips.map((trip) =>
-        //         trip.id === tripId ? { 
-        //             ...trip, 
-        //             city: value?.label || "",
-        //             country: value?.country || ""
-        //         }
-        //         : trip
-        //     )
-        // );
     };
 
     const handleSave = async (e) => {
