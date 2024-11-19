@@ -22,10 +22,7 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        // justifyContent: "center",
-        // gap: 5,
         textAlign: "center",
-      
       }}
     >
     <Box sx={{ mt:7 }}>
@@ -36,7 +33,6 @@ export default function Home() {
         height={500} 
       />
     </Box>
-     
     <Box padding={10}>
       <Typography variant="subtitle1" color="textSecondary">
         Plan your next journey.

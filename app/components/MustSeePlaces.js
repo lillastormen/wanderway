@@ -2,10 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Box, Typography, Card, CardContent, CardMedia, Link } from '@mui/material';
-import { FileCopy } from "@mui/icons-material";
-
-
-
 
 export default function MustSeePlaces({ cityName }) {
 

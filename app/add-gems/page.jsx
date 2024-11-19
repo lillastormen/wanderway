@@ -124,26 +124,26 @@ export default function AddGem() {
                             onChange={handleFormChange} 
                         />
                         <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', paddingTop: 2 }}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    size="large"
-                                    sx={{
-                                        fontWeight: "normal",
-                                        width: '50%',
-                                        margin: '0 auto',
-                                        borderRadius: 1,
-                                        marginTop: 2,
-                                        marginBottom: 3,
-                                    }}
-                                >
-                                ADD
-                                </Button>
-                            </Box>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                sx={{
+                                    fontWeight: "normal",
+                                    width: '50%',
+                                    margin: '0 auto',
+                                    borderRadius: 1,
+                                    marginTop: 2,
+                                    marginBottom: 3,
+                                }}
+                            >
+                            ADD
+                            </Button>
+                        </Box>
                     </Stack>
                 </form>
-        </Box>
+    </Box>
     )
 }
    

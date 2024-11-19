@@ -39,7 +39,6 @@ export default function Itinerary() {
 
     
   return (
-
     <Box sx={{ padding: 2, backgroundColor: '#f5f5f5', display: 'flex', justifyContent: 'center' }}>
             <Paper 
                 sx={{

@@ -15,12 +15,11 @@ export const Users = {
 
         if (error) {
             console.error('Error creating user:', error.message);  // More detailed error message
-            localStorage.removeItem('user_id'); //clear the invalid user id
             return { success: false, error };
         }
 
         const user_id = data[0].id;
-        localStorage.setItem('user_id', user_id); //store the new user id
+        localStorage.setItem('userId', user_id); //store the new user id
 
         const interestResponse = await Interests.addUserInterests(user_id, userInterests)
        

@@ -14,13 +14,6 @@ export default function GemLocator() {
     const router = useRouter();
     const [selectedCity, setSelectedCity] = useState(""); // To store the selected city
 
-   
-    // const handleSearchButtonClick = async (searchTerm) => {
-    //     if (searchTerm && searchTerm.length > 1) {
-    //         await handleSearch(searchTerm); // Trigger search when button is clicked
-    //     }
-    // };
-
     const handleAddGem = () => {
         router.push("/add-gems"); // Navigate to add gems page
     };

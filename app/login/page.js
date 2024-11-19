@@ -38,12 +38,12 @@ export default function LoginPage() {
         textAlign: "center",
       }}
     >
-      {/* <Typography variant="h4" gutterBottom>Login</Typography>
+      {/* <Typography variant="h4" gutterBottom>Login</Typography> */}
       {error && (
         <Alert severity="error" sx={{ mb: 2, width: "100%", maxWidth: 400 }}>
           {error}
         </Alert>
-      )} */}
+      )}
       <form style={{ width: "100%", maxWidth: 400 }} onSubmit={handleLogin}>
         <TextField
           label="Email"

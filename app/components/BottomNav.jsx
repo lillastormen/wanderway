@@ -54,92 +54,90 @@ export default function BottomNav() {
                         height: 75 
                     }}
                 >
-                    <BottomNavigationAction
-                        value="/trip"
-                        icon={<HomeOutlinedIcon sx={{ fontSize: 45}}/>}
-                        sx={{ 
-                            minWidth: 0, 
-                            padding: 0, 
-                            lineHeight: 0,
-                            '& .MuiBottomNavigationAction-label': {
-                                marginTop: 0.5, 
-                            },
-                        }}
-                    />    
-                    <BottomNavigationAction
-                        value="/gem-locator"
-                        icon={<RoomOutlinedIcon sx={{ fontSize: 40}}/>}
-                        sx={{ 
-                            minWidth: 0, 
-                            padding: 0, 
-                            lineHeight: 0,
-                            '& .MuiBottomNavigationAction-label': {
-                                marginTop: 0.5, 
-                            },
-                        }}
-                    />
-                    <BottomNavigationAction
-                        value="/survey-trip"
-                        icon={<AddBoxOutlinedIcon sx={{ fontSize: 40}}/>}
-                        sx={{ 
-                            minWidth: 0, 
-                            padding: 0, 
-                            lineHeight: 0,
-                            '& .MuiBottomNavigationAction-label': {
-                                marginTop: 0.5,
-                            },
-                        }}
-                    />
-                    <BottomNavigationAction
-                        value="/past-trips"
-                        icon={<CheckCircleOutlineOutlinedIcon sx={{ fontSize: 40}}/>}
-                        sx={{ 
-                            minWidth: 0, 
-                            padding: 0, 
-                            lineHeight: 0,
-                            '& .MuiBottomNavigationAction-label': {
-                                marginTop: 0.5, 
-                            },
-                        }}
-                    />
-
-                    <BottomNavigationAction
-                        value="/user-profile"
-                        icon={
-                            <Person2OutlinedIcon sx={{ fontSize: 42 }} /> 
-                        }
-                        onClick={handleUserMenuOpen}
-                        sx={{ 
-                            minWidth: 0, 
-                            padding: 0, 
-                            lineHeight: 0,
-                            '& .MuiBottomNavigationAction-label': {
-                                marginTop: 0.5, 
-                            },
-                        }}
-                    />
-            </BottomNavigation>
-            <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleUserMenuClose}
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                transformOrigin={{ vertical: "top", horizontal: "right" }}
-                sx={{
-                    padding: 0, 
-                    '& .MuiMenuItem-root': {
-                        display: 'flex',
-                        justifyContent: 'center', 
-                        padding: '10px 20px', 
-                        textAlign: 'center',
+                <BottomNavigationAction
+                    value="/trip"
+                    icon={<HomeOutlinedIcon sx={{ fontSize: 45}}/>}
+                    sx={{ 
+                        minWidth: 0, 
+                        padding: 0, 
+                        lineHeight: 0,
+                        '& .MuiBottomNavigationAction-label': {
+                            marginTop: 0.5, 
+                        },
+                    }}
+                />    
+                <BottomNavigationAction
+                    value="/gem-locator"
+                    icon={<RoomOutlinedIcon sx={{ fontSize: 40}}/>}
+                    sx={{ 
+                        minWidth: 0, 
+                        padding: 0, 
+                        lineHeight: 0,
+                        '& .MuiBottomNavigationAction-label': {
+                            marginTop: 0.5, 
+                        },
+                    }}
+                />
+                <BottomNavigationAction
+                    value="/survey-trip"
+                    icon={<AddBoxOutlinedIcon sx={{ fontSize: 40}}/>}
+                    sx={{ 
+                        minWidth: 0, 
+                        padding: 0, 
+                        lineHeight: 0,
+                        '& .MuiBottomNavigationAction-label': {
+                            marginTop: 0.5,
+                        },
+                    }}
+                />
+                <BottomNavigationAction
+                    value="/past-trips"
+                    icon={<CheckCircleOutlineOutlinedIcon sx={{ fontSize: 40}}/>}
+                    sx={{ 
+                        minWidth: 0, 
+                        padding: 0, 
+                        lineHeight: 0,
+                        '& .MuiBottomNavigationAction-label': {
+                            marginTop: 0.5, 
+                        },
+                    }}
+                />
+                <BottomNavigationAction
+                    value="/user-profile"
+                    icon={
+                        <Person2OutlinedIcon sx={{ fontSize: 42 }} /> 
                     }
-                }}
-            >
-                <MenuItem onClick={() => handleMenuItemClick("/user-profile")}>Profile</MenuItem>
-                <MenuItem onClick={() => handleMenuItemClick("/user-account")}>Account</MenuItem>
-                <MenuItem onClick={() => handleMenuItemClick("/logout")}>Logout</MenuItem>
-            </Menu>
-        
+                    onClick={handleUserMenuOpen}
+                    sx={{ 
+                        minWidth: 0, 
+                        padding: 0, 
+                        lineHeight: 0,
+                        '& .MuiBottomNavigationAction-label': {
+                            marginTop: 0.5, 
+                        },
+                    }}
+                />
+                </BottomNavigation>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleUserMenuClose}
+                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                    transformOrigin={{ vertical: "top", horizontal: "right" }}
+                    sx={{
+                        padding: 0, 
+                        '& .MuiMenuItem-root': {
+                            display: 'flex',
+                            justifyContent: 'center', 
+                            padding: '10px 20px', 
+                            textAlign: 'center',
+                        }
+                    }}
+                >
+                    <MenuItem onClick={() => handleMenuItemClick("/user-profile")}>Profile</MenuItem>
+                    <MenuItem onClick={() => handleMenuItemClick("/user-account")}>Account</MenuItem>
+                    <MenuItem onClick={() => handleMenuItemClick("/logout")}>Logout</MenuItem>
+                </Menu>
         </Paper>
     );
  }
