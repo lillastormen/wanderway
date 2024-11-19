@@ -209,64 +209,64 @@ export default function Trip() {
         <Typography variant="h5" paddingTop={2} gutterBottom>Trips</Typography>
 
         <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="body1" sx={{ fontWeight: "bold" }} color="#30323D" paddingBottom={1}>Active Trip: </Typography>
-            <Select
-                fullWidth
-                value={activeTripId || ""}
-                onChange={(e) => setActiveTripId(e.target.value)}
-                sx={{
-                    backgroundColor: '#ffffff',
-                    borderRadius: 1,
-                    padding: 1.5,
-                    boxShadow: 1,
-                    fontSize: '20px',
-                    fontWeight: '400',
-                    '&.MuiOutlinedInput-root': {
-                        '& fieldset': {
-                            borderColor: '#1976d2',
+            <Typography variant="body1" sx={{ fontWeight: "bold" }} color="#30323D" paddingBottom={2}>Active Trip: </Typography>
+                <Select
+                    fullWidth
+                    value={activeTripId || ""}
+                    onChange={(e) => setActiveTripId(e.target.value)}
+                    sx={{
+                        backgroundColor: '#ffffff',
+                        borderRadius: 1,
+                        padding: 1.5,
+                        boxShadow: 1,
+                        fontSize: '20px',
+                        fontWeight: '400',
+                        '&.MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: '#1976d2',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#1976d2',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#1976d2',
+                            }
                         },
-                        '&:hover fieldset': {
-                            borderColor: '#1976d2',
-                        },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#1976d2',
-                        }
-                    },
-                }}
-                
-            >
-        {activeTrips.map((trip) => (
-            <MenuItem key={trip.id} value={trip.id}>
-                {trip.city}, {trip.country}&nbsp;<br/><Typography variant="body2">({trip.start_date} - {trip.end_date})</Typography>
-            </MenuItem>
+                    }}
+                >
+                {activeTrips.map((trip) => (
+                    <MenuItem key={trip.id} value={trip.id}>
+                        {trip.city}, {trip.country}&nbsp;<br/><Typography variant="body2">({trip.start_date} - {trip.end_date})</Typography>
+                    </MenuItem>
         ))}
-            </Select>
+                </Select>
         </Box>
+
         {selectedTrip && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5, marginBottom: 3 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5, marginBottom: 3, paddingTop: 3 }}>
             {tabs
               .map((tab, index) => (
-                <Box key={tab} sx={{ textAlign: 'center' }}>
+                <Box key={tab} sx={{textAlign: 'center' }}>
                   <Button
-                    sx={{
-                      marginTop: 1,
-                      padding: 1.5,
-                      '&.MuiButton-outlined': {
+                        sx={{
+                        marginTop: 1,
+                        padding: 1.5,
+                        '&.MuiButton-outlined': {
+                            borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
+                        },
+                        backgroundColor: activeTab === tab ? 'transparent' : '#1976d2',
+                        color: activeTab === tab ? '#1976d2' : '#fff',
                         borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
-                      },
-                      backgroundColor: activeTab === tab ? 'transparent' : '#1976d2',
-                      color: activeTab === tab ? '#1976d2' : '#fff',
-                      borderColor: activeTab === tab ? '#1976d2' : '#1976d2',
-                    }}
-                    onClick={() => setActiveTab(tab)}
-                    variant={activeTab === tab ? 'contained' : 'outlined'}
-                  >
-                    {index === 0 && <MapOutlinedIcon sx={{ fontSize: 40 }} />}
-                    {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 40 }} />}
-                    {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 40 }} />}
-                    {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 40 }} />}
-                    {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 40 }} />}
-                    {index === 5 && <EditOutlinedIcon sx={{ fontSize: 40 }} />}
+                        }}
+                        onClick={() => setActiveTab(tab)}
+                        variant={activeTab === tab ? 'contained' : 'outlined'}
+                    >
+                        {index === 0 && <MapOutlinedIcon sx={{ fontSize: 35 }} />}
+                        {index === 1 && <MapsHomeWorkOutlinedIcon sx={{ fontSize: 35 }} />}
+                        {index === 2 && <WbSunnyOutlinedIcon sx={{ fontSize: 35 }} />}
+                        {index === 3 && <LocalSeeOutlinedIcon sx={{ fontSize: 35 }} />}
+                        {index === 4 && <DiamondOutlinedIcon sx={{ fontSize: 35 }} />}
+                        {index === 5 && <EditOutlinedIcon sx={{ fontSize: 35 }} />}
                   </Button>
         
                   {/* show the label when tab is active */}
