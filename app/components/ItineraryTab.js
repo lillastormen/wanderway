@@ -9,7 +9,7 @@ export default function ItineraryTab ({ activeTrips }) {
             {activeTrips ? (
                 <Paper sx={{ padding: 2, backgroundColor: '#f5f5f5', borderRadius: 2, marginTop: 2 }}>
                     <MarkdownPreview
-                        source={activeTrips.itinerary} // Render the markdown content
+                        source={activeTrip.itinerary} // Render the markdown content
                         wrapperElement={{ 'data-color-mode': 'light' }}
                     />
                 </Paper>

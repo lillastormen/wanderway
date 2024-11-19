@@ -118,7 +118,7 @@ export default function AddGem() {
                             label="Picture URL" 
                             variant="outlined" 
                             fullWidth 
-                            required
+                          
                             name="picture" 
                             value={formData.picture} 
                             onChange={handleFormChange} 

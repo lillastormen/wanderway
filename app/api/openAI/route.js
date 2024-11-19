@@ -95,6 +95,6 @@ export async function GET(req) {
     // const itinerary = itineraryResponse;
     // return NextResponse.json({ itinerary });
 
-    return NextResponse.json('itinerary comes heeeerreeee');
+
 
 }

@@ -66,7 +66,7 @@ export default function HiddenGems ({ cityName }) {
                                     <strong>Country: </strong>{gem.country}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                    <strong>Location: </strong>{gem.location}
+                                    <strong>Precise location: </strong>{gem.location}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
                                     <strong>Description:  </strong> {gem.description}
