@@ -36,55 +36,77 @@ export default function HiddenGems ({ cityName }) {
 
     return (
         <>
-         { hiddenGems.length < 1 ? (
-            <Box sx={{ padding: 2, backgroundColor: '#fff', borderRadius: 2, marginTop: 2, boxShadow: 1, textAlign: 'center' }}>
-                <Typography variant="body2" color="text.secondary">
-                    No results found for the entered city.
-                </Typography>
-            </Box>
-        ) : (
-            hiddenGems.map((gem) => (
-                <Card sx={{ padding: 1, paddingBottom: 0, backgroundColor: '#f5f5f5', boxShadow: 1 }} key={gem.id}>
-                    <Typography variant="h6" color="text.primary" gutterBottom>
-                        {gem.name}
+            {hiddenGems.length < 1 ? (
+                <Box
+                    sx={{
+                        padding: 2,
+                        backgroundColor: "#fff",
+                        borderRadius: 2,
+                        marginTop: 2,
+                        boxShadow: 1,
+                        textAlign: "center",
+                    }}
+                >
+                    <Typography variant="body2" color="text.secondary">
+                        No results found for the entered city.
                     </Typography>
-                    <CardContent sx={{ padding: '0 8px 0 8px' }}>
-                        <Stack spacing={2} marginTop={1}>
-                            {hiddenGems.map((gem) => (
-                                <Box 
-                                    key={gem.id} 
+                </Box>
+            ) : (
+                <Stack spacing={2} sx={{ marginTop: 2 }}>
+                    {hiddenGems.map((gem) => (
+                        <Card
+                            sx={{
+                                padding: 1,
+                                paddingBottom: 0,
+                                backgroundColor: "#f5f5f5",
+                                boxShadow: 1,
+                            }}
+                            key={gem.id}
+                        >
+                            <CardContent sx={{ padding: "0 8px 0 8px" }}>
+                                <Typography variant="h6" color="text.primary" gutterBottom>
+                                    {gem.name}
+                                </Typography>
+                                <Box
                                     sx={{
                                         padding: 2,
-                                        backgroundColor: '#fff',
+                                        backgroundColor: "#fff",
                                         borderRadius: 2,
                                     }}
                                 >
                                     <Typography variant="body1" color="text.secondary">
-                                        <strong>City: </strong>{gem.city}
+                                        <strong>City: </strong>
+                                        {gem.city}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                    <strong>Country: </strong>{gem.country}
+                                        <strong>Country: </strong>
+                                        {gem.country}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                    <strong>Precise location: </strong>{gem.location}
+                                        <strong>Precise location: </strong>
+                                        {gem.location}
                                     </Typography>
                                     <Typography variant="body1" color="text.secondary">
-                                    <strong>Description:  </strong> {gem.description}
+                                        <strong>Description: </strong>
+                                        {gem.description}
                                     </Typography>
                                     {gem.picture && (
-                                        <img 
-                                            src={gem.picture} 
-                                            alt={gem.name} 
-                                            style={{ maxWidth: '100%', borderRadius: '8px', marginTop: 10 }} 
+                                        <img
+                                            src={gem.picture}
+                                            alt={gem.name}
+                                            style={{
+                                                maxWidth: "100%",
+                                                borderRadius: "8px",
+                                                marginTop: 10,
+                                            }}
                                         />
                                     )}
                                 </Box>
-                            ))}
-                        </Stack>
-                    </CardContent>
-                </Card>
-            ))
-        )}
-    </>
-    ) 
+                            </CardContent>
+                        </Card>
+                    ))}
+                </Stack>
+            )}
+        </>
+    );
 }
