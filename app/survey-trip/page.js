@@ -16,6 +16,7 @@ export default function TripSurvey() {
     const urlUserId = searchParams.get('userId');       
     
     const [formData, setFormData] = useState(); 
+    const [loading, setLoading] = useState(false);
    
     useEffect(() => {  
         
@@ -58,16 +59,15 @@ export default function TripSurvey() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
+
           // Ensure `user_id` exists
         if (!formData.user_id || formData.user_id === "") {
             console.error("No user ID found. Please create an account first.");
             alert("No user ID found. Please create an account or log in.");
             return;
         }
-        console.log(formData);
         const response = await Trips.create(formData);
-
-        console.log("Trip creation response:", response);
         
         if (response.success && response.data && response.data) {
             const tripId = response.data.id;
@@ -85,6 +85,7 @@ export default function TripSurvey() {
     return (
         <>
             <TripForm 
+                isLoading={loading}
                 formData={formData}
                 handleFormChange={handleFormChange}
                 handleDestination={handleDestination}

@@ -1,8 +1,9 @@
-import { TextField, Autocomplete, Radio, RadioGroup, FormControl, FormControlLabel, Typography, Box, Button, Stack } from "@mui/material";
+import { TextField, Autocomplete, Typography, Box, Button, Stack } from "@mui/material";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const buttonStyle = {
@@ -20,7 +21,7 @@ const buttonStyle = {
     }
 };
 
-export default function TripForm({ formData, handleFormChange, handleDestination, handleFormSubmit, cities }) {
+export default function TripForm({ formData, handleFormChange, handleDestination, handleFormSubmit, cities, isLoading }) {
 
     const handleButtonClick = (e, name) => {
         handleFormChange({
@@ -31,7 +32,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
         });
       };
 
-
+    
     if(!formData) {
         return <></>;
     }
@@ -138,6 +139,7 @@ export default function TripForm({ formData, handleFormChange, handleDestination
                     <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                         <Button
                             type="submit"
+                            disabled={isLoading}
                             variant="contained"
                             color="primary"
                             size="large"
@@ -149,7 +151,13 @@ export default function TripForm({ formData, handleFormChange, handleDestination
                                 marginBottom: 3,
                             }}
                             >
-                            Ready!
+                            {!isLoading ? (
+                                <>                                
+                                    Ready!
+                                 </>
+                            ) : (
+                                <CircularProgress color="white" size="35px" padding={3} />
+                            )}
                         </Button>
                     </Box>
                 </Stack>
