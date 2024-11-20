@@ -71,24 +71,33 @@ export default function Itinerary() {
              
                 </Box>
 
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => router.push('/trip')}
+                <Box
                     sx={{
-                        width: '100%',
-                        marginTop: 'auto',
-                        padding: 1.5,
-                        fontWeight: 'bold',
-                        borderRadius: 2,
-                        backgroundColor: '#1976d2',
-                        '&:hover': {
-                            backgroundColor: '#1565c0',
-                        }
+                        display: 'flex',
+                        justifyContent: 'center',
+                        paddingTop: '10px'
                     }}
                 >
-                    Next
-                </Button>
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => router.push('/trip')}
+                        sx={{
+                            width: '50%',
+                            marginTop: 'auto',
+                            padding: 1.5,
+                            fontWeight: 'bold',
+                            borderRadius: 2,
+                            backgroundColor: '#1976d2',
+                            '&:hover': {
+                                backgroundColor: '#1565c0',
+                            }
+                        }}
+                    >
+                        Next
+                    </Button>
+                </Box>
             </Paper>
         </Box>
   );
