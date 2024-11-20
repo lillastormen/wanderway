@@ -114,7 +114,7 @@ export default function UserAccount() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                     <Typography><strong>Name: </strong>{userData.name}</Typography>
                     <Typography><strong>Email: </strong>{userData.email}</Typography>
-                    <Typography><strong>Password: </strong>{userData.password}</Typography>
+                    <Typography><strong>Password: </strong>{'*'.repeat(userData.password.length)}</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', paddingTop: 3 }}>
                     <Button

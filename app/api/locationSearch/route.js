@@ -18,7 +18,7 @@ export async function GET(req) {
     // Fetch location data
     const url = `https://api.content.tripadvisor.com/api/v1/location/search?key=${apiKey}&searchQuery=${cityName}&category=attractions&language=en`;
 
-    console.log(url);
+    
 
     try {
         const response = await fetch(url, {
@@ -43,11 +43,11 @@ export async function GET(req) {
             return NextResponse.json({ data: [] });
         }
         const limitedData = [data.data[0]];
+
         // Fetch additional data for each location
         const locationsExtraData = await Promise.all(
             limitedData.map(async (location) => { // data.data.map
                 const locationId = location.location_id;
-
                 // Fetch reviews for the location
                 // const reviewsUrl = `https://api.content.tripadvisor.com/api/v1/location/${locationId}/reviews?key=${apiKey}&language=en`;
                 // const reviewsResponse = await fetch(reviewsUrl, {

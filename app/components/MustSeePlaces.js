@@ -13,14 +13,14 @@ export default function MustSeePlaces({ cityName }) {
             setError(null);
             try {
                 const response = await fetch(`/api/locationSearch?cityName=${cityName}`);
-                console.log("API Response: ", response);
+              
                 if (!response.ok) {
                     setError('Failed to fetch locations for the city');
                     return;
                 }
 
                 const placesData = await response.json();
-                console.log("placesData: ", placesData);
+               
 
                 if (placesData && placesData.data) {
                     setPlaces(placesData.data);
