@@ -127,7 +127,7 @@ export default function Trip() {
                                 </LocalizationProvider>
                                     <Box display={"flex"} justifyContent={"center"} gap={1}>
                                         <Button type="submit" variant="contained" color="primary" sx={{ width: "30%", marginTop: 3}}>Save</Button>
-                                        <Button variant="outlined" onClick={() => setEditingTripId(false)} sx={{ width: "30%", marginTop: 3}}>Cancel</Button>
+                                        {/* <Button variant="outlined" onClick={() => setEditingTripId(false)} sx={{ width: "30%", marginTop: 3}}>Cancel</Button> */}
                                     </Box>
                             </form> 
                         }
