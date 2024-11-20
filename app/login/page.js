@@ -14,7 +14,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log('FormData:', formData);
+    // console.log('FormData:', formData);
 
     try {
         const user = await login(formData); // Calls the `login` action from `actions.js`

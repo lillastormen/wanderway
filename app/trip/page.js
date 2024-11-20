@@ -155,22 +155,25 @@ export default function Trip() {
             const userId = localStorage.getItem('userId');
             const response = await Trips.readTripByUserId(userId);
            
-
+          
             
             if (response.success) {
                 // const fetchedTrip = response.data;
                 const today = new Date();
                 const activeTrips = response.data.filter(trip => new Date(trip.end_date) >= today)
-                console.log(activeTrips);
+           
                 if (localStorage.getItem('tripId')) {
                     setActiveTripId(localStorage.getItem('tripId'));
-                } else if (!activeTrips.length) (
+                } else if (activeTrips.length > 0) {
                     setActiveTripId(activeTrips[0].id)
-                )
+                } else {
+                console.log('Failes active trips avaiable')
+                }    
+
                 setActiveTrips(activeTrips);
             } else {
                 console.log('Failes to fetch trip:', response.error)
-            }    
+            }
         };
 
         fetchActiveTrips();

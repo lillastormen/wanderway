@@ -71,7 +71,7 @@ export default function TripSurvey() {
         
         if (response.success && response.data && response.data) {
             const tripId = response.data.id;
-            console.log('Trip created with ID:', tripId);
+            // console.log('Trip created with ID:', tripId);
 
             //storing generated id in the localstorage
             localStorage.setItem('tripId', tripId);
