@@ -64,11 +64,11 @@ export default function UserSurvey() {
 
     if (response.success) {
       const userId = response.data.id; // Assuming the user ID is returned in the response
-      alert('User added successfully!');
+      // alert('User registered.');
       router.push(`/survey-trip?user_id=${userId}`);
     } else {
       console.error(response.error);
-      alert('Failed to add user');
+      alert('Failed to register a user');
     }
   };
 

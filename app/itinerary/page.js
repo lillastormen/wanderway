@@ -78,21 +78,18 @@ export default function Itinerary() {
                         paddingTop: '10px'
                     }}
                 >
-
                     <Button
                         variant="contained"
                         color="primary"
+                        size="large"
                         onClick={() => router.push('/trip')}
                         sx={{
                             width: '50%',
-                            marginTop: 'auto',
+                            marginTop: 2,
+                            marginBottom: 3,
                             padding: 1.5,
-                            fontWeight: 'bold',
-                            borderRadius: 2,
-                            backgroundColor: '#1976d2',
-                            '&:hover': {
-                                backgroundColor: '#1565c0',
-                            }
+                            fontWeight: 'normal',
+                            borderRadius: 1,
                         }}
                     >
                         Next

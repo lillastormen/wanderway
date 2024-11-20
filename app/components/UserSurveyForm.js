@@ -24,7 +24,7 @@ export default function UserSurveyForm({
   
     return (
         <Box component="form" onSubmit={handleFormSubmit} sx={{ mx: "auto", padding: 1 }}>
-            <Typography variant="h5" paddingTop={2} gutterBottom>Create a user</Typography>
+            <Typography variant="h5" paddingTop={2} gutterBottom>Register</Typography>
             
             <FormControl component="fieldset" margin="normal">
                 <FormLabel sx={{ variant: "body1", fontWeight: "bold", color:"#30323D", paddingBottom: 1}}>Age Group</FormLabel>
@@ -94,23 +94,23 @@ export default function UserSurveyForm({
                     "Beaches", "Shopping", "Music", "Theater", "Architecture", "Photo Ops"
                 ].map((interest, index) => (
                     <Button
-                    key={index}
-                    variant={formData.interests.includes((index + 1).toString()) }
-                    onClick={() => handleFormChange({
-                        target: { 
-                        name: "interest", 
-                        value: (index + 1).toString(), 
-                        type: "checkbox",
-                        checked: !formData.interests.includes((index + 1).toString())
-                        }
-                    })}
-                    sx={{
-                        ...buttonStyle,
-                        borderColor: formData.interests.includes((index + 1).toString()) ? "#89b0d6" : "grey",
-                        borderWidth: formData.interests.includes((index + 1).toString()) ? "3px" : "1px",
-                    }}
-                    >
-                    {interest}
+                        key={index}
+                        variant={formData.interests.includes((index + 1).toString()) }
+                        onClick={() => handleFormChange({
+                            target: { 
+                            name: "interest", 
+                            value: (index + 1).toString(), 
+                            type: "checkbox",
+                            checked: !formData.interests.includes((index + 1).toString())
+                            }
+                        })}
+                        sx={{
+                            ...buttonStyle,
+                            borderColor: formData.interests.includes((index + 1).toString()) ? "#89b0d6" : "grey",
+                            borderWidth: formData.interests.includes((index + 1).toString()) ? "3px" : "1px",
+                        }}
+                        >
+                        {interest}
                     </Button>
                 ))}
                 </Box>

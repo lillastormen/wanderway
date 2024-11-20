@@ -38,7 +38,6 @@ export default function Trip() {
 
         if(!activeTripId || !selectedTrip) return null;
 
-        console.log(selectedTrip.itinerary);
         switch (activeTab) {
             case "Itinerary": 
                 return  (
@@ -155,14 +154,19 @@ export default function Trip() {
             const fetchActiveTrips = async () => {
             const userId = localStorage.getItem('userId');
             const response = await Trips.readTripByUserId(userId);
-            setActiveTripId(localStorage.getItem('tripId'));
+           
 
-            console.log(userId, response);
+            
             if (response.success) {
                 // const fetchedTrip = response.data;
                 const today = new Date();
                 const activeTrips = response.data.filter(trip => new Date(trip.end_date) >= today)
                 console.log(activeTrips);
+                if (localStorage.getItem('tripId')) {
+                    setActiveTripId(localStorage.getItem('tripId'));
+                } else if (!activeTrips.length) (
+                    setActiveTripId(activeTrips[0].id)
+                )
                 setActiveTrips(activeTrips);
             } else {
                 console.log('Failes to fetch trip:', response.error)
